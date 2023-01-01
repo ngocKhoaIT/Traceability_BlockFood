@@ -1,0 +1,97 @@
+<div class="absolute w-full h-full bg-black opacity-30 z-100" *ngIf="loadService.isloading | async">
+    <mat-spinner style="top: 40%; left :48%; color: green;"></mat-spinner >
+</div>
+
+<div class="w-full h-full flex flex-col p-4 bg-lime-100">
+    <div class="flex flex-row items-center">
+        <div class="basis-3/3 text-2xl font-medium text-green-800">
+            DANH SÁCH NHÀ MÁY SẢN XUẤT
+        </div>
+    </div>
+
+    <div class="grid gap-6 mb-6 grid-cols-2 bg-white drop-shadow-xl border-2 p-4">
+        <div>
+            <label class="block mb-2 text-sm font-medium text-gray-900 dark:text-white">Nhà máy*</label>
+            <div
+                class="w-full flex flex-row justify-center items-center text-sm bg-gray-50 p-2 rounded mt-0 border border-gray-300">
+                <mat-select [(ngModel)]="lookFarm" (selectionChange)="findLookFarm(lookFarm)">
+                    <mat-option *ngFor="let i of Factory2s" [value]="i.factoryName">
+                        {{i.factoryName}}
+                    </mat-option>
+                </mat-select>
+            </div>
+        </div>
+
+        <div>
+            <label class="block mb-2 text-sm font-medium text-gray-900 dark:text-white">Tỉnh/thành*</label>
+            <div
+                class="w-full flex flex-row justify-center items-center text-sm bg-gray-50 p-2 rounded mt-0 border border-gray-300">
+                <mat-select [(ngModel)]="lookProvince" (selectionChange)="findLookProvince(lookProvince)">
+                    <mat-option *ngFor="let i of Provinces" [value]="i.nameP">
+                        {{i.nameP}}
+                    </mat-option>
+                </mat-select>
+            </div>
+        </div>
+    </div>
+
+    <div class="mt-4 drop-shadow-xl">
+        <div class="mat-elevation-z8">
+            <div class="w-full flex flex-row items-center bg-white p-2 text-sm">
+                <p class="text-green-600 font-medium">Tìm kiếm:</p> &nbsp;
+                <div class="border-2 border-green-400 rounded h-auto w-48 justify-center flex p-2 drop-shadow-xl">
+                    <input matInput (keyup)="applyFilter($event)" placeholder="Nhập nội dung" #input />
+                </div>
+            </div>
+            <table mat-table [dataSource]="dataSourceFactory" matSort>
+
+                <ng-container matColumnDef="factoryId">
+                    <th mat-header-cell *matHeaderCellDef mat-sort-header> ID </th>
+                    <td mat-cell *matCellDef="let row"> {{row.factoryId}} </td>
+                </ng-container>
+        
+            <ng-container matColumnDef="factoryName">
+                <th mat-header-cell *matHeaderCellDef mat-sort-header> Tên nhà máy </th>
+                <td mat-cell *matCellDef="let row"> {{row.factoryName}} </td>
+            </ng-container>
+        
+            <ng-container matColumnDef="addressFactory">
+                <th mat-header-cell *matHeaderCellDef mat-sort-header> Địa chỉ </th>
+                <td mat-cell *matCellDef="let row"> {{row.addressFactory}} </td>
+            </ng-container>
+        
+            <ng-container matColumnDef="note">
+                <th mat-header-cell *matHeaderCellDef mat-sort-header> Ghi chú </th>
+                <td mat-cell *matCellDef="let row"> {{row.note}} </td>
+            </ng-container>
+        
+            <ng-container matColumnDef="personInCharge">
+                <th mat-header-cell *matHeaderCellDef mat-sort-header> Chủ sỡ hữu </th>
+                <td mat-cell *matCellDef="let row"> {{row.personInCharge}} </td>
+            </ng-container>
+        
+            <ng-container matColumnDef="email">
+                <th mat-header-cell *matHeaderCellDef mat-sort-header> Email </th>
+                <td mat-cell *matCellDef="let row"> {{row.email}} </td>
+            </ng-container>
+        
+            <ng-container matColumnDef="system">
+                <th mat-header-cell *matHeaderCellDef mat-sort-header> Chức năng </th>
+                <td mat-cell *matCellDef="let row">
+                    <button mat-raised-button class="btnCssCreate" (click)="view(row.factoryId)">Xem</button>
+                </td>
+            </ng-container>
+              <tr mat-header-row *matHeaderRowDef="displayedColumnsFactory"></tr>
+              <tr mat-row *matRowDef="let row; columns: displayedColumnsFactory;"></tr>
+        
+            <!-- Row shown when there is no matching data. -->
+              <tr class="mat-row" *matNoDataRow>
+                <td class="mat-cell" colspan="4">No data matching the filter "{{input.value}}"</td>
+            </tr>
+        </table>
+        
+        
+            <mat-paginator [pageSizeOptions]="[10, 20]" aria-label="Select page of Seeds"></mat-paginator>
+        </div>
+    </div>
+</div>

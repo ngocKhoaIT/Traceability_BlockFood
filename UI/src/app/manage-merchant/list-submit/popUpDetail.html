@@ -1,0 +1,41 @@
+<h1 mat-dialog-title>Chọn địa chỉ gửi đến</h1>
+<div mat-dialog-content>
+    <table cellspacing="0"><tr>
+        <td><mat-form-field class="cssMatFormFieldTd" appearance="fill">
+                <mat-label>Nơi tới</mat-label>
+                <mat-select [(ngModel)]="toPlace" (selectionChange)="toPlaceChange()">
+                    <!-- required formControlName="Ctrl7"> -->
+                    <mat-option *ngFor="let i of places" [value]="i">
+                        {{i}}
+                    </mat-option>
+                </mat-select>
+            </mat-form-field></td>
+    </tr></table>   
+    <table cellspacing="0" ><tr>
+        <td *ngIf="check2"><mat-form-field class="cssMatFormFieldTd" appearance="fill">
+                <mat-label>Cửa hàng</mat-label>
+                <mat-select id="toPlace" 
+                name="toPlace" [(ngModel)]="addDetail.toPlace">
+                    <!-- required formControlName="Ctrl7"> -->
+                    <mat-option *ngFor="let i of stores" [value]="i.storeId">
+                        {{i.storeName}}
+                    </mat-option>
+                </mat-select>
+            </mat-form-field></td>
+            <td *ngIf="check1"><mat-form-field class="cssMatFormFieldTd" appearance="fill">
+                <mat-label>Nhà máy sản xuất</mat-label>
+                <mat-select id="toPlace" 
+                name="toPlace" [(ngModel)]="addDetail.toPlace">
+                    <!-- required formControlName="Ctrl7"> -->
+                    <mat-option *ngFor="let i of factorys" [value]="i.factoryId">
+                        {{i.factoryName}}
+                    </mat-option>
+                </mat-select>
+            </mat-form-field></td>
+    </tr></table>   
+</div>
+<div mat-dialog-actions>
+    <div class="buttonCss"><button mat-raised-button color="warn"  (click)="onNoClick()">Hủy</button>
+        <button mat-raised-button class="btnCssCreate"
+        (click)="change($event)" cdkFocusInitial>Chấp nhận</button></div>
+</div>  

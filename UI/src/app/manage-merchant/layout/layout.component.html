@@ -1,0 +1,120 @@
+<div class="flex flex-row bg-gray-900">
+    <div
+        [className]="open?'w-56 bg-gray-900 h-full relative':'w-14 h-screen bg-gray-900 relative'">
+        <a style="background-color: #77BB3F;" [className]="open?'inline-flex w-56 h-14 text-white items-center':'inline-flex w-14 h-12 ml-0 flex text-gray-500 items-center'"
+            >
+            <img src="{{logo}}" class="w-14 h-14"/>
+            <h1
+                [className]="!open ? 'scale-0 text-sm' : 'font-medium text-xs'">
+                Food safety for Everyone</h1>
+        </a>
+        <a [className]="open?'inline-flex text-gray-300 w-52 h-12 rounded-lg flex items-center ml-2 p-4 hover:bg-lime-200 hover:text-gray-500 focus:text-gray-500 focus:bg-lime-100':'inline-flex w-14 h-14 flex text-gray-500 items-center p-4 hover:bg-lime-200 focus:bg-lime-100'"
+            routerLink="staticMerchant/{{idUser}}">
+            <img src="{{chart}}" class="w-6 h-6 mr-2"/>
+            <h1
+                [className]="!open ? 'scale-0 origin-left font-medium text-2xl' : 'font-medium text-xs'">
+                Thống kê</h1>
+        </a>
+
+        <a [className]="open?'inline-flex text-gray-300 w-52 h-12 rounded-lg flex items-center ml-2 p-4 hover:bg-lime-200 hover:text-gray-500 focus:text-gray-500 focus:bg-lime-100':'inline-flex w-14 h-14 flex text-gray-500 items-center p-4 hover:bg-lime-200 focus:bg-lime-100'"
+            routerLink="searchFarm/{{idUser}}">
+            <img src="{{fruit}}" class="w-6 h-6 mr-2"/>
+            <h1
+                [className]="!open ? 'scale-0 origin-left font-medium text-2xl' : 'font-medium text-xs'">
+                Danh sách nông trại thu hoạch</h1>
+        </a>
+
+        <div [className]="open?'w-56 h-14 flex text-gray-300 hover:text-gray-500 focus:text-gray-500 items-center  relative':'w-14 text-gray-500 h-14  relative'">
+            <a class="w-44">
+                <a (click)="changeDrop2()"
+                [className]="open?'inline-flex w-52 h-12 rounded-lg flex items-center ml-2 p-4 hover:bg-lime-200 focus:bg-lime-100':'inline-flex w-14 h-14 flex items-center p-4 hover:bg-lime-200 focus:bg-lime-100'">
+                    <img src="{{history}}" class="w-6 h-6 mr-2"/>
+                    <h1
+                        [className]="!open ? 'scale-0 origin-left font-medium text-2xl ' : 'font-medium text-xs  '">
+                        Lịch sử giao dịch</h1>
+                </a>
+            </a>
+            <button type="button" id="dropdownNavbarButton2" (click)="changeDrop2()" class="p-2" [hidden]="!open">
+                <mat-icon>keyboard_arrow_down</mat-icon>
+            </button>
+        </div>
+
+        <div id="dropdownNavbar2" [hidden]="h2"
+            [className]="open?'w-56 bg-gray-900 relative':'w-14 bg-gray-900 relative'">
+            <ul class="text-xs text-gray-300 font-medium dark:text-gray-400" aria-labelledby="dropdownNavbarButton">
+                <li>
+                    <a routerLink="listwaitmerchant/{{idUser}}"
+                        class="block w-48 h-12 hover:text-gray-500 focus:text-gray-500 rounded-lg flex items-center ml-4 mb-1 p-4 hover:bg-lime-200 focus:bg-lime-100">
+                        <img src="{{wait}}" class="w-6 h-6 mr-2"/>
+                        <h1 class="font-medium text-xs">Danh sách chờ</h1></a>
+                </li>
+                <li>
+                    
+                    <a routerLink="listsubmitmerchant/{{idUser}}"
+                    class="block w-48 h-12 hover:text-gray-500 focus:text-gray-500 rounded-lg flex items-center ml-4 mb-1 p-4 hover:bg-lime-200 focus:bg-lime-100">
+                    <img src="{{done}}" class="w-6 h-6 mr-2"/>
+                    <h1 class="font-medium text-xs">Danh sách đã xác nhận</h1></a>
+                </li>
+                <li>
+                    <a routerLink="listcancelmerchant/{{idUser}}"
+                    class="block w-48 h-12 hover:text-gray-500 focus:text-gray-500 rounded-lg flex items-center ml-4 mb-1 p-4 hover:bg-lime-200 focus:bg-lime-100">
+                    <img src="{{cancel}}" class="w-6 h-6 mr-2"/>
+                    <h1 class="font-medium text-xs">Danh sách đã hủy</h1></a>
+                </li>
+            </ul>
+        </div>
+
+        <a [className]="open?'inline-flex text-gray-300 hover:text-gray-500 focus:text-gray-500 w-52 h-12 rounded-lg flex items-center ml-2 p-4 hover:bg-lime-200 focus:bg-lime-100':'inline-flex w-14 h-14 flex text-gray-500 items-center p-4 hover:bg-lime-200 focus:bg-lime-100'"
+        routerLink="notice-receive/{{idUser}}">
+        <img src="{{notifications}}" class="w-6 h-6 mr-2"/>
+        <h1
+            [className]="!open ? 'scale-0 origin-left font-medium text-2xl' : 'font-medium text-xs'">
+            Thông báo</h1>
+        </a>
+        <a [className]="open?'inline-flex text-gray-300 hover:text-gray-500 focus:text-gray-500 w-52 h-12 rounded-lg flex items-center ml-2 p-4 hover:bg-lime-200 focus:bg-lime-100':'inline-flex w-14 h-14 flex text-gray-500 items-center p-4 hover:bg-lime-200 focus:bg-lime-100'"
+            (click)="openBottomSheet(idUser)">
+            <img src="{{sending}}" class="w-6 h-6 mr-2"/>
+            <h1
+                [className]="!open ? 'scale-0 origin-left font-medium text-2xl' : 'font-medium text-xs'">
+                Gửi phản hồi</h1>
+        </a>
+        <a [className]="open?'inline-flex text-gray-300 hover:text-gray-500 focus:text-gray-500 w-52 h-12 rounded-lg flex items-center ml-2 p-4 hover:bg-lime-200 focus:bg-lime-100':'inline-flex w-14 h-14 flex text-gray-500 items-center p-4 hover:bg-lime-200 focus:bg-lime-100'"
+            routerLink="notice-send/{{idUser}}">
+            <img src="{{sended}}" class="w-6 h-6 mr-2"/>
+            <h1
+                [className]="!open ? 'scale-0 origin-left font-medium text-2xl' : 'font-medium text-xs'">
+                Đã gửi</h1>
+        </a>
+
+
+    </div>
+    <div class="flex flex-col w-full drop-shadow-sm border-solid border-l-2 border-lime-200">
+        <mat-toolbar style="background-color: #77BB3F;" class="text-white h-12 max-md:p-0" >
+            <button mat-icon-button (click)="changeOpen()"
+                aria-label="Example icon-button with menu icon">
+                <mat-icon>menu</mat-icon>
+            </button>
+            <span class="max-md:text-base">Quản lý bởi Thương lái</span>
+            <span class="toolbar-spacer"></span>
+            <button type="button" class="flex items-center" [matMenuTriggerFor]="menu">
+                <img src="{{imageUrl}}" width="40px" height="40px" style="border-radius: 50%;">
+                &nbsp;
+                <a style="font-size: 12px; text-decoration: none;"> {{userName}} </a>
+            </button>
+            <mat-menu #menu="matMenu">
+                <button class="flex items-center p-2 w-full" (click)="info(iden)">
+                    <img src="{{infor}}" width="20px" height="20px"/> &nbsp;Info</button>
+                <button class="flex items-center p-2 w-full" (click)="toPage('login')">
+                    <img src="{{checkout}}" width="20px" height="20px"/> &nbsp;Logout</button>
+            </mat-menu>
+            <button mat-icon-button matBadge="{{co}}" matBadgeColor="warn" [matBadgeHidden]="hidden"
+                (click)="toggleBadgeVisibility()">
+                <mat-icon>notifications</mat-icon>
+            </button>
+        </mat-toolbar>
+        <div class="bg-white h-screen">
+            <router-outlet></router-outlet>
+        </div>
+        
+    </div>
+</div>

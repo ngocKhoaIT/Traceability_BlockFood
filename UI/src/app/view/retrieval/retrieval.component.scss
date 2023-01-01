@@ -1,0 +1,463 @@
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+
+.container {
+    min-height: 100vh;
+    width: 100%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+
+.webcam{
+    position: absolute;
+    width: 80%;
+    height: 80%;
+}
+
+.file-upload-button {
+    margin-left: 10px;
+    margin-top: 0px;
+    background-color: #fff;
+    background-repeat: no-repeat;
+    background-size: cover;
+    height: 4rem;
+    overflow: hidden;
+    position: relative;
+    width: 4rem;
+
+input[type="file"] {
+        font-size: 100px;
+        left: 0;
+        opacity: 0;
+        position: absolute;
+        top: 0;
+    }
+}
+
+.file-info {
+    color: #999;
+    font-family: Lato;
+    margin-left: 0.5rem;
+}
+
+.cssMatFormFieldTd{
+    width: 40%;
+}
+
+::ng-deep .mat-tab-group.mat-primary .mat-ink-bar, 
+.mat-tab-nav-bar.mat-primary .mat-ink-bar 
+{
+    background-color: #228B22;
+}
+
+::ng-deep .mat-form-field.mat-focused .mat-form-field-ripple
+{
+    background-color: #228B22;
+}
+
+::ng-deep .mat-form-field.mat-focused .mat-form-field-label
+{
+    color: #228B22;
+}
+
+.btnCssCreate{
+    background-color: #228B22;
+    color: #fff;
+    margin-top: 5px;
+    height: 50px;
+}
+
+mat-form-field{
+    width: 40%;
+    margin-right: 10px;
+}
+
+::ng-deep .mat-form-field-appearance-fill .mat-form-field-flex{
+    background-color: #fff;
+}
+
+.access-search{
+    width: 75%;
+    height: 70px;
+}
+
+/* Phan truy xuat */
+
+#access {
+    background-size: cover;
+    // background-image: url("../images/images/buoi.jpg");
+    background-position: top center;
+    position: relative;
+    z-index: 1;
+}
+
+#access::after{
+    content: '';
+    position: absolute;
+    left: 0;
+    top: 0;
+    height: 100%;
+    width: 100%;
+    background-color:black;
+    opacity: .5;
+    z-index: -1;
+}
+
+#access .access{
+    flex-direction: column;
+    text-align: center;
+    max-width: 1260px;
+    margin: 0;
+    padding: 50px;
+    margin-top: 0px;
+}
+
+#access h1{
+    display: block;
+    width: fit-content;
+    font-size: 3rem;
+    position: relative;
+    color: #7cf01d;
+    margin-bottom: 10px;
+}
+
+    #access a { 
+        left:20%;
+    }
+/* Phan dang nhap */
+
+
+#login .login{
+    flex-direction: column;
+    text-align: center;
+    max-width: 1260px;
+    margin: 0;
+    padding: 50px;
+    margin-top: 0px;
+}
+
+#login .login-title{
+    font-size: 3.5rem;
+    font-weight: 300;
+    color: #352d2d;
+    margin-top: 0px;
+    margin-bottom: 10px;
+    text-transform: uppercase;
+    letter-spacing: .2rem;
+    text-align: center;
+}
+
+#login .login-top p{
+    font-size: 1.0rem;
+    margin-top: 5px;
+    font-weight: 300;
+    line-height: 2.5rem;
+    letter-spacing: .0rem;
+}
+
+#login .login-bottom{
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    flex-wrap: wrap;
+}
+
+#login .login-item{
+    flex-basis: 40%;
+    display: flex;
+    justify-content: center;
+    flex-direction: column;
+    padding: 30px;
+    border-radius: 10px;
+    // background-image: url("https://localhost:7270/Photos/buoiitem.png");
+    background-size: cover;
+    margin: 10px 5%;
+    position: relative;
+    align-items: flex-start;
+    text-align: left;
+    z-index: 1;
+}
+
+#login .login-item::after{
+    content: '';
+    position: absolute;
+    left: 0;
+    top: 0;
+    height: 100%;
+    width: 100%;
+    background-color: black;
+    opacity: .4;
+    z-index: -1;
+}
+
+#login .login-bottom .icon{
+    height: 80px;
+    width: 80px;
+    margin-bottom: 10px;
+}
+
+#login .login-bottom .icon img{
+    height: 80px;
+    width: 80px;
+    border-radius: 3px;
+}
+
+#login .login-bottom h2{
+    color: aliceblue;
+    font-weight: 300;
+    margin-bottom: 5px;
+    font-size: 2rem;
+}
+
+#login .login-bottom p{
+    color: aliceblue;
+    margin-bottom: 20px;
+    font-size: 1rem;
+}
+
+
+#login .btn{
+    text-align: center;
+    text-decoration: none;
+    width: 200px;
+    height: 50px;
+    border: none; 
+    color: #7cf01d;
+    border-radius: 4px;
+    transition: ease-out 0.3s;
+    font-size: 1.5rem;
+    outline: none;
+    border: 3px solid #7cf01d;
+    position: relative;
+    z-index: 1;
+    justify-content: center;
+    display: flex;
+    flex-direction: column;
+} 
+
+
+#login .btn:hover{
+    color: #352d2d;
+    cursor: pointer;
+}
+
+#login .btn::before{
+    transition: 0.5s all ease;
+    position: absolute;
+    top: 0;
+    left: 0;
+    right: 50%;
+    bottom: 0;
+    opacity: 0;
+    content: '';
+    background-color: #7cf01d;
+}
+
+#login .btn:hover::before{
+    transition: 0.5s all ease;
+    left: 0;
+    right: 0;
+    opacity: 1;
+    z-index: -1;
+}
+
+@media only screen and (max-width: 900px){
+    #login .login-top p{
+        font-size: 1rem;
+    }
+
+    #login .login-bottom .login-item{
+        flex-basis: 80%;
+    }
+}
+
+@media only screen and (max-width: 768px){
+    #login .btn{
+        font-size: 1.2rem;
+    }
+}
+
+
+/* Phan thong tin */
+#about .about{
+    flex-direction: column;
+    max-width: 1260px;
+    margin: 0 auto;
+    padding: 50px 0;
+}
+
+#about .about-top h1{
+    margin-bottom: 50px;
+    font-size: 3.5rem;
+    font-weight: 300;
+    color: #352d2d;
+    margin-top: 0px;
+    text-transform: uppercase;
+    letter-spacing: .2rem;
+    text-align: center;
+}
+
+#about .about-bottom{
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    flex-direction: column;
+    width: 100%;
+}
+
+#about .about-item{
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    flex-direction: column;
+    width: 80%;
+    margin: 20px auto;
+    overflow: hidden;
+    border-radius: 10px;
+}
+
+#about .about-info{
+    padding: 30px;
+    flex-basis: 50%;
+    height: 100%;
+    display: flex;
+    align-items: flex-start;
+    justify-content: center;
+    flex-direction: column;
+    background-image: linear-gradient(60deg, darkslategray 0%, #352d2d 100%);
+    color: white;
+}
+
+#about .about-info h1{
+    font-size: 2rem;
+    font-weight: 500;
+}
+
+#about .about-info h2{
+    font-size: 1.5rem;
+    font-weight: 300;
+    margin-top: 10px;
+}
+
+#about .about-info p{
+    color: aliceblue;
+}
+
+#about .about-img{
+    flex-basis: 50%;
+    width: 100%;
+    height: 300px;
+    overflow: hidden;
+    position: relative;
+}
+
+#about .about-img::after{
+    content: '';
+    position: absolute;
+    left: 0;
+    top: 0;
+    height: 100%;
+    width: 100%;
+    background-image: linear-gradient(60deg, darkslategray 0%, #352d2d 100%);
+    opacity: .4;
+}
+
+#about .about-img img{
+    width: 600px;
+    height: 400px;
+    transition: .3s ease transform;
+}
+
+#about .about-item:hover .about-img img{
+    transform: scale(1.1);
+}
+
+@media only screen and (min-width: 800px){
+    #about .about-item{
+        height: 400px;
+        margin: 0;
+        width: 100%;
+        border-radius: 0;
+        flex-direction: row;
+    }
+
+    #about .about-bottom .about-info{
+        height: 100%;
+    }
+
+    #about .about-bottom .about-img{
+        height: 100%;
+    }
+}
+
+/* Phan lien he */
+#contact .contact{
+    flex-direction: column;
+    max-width: 1260px;
+    margin: 0 auto;
+}
+
+#contact .contact-title{
+    font-size: 4rem;
+    font-weight: 300;
+    color: #352d2d;
+    margin-bottom: 10px;
+    text-transform: uppercase;
+    letter-spacing: .2rem;
+    text-align: center;
+}
+
+#contact .contact-items{
+    width: 1260px;
+    display: flex;
+    flex-direction: row;
+}
+
+#contact .contact-item{
+    width: 80%;
+    padding: 20px;
+    text-align: center;
+    border-radius: 10px;
+    padding: 30px;
+    margin: 30px;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    flex-direction: column;
+    box-shadow: 0px 0px 18px 0 #352d2d;
+    transition: .3s ease box-shadow;
+}
+
+#contact .contact-item:hover{
+    box-shadow: 0px 0px 5px 0 #352d2d;
+}
+
+#contact .icon{
+    width: 70px;
+    margin: 0 auto;
+    margin-bottom: 10px;
+}
+
+#contact .contact-info h1{
+    font-size: 2.5rem;
+    font-weight: 500;
+    margin-bottom: 5px;
+}
+
+#contact .contact-info h2{
+    font-size: 1.3rem;
+    line-height: 2rem;
+    font-weight: 500;
+}
+
+@media only screen and (max-width: 1000px){
+    #contact .contact-items{
+        width: 400px;
+        display: flex;
+        flex-direction: column;
+    }
+}

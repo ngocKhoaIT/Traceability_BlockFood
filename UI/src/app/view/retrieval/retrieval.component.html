@@ -1,0 +1,153 @@
+<section class="w-full flex flex-col items-center justify-center" id="access" [ngStyle]="{'background-image': 'url('+hinhnen+')'}">
+    <div class="access container">
+        <div class="access-brand">
+            <h1><p class="max-md:text-2xl max-md:font-medium">TRUY XUẤT NGUỒN GỐC SẢN PHẨM</p></h1>
+        </div>
+        <div class="flex flex-row items-center justify-center w-full max-md:flex-col">
+            <div class="w-80 h-auto">
+                <input class="w-full h-12 shadow appearance-none border rounded w-full text-gray-700 leading-tight focus:outline-none focus:shadow-outline"
+                [(ngModel)]="fieldRetrieval" type="text" placeholder="Nhập mã truy xuất">
+            </div>
+            <div class="flex flex-row items-center justify-center max-md:!mt-2">
+                <button mat-raised-button style="margin-left: 4px;" class="btnCssCreate" (click)="add(fieldRetrieval)">Truy xuất</button>
+                <!-- <button class="file-upload-button" [ngStyle]="{'background-image': 'url('+qr+')'}">
+                    <input type="file" #fileInput (change)="onChange(fileInput)" />
+                </button> -->
+                <button class="file-upload-button" (click)="action.start()" (click)="webcamChange()"
+                    [ngStyle]="{'background-image': 'url('+qr+')'}">
+                    
+                </button>
+            </div>
+            <!-- <webcam [hidden]="checkCamera" class="webcam" [trigger]="invokeObservable" (imageCapture)="captureImg($event)"></webcam> -->
+            <ngx-scanner-qrcode #action="scanner" class="webcam" [hidden]="checkCamera"></ngx-scanner-qrcode>
+            
+        </div>
+        <a style="color: #4cff00">Hãy nhập mã sản phẩm để truy xuất nguồn gốc!</a>
+    </div>
+</section>
+<p class="data" *ngIf="(action.data | async | json) !== '{}' ">{{changeJson(action.data | async | json)}}</p>
+<section id="login" class="w-full flex flex-col items-center justify-center">
+    <div class="login container">
+        <div class="login-top">
+            <h1 class="login-title"><h2 class="max-md:text-3xl max-md:font-medium">ĐĂNG NHẬP</h2></h1>
+            <p>Đăng nhập vào tài khoản tham gia vào chuỗi cung ứng sản phẩm bưởi. Trong đó bao gồm các bên tham gia như
+                Nông trại, Thương lái, Nhà máy sản xuất, Đơn vị vận chuyển và Cửa hàng</p>
+        </div>
+        <div class="login-bottom">  
+            <div class="login-item" [ngStyle]="{'background-image': 'url('+item1+')'}">
+                <div class="icon"><img src="{{farm}}"></div>
+                <h2>Nông Trại</h2>
+                <p>Dành cho các chủ nông trại nhập thông tin sản phẩm tại nông trại.</p>
+                <a (click)="toPage('login')" type="button" class="btn">Đăng Nhập</a>
+            </div>
+            <div class="login-item" [ngStyle]="{'background-image': 'url('+item4+')'}">
+                <div class="icon"><img src="{{transport}}"></div>
+                <h2>Đơn Vị Vận Chuyển</h2>
+                <p>Dành cho các thương lái nhập thông tin vận chuyển và quy trình xử lý sản phẩm.</p>
+                <a (click)="toPage('login')" type="button" class="btn">Đăng Nhập</a>
+            </div>
+            <div class="login-item" [ngStyle]="{'background-image': 'url('+item2+')'}">
+                <div class="icon"><img src="{{factory}}"></div>
+                <h2>Nhà Máy Sản Xuất</h2>
+                <p>Dành cho nhà sản xuất nhập bưởi và lưu trữ thông tin tạo ra sản phẩm.</p>
+                <a (click)="toPage('login')" type="button" class="btn">Đăng Nhập</a>
+            </div>
+            <div class="login-item" [ngStyle]="{'background-image': 'url('+item5+')'}">
+                <div class="icon"><img src="{{store}}"></div>
+                <h2>Cửa Hàng</h2>
+                <p>Dành cho các cửa hàng muốn nhập khẩu sản phẩm từ nước ngoài.</p>
+                <a (click)="toPage('login')" type="button" class="btn">Đăng Nhập</a>
+            </div>
+            <div class="login-item" [ngStyle]="{'background-image': 'url('+item3+')'}">
+                <div class="icon"><img src="{{merchant}}"></div>
+                <h2>Thương lái</h2>
+                <p>Dành cho nhà sản xuất nhập bưởi và lưu trữ thông tin tạo ra sản phẩm.</p>
+                <a (click)="toPage('login')" type="button" class="btn">Đăng Nhập</a>
+            </div>
+            <div class="login-item" [ngStyle]="{'background-image': 'url('+item+')'}">
+                <div class="icon"><img src="{{admin}}"></div>
+                <h2>Người truy xuất</h2>
+                <p>Dành cho các cửa hàng muốn nhập khẩu sản phẩm từ nước ngoài.</p>
+                <a href="Login/Shop/shop_login.aspx" type="button" class="btn">Đăng Nhập</a>
+            </div>
+        </div>
+    </div>
+</section>
+<section id="about" class="w-full">
+    <div class="about container">
+        <div class="about-top">
+            <h1 class="about-title"><h2 class="max-md:text-3xl max-md:font-medium">Thông Tin</h2></h1>
+        </div>
+        <div class="about-bottom">
+            <div class="about-item">
+                <div class="about-info">
+                    <h1>Phạm Ngọc Khoa</h1>
+                    <h2>2001190617</h2>
+                    <p>
+                        Đang học tại trường Đại học Công nghiệp Thực phẩm Tp. Hồ Chí Minh, ngành Công Nghệ Thông Tin,
+                        Khóa 10, Lớp 10DHT7, chuyên ngành Khoa học Phân tích Dữ liệu.
+                    </p>
+                </div>
+                <div class="about-img">
+                    <img src="{{khoa}}">
+                </div>
+            </div>
+            <div class="about-item">
+                <div class="about-info">
+                    <h1>Lê Quốc Nhiên</h1>
+                    <h2>2001190716</h2>
+                    <p>Đang học tại trường Đại học Công nghiệp Thực phẩm Tp. Hồ Chí Minh, ngành Công Nghệ Thông Tin,
+                        Khóa 10, Lớp 10DHT7, chuyên ngành Khoa học Phân tích Dữ liệu.</p>
+                </div>
+                <div class="about-img">
+                    <img src="{{nhien}}">
+                </div>
+            </div>
+            <div class="about-item">
+                <div class="about-info">
+                    <h1>Phan Hải Thanh</h1>
+                    <h2>2001190260</h2>
+                    <p>Đang học tại trường Đại học Công nghiệp Thực phẩm Tp. Hồ Chí Minh, ngành Công Nghệ Thông Tin,
+                        Khóa 10, Lớp 10DHT7, chuyên ngành Khoa học Phân tích Dữ liệu.</p>
+                </div>
+                <div class="about-img">
+                    <img src="{{thanh}}">
+                </div>
+            </div>
+        </div>
+    </div>
+</section>
+<section id="contact">
+    <div class="contact container">
+        <div>
+            <h2 class="contact-title"><h2 class="max-md:text-3xl max-md:font-medium">Liên Hệ</h2></h2>
+        </div>
+        <div class="contact-items">
+            <div class="contact-item">
+                <div class="icon"><img src="https://img.icons8.com/bubbles/100/000000/phone.png"></div>
+                <div class="contact-info">
+                    <h1>Số điện thoại</h1>
+                    <h2>+84 973 442 952</h2>
+                    <h2>+84 823 755 239</h2>
+                    <h2>+84 337 869 784</h2>
+                </div>
+            </div>
+            <div class="contact-item">
+                <div class="icon"><img src="https://img.icons8.com/bubbles/100/000000/new-post.png"></div>
+                <div class="contact-info">
+                    <h1>Email</h1>
+                    <h2>phamngockhoa2806@gmail.com</h2>
+                    <h2>lequocnhien1990@gmail.com</h2>
+                    <h2>haithanh23102001@gmail.com</h2>
+                </div>
+            </div>
+            <div class="contact-item">
+                <div class="icon"><img src="https://img.icons8.com/bubbles/100/000000/map-marker.png"></div>
+                <div class="contact-info">
+                    <h1>Địa Chỉ</h1>
+                    <h2>1506, Hùng Vương, Cam Phú, Cam Ranh, Khánh Hòa</h2>
+                </div>
+            </div>
+        </div>
+    </div>
+</section>

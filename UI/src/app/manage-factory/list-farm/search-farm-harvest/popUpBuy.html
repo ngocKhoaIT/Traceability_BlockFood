@@ -1,0 +1,27 @@
+<h1 mat-dialog-title class="border-b-2 border-gray-200"> Gửi yêu cầu tới nông trại</h1>
+<div mat-dialog-content class="m-4 border-b-2 border-gray-200">
+        <div class="grid gap-6 mb-6 md:grid-cols-2">
+            <div>
+                <label class="block mb-2 text-sm font-medium text-gray-900 dark:text-white">Trọng lượng*</label>
+                <input [(ngModel)] = "addDetail.amount" 
+                type="text" class="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500" placeholder="Nhập tên nông trại" required>
+            </div>
+            <div>
+                <label class="block mb-2 text-sm font-medium text-gray-900 dark:text-white">Đơn vị tính*</label>
+                <div
+                    class="w-full flex flex-row justify-center items-center text-sm bg-gray-50 p-2 rounded mt-0 border border-gray-300">
+                    <mat-select id="unit" required
+                        name="unit" [(ngModel)]="addDetail.unit">
+                            <mat-option *ngFor="let i of units" [value]="i">
+                                {{i}}
+                            </mat-option>
+                        </mat-select>
+                </div>
+            </div>
+        </div>
+</div>
+<div mat-dialog-actions>
+    <div class="buttonCss"><button mat-raised-button color="warn"  (click)="onNoClick()">Hủy</button>
+        <button mat-raised-button class="btnCssCreate"
+        (click)="change($event)" cdkFocusInitial>Chấp nhận</button></div>
+</div>  

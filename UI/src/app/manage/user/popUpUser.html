@@ -1,0 +1,131 @@
+<h1 mat-dialog-title class="border-b-2 border-gray-200"> {{btnChange}} Tài khoản </h1>
+<div mat-dialog-content class="m-4 border-b-2 border-gray-200">
+    <div class="grid gap-6 mb-6 md:grid-cols-2">
+        <div>
+            <label class="block mb-2 text-sm font-medium text-gray-900 dark:text-white">User Name*</label>
+            <input [(ngModel)]="UserDetails.userName" type="text"
+                class="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500"
+                placeholder="Nhập tài khoản" required>
+        </div>
+        <div>
+            <label class="block mb-2 text-sm font-medium text-gray-900 dark:text-white">Phân quyền*</label>
+            <div
+                class="w-full flex flex-row justify-center items-center text-sm bg-gray-50 p-2 rounded mt-0 border border-gray-300">
+                <mat-select [(ngModel)]="UserDetails._role" (selectionChange)="DtoPersontoPlace(UserDetails._role)"
+                    required id="_role" name="_role">
+                    <mat-option *ngFor="let i of _roles" [value]="i.id">
+                        {{i.name}}
+                    </mat-option>
+                </mat-select>
+            </div>
+        </div>
+
+        <div>
+            <label class="block mb-2 text-sm font-medium text-gray-900 dark:text-white">Mã định danh*</label>
+            <div
+                class="w-full flex flex-row justify-center items-center text-sm bg-gray-50 p-2 rounded mt-0 border border-gray-300">
+                <mat-select [(ngModel)]="UserDetails.represent" required id="represent"
+                            name="represent">
+                            <mat-option *ngFor="let i of identifications" [value]="i.identification">
+                                {{i.lastName}} {{i.firstName}}
+                            </mat-option>
+                        </mat-select>
+            </div>
+        </div>
+
+        <div *ngIf="checkFarm">
+            <label class="block mb-2 text-sm font-medium text-gray-900 dark:text-white">Phân quyền*</label>
+            <div
+                class="w-full flex flex-row justify-center items-center text-sm bg-gray-50 p-2 rounded mt-0 border border-gray-300">
+                <mat-select [(ngModel)]="UserDetails.workingFor" required
+                            id="workingFor" name="workingFor">
+                            <mat-option *ngFor="let i of placeFarm" [value]="i.farmId">
+                                {{i.farmName}}
+                            </mat-option>
+                        </mat-select>
+            </div>
+        </div>
+
+        <div *ngIf="checkFactory">
+            <label class="block mb-2 text-sm font-medium text-gray-900 dark:text-white">Nơi làm việc*</label>
+            <div
+                class="w-full flex flex-row justify-center items-center text-sm bg-gray-50 p-2 rounded mt-0 border border-gray-300">
+                <mat-select [(ngModel)]="UserDetails.workingFor" required
+                            id="workingFor" name="workingFor">
+                            <mat-option *ngFor="let i of placeFactory" [value]="i.factoryId">
+                                {{i.factoryName}}
+                            </mat-option>
+                        </mat-select>
+            </div>
+        </div>
+
+        <div *ngIf="checkMerchant">
+            <label class="block mb-2 text-sm font-medium text-gray-900 dark:text-white">Nơi làm việc*</label>
+            <div
+                class="w-full flex flex-row justify-center items-center text-sm bg-gray-50 p-2 rounded mt-0 border border-gray-300">
+                <mat-select [(ngModel)]="UserDetails.workingFor" required
+                            id="workingFor" name="workingFor">
+                            <mat-option *ngFor="let i of placeMerchant" [value]="i.merchantId">
+                                {{i.merchantName}}
+                            </mat-option>
+                        </mat-select>
+            </div>
+        </div>
+
+        <div *ngIf="checkTransport">
+            <label class="block mb-2 text-sm font-medium text-gray-900 dark:text-white">Nơi làm việc*</label>
+            <div
+                class="w-full flex flex-row justify-center items-center text-sm bg-gray-50 p-2 rounded mt-0 border border-gray-300">
+                <mat-select [(ngModel)]="UserDetails.workingFor" required
+                            id="workingFor" name="workingFor">
+                            <mat-option *ngFor="let i of placeTransport" [value]="i.transportId">
+                                {{i.transportName}}
+                            </mat-option>
+                        </mat-select>
+            </div>
+        </div>
+
+        <div *ngIf="checkStore">
+            <label class="block mb-2 text-sm font-medium text-gray-900 dark:text-white">Nơi làm việc*</label>
+            <div
+                class="w-full flex flex-row justify-center items-center text-sm bg-gray-50 p-2 rounded mt-0 border border-gray-300">
+                <mat-select [(ngModel)]="UserDetails.workingFor" required
+                            id="workingFor" name="workingFor">
+                            <mat-option *ngFor="let i of placeStore" [value]="i.storeId">
+                                {{i.storeName}}
+                            </mat-option>
+                        </mat-select>
+            </div>
+        </div>
+
+        <div>
+            <label class="block mb-2 text-sm font-medium text-gray-900 dark:text-white">Password*</label>
+            <div class="flex flex-row items-center justify-end relative">
+                <input [(ngModel)]="UserDetails._passwordHash" [type]="hide1?'password':'text'"
+                    class="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500"
+                    required>
+                <button class="absolute flex flex-row items-center m-2" (click)="onHide1()"><mat-icon>{{hide1 ?
+                        'visibility' : 'visibility_off'}}</mat-icon></button>
+            </div>
+        </div>
+        <div>
+            <label class="block mb-2 text-sm font-medium text-gray-900 dark:text-white">Confirm Password*</label>
+            <div class="flex flex-row items-center justify-end relative">
+                <input [(ngModel)]="UserDetails._passwordSalt" (change)="onChangePassword()"
+                    [type]="hide2?'password':'text'"
+                    class="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500"
+                    required>
+                <button class="absolute flex flex-row items-center m-2" (click)="onHide2()"><mat-icon>{{hide2 ?
+                        'visibility' : 'visibility_off'}}</mat-icon></button>
+            </div>
+        </div>
+        <div class="col-span-2 text-red-500 text-sm flex flex-row items-center justify-center" *ngIf="errPass===false">Password Not Match</div>
+
+    </div>
+</div>
+<div mat-dialog-actions>
+    <div class="buttonCss"><button mat-raised-button color="warn" (click)="onNoClick()">Hủy</button>
+        <button mat-raised-button [ngStyle]="{'background-color': btnColor, 'color': 'white'}" (click)="change($event)"
+            cdkFocusInitial>{{btnChange}}</button>
+    </div>
+</div>

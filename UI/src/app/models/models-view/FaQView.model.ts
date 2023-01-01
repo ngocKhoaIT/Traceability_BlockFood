@@ -1,0 +1,16 @@
+export interface FaQView {
+    productId : string,
+    productName : string,
+    mfg_date : string,
+    exp_date : string,
+    factoryId : string,
+    factoryName : string,
+    addressFactory : string,
+    placeId : string,
+    placeName : string,
+    addressPlace : string,
+    amount : number,
+    unit : string,
+    status_btn : string,
+    date : string,
+}

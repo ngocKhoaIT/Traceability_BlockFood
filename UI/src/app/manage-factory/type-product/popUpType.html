@@ -1,0 +1,49 @@
+<h1 mat-dialog-title class="border-b-2 border-gray-200"> {{btnChange}} Thông tin loại sản phẩm </h1>
+<div mat-dialog-content class="m-4 border-b-2 border-gray-200">
+        <div class="grid gap-6 mb-6 md:grid-cols-2">
+            <div>
+                <label class="block mb-2 text-sm font-medium text-gray-900 dark:text-white">ID</label>
+                <input [(ngModel)] = "addTypeProductRequest.typeProductId" disabled 
+                type="text" class="bg-gray-50 border border-gray-300 text-gray-400 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500" required>
+            </div>
+            <div>
+                <label class="block mb-2 text-sm font-medium text-gray-900 dark:text-white">Tên loại*</label>
+                <input [(ngModel)] = "addTypeProductRequest.typeName" 
+                type="text" class="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500" placeholder="Nhập tên loại" required>
+            </div>
+            <div>
+                <label class="block mb-2 text-sm font-medium text-gray-900 dark:text-white">Quy trình*</label>
+                <input [(ngModel)] = "addTypeProductRequest.procedureOfProduct" 
+                type="text" class="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500" placeholder="Nhập quy trình" required>
+            </div>
+            <div>
+                <label class="block mb-2 text-sm font-medium text-gray-900 dark:text-white">Thành phần*</label>
+                <input [(ngModel)] = "addTypeProductRequest.elementOfProduct" 
+                type="text" class="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500" placeholder="Nhập thành phần" required>
+            </div>
+            <div>
+                <label class="block mb-2 text-sm font-medium text-gray-900 dark:text-white">Khối lượng tịnh*</label>
+                <input [(ngModel)] = "addTypeProductRequest.net_weight" 
+                type="text" class="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500" required>
+            </div>
+            <div>
+                <label class="block mb-2 text-sm font-medium text-gray-900 dark:text-white">Thương hiệu*</label>
+                <input [(ngModel)] = "addTypeProductRequest.brand" 
+                type="text" class="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500" placeholder="Nhập tên thương hiệu" required>
+            </div>
+            <div class="col-span-2">
+                <div>
+                    <label class="block mb-2 text-sm font-medium text-gray-900 dark:text-white" for="small_size">Hình ảnh</label>
+                    <input (change)="onChange($event)"
+                        class="w-64 mb-5 text-xs text-gray-900 border border-gray-300 rounded-lg cursor-pointer bg-gray-50 dark:text-gray-400 focus:outline-none dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400"
+                        id="small_size" type="file">
+                        <button (click)="onUpload()" class=" ml-4 text-xs p-2 bg-lime-500 rounded">Upload</button>
+                </div>
+            </div>
+        </div>
+</div>
+<div mat-dialog-actions>
+    <div class="buttonCss"><button mat-raised-button color="warn"  (click)="onNoClick()">Hủy</button>
+        <button mat-raised-button [ngStyle]="{'background-color': btnColor, 'color': 'white'}"
+        (click)="change($event)" cdkFocusInitial>{{btnChange}}</button></div>
+</div>  

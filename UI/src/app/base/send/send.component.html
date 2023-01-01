@@ -1,0 +1,18 @@
+<form>
+    <mat-form-field class="example-full-width" appearance="fill">
+        <mat-label>Đến</mat-label>
+        <input type="text" matInput [formControl]="myControl" [matAutocomplete]="auto" [(ngModel)]="r">
+        <mat-autocomplete #auto="matAutocomplete" [displayWith]="displayFn">
+        <mat-option *ngFor="let option of filteredOptions | async" [value]="option">
+            {{option.userName}}
+        </mat-option>
+        </mat-autocomplete>
+    </mat-form-field>
+</form>
+<mat-form-field class="example-full-width" appearance="fill">
+    <mat-label>Tiêu đề</mat-label>
+    <input matInput [(ngModel)]="detail.title">
+</mat-form-field>
+<ckeditor data="<p>Hello, world!</p>" [(ngModel)]="detail.content" ></ckeditor>
+<button mat-raised-button color="warn" (click)="onNoClick()">Hủy</button>
+<button mat-raised-button color="primary" (click)="add()">Thêm</button>

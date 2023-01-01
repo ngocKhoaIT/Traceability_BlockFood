@@ -1,0 +1,56 @@
+<div class="absolute w-full h-full bg-black opacity-30 z-100" *ngIf="loadService.isloading | async">
+    <mat-spinner style="top: 40%; left :48%; color: green;"></mat-spinner >
+</div>
+
+<div class="w-full h-full bg-lime-50 p-8">
+    <div class="grid grid-cols-3 gap-12 mb-4 max-sm:grid-cols-1 max-sm:mb-12">
+        <div *ngFor="let card of cards">
+            <mat-card style="color: white;" [ngStyle]="{'background-color': card.color}">
+                <mat-card-title-group>
+                <mat-card-title><h3>{{card.amount}}</h3> {{card.type}}</mat-card-title>
+                <img src="{{card.imageUrl}}" width="50px" height="50px" >
+                
+                </mat-card-title-group>
+                <mat-card-content>
+                    {{card.system}}
+                </mat-card-content>
+            </mat-card>
+        </div>
+    </div>
+    
+    <div class="grid grid-cols-2 gap-12 max-sm:grid-cols-1">
+        <div *ngFor="let card of cards2">
+            <mat-card style="color: white;" [ngStyle]="{'background-color': card.color}">
+                <mat-card-title-group>
+                <mat-card-title><h3>{{card.amount}}</h3> {{card.type}}</mat-card-title>
+                <img src="{{card.imageUrl}}" width="50px" height="50px" >
+                
+                </mat-card-title-group>
+                <mat-card-content>
+                    {{card.system}}
+                </mat-card-content>
+            </mat-card>
+        </div>
+    </div>
+
+    <div class="grid grid-cols-2 gap-4 mt-4 max-md:grid-cols-1">
+        <div class="flex flex-row justify-center items-center bg-white drop-shadow-xl rounded w-full h-full">
+            <div id = "divChart2">
+                <canvas id="Chart2" height="300px">{{ chart2 }}</canvas>
+            </div>
+        </div>
+
+        <div class="flex flex-row justify-center items-center bg-white drop-shadow-xl rounded w-full h-full">
+            <div id = "divChart">
+                <canvas id="Chart1" >{{ chart }}</canvas>
+            </div>
+        </div>
+    </div>
+</div>
+
+
+
+
+
+
+

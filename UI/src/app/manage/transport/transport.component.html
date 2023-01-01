@@ -1,0 +1,112 @@
+<div class="absolute w-full h-full bg-black opacity-30 z-100" *ngIf="loadService.isloading | async">
+    <mat-spinner style="top: 40%; left :48%; color: green;"></mat-spinner >
+</div>
+
+<div class="w-full h-full flex flex-col p-4 bg-lime-100">
+    <div class="flex flex-row items-center">
+        <div class="basis-1/3 text-2xl font-medium text-green-800">
+            Quản lý Đơn vị vận chuyển
+        </div>
+        <div class="basis-2/3 text-sm h-auto flex flex-col items-end">
+            <div class="flex flex-row justify-center items-center">
+                <div
+                    class="w-56 flex flex-row justify-center items-center text-gray-400 bg-white p-2 rounded mt-0 drop-shadow-xl">
+                    <mat-icon>calendar_today</mat-icon>
+                    <mat-select class="w-36" [(ngModel)]="timeInput">
+                        <mat-option *ngFor="let lv of times" [value]="lv">
+                            {{lv}}
+                        </mat-option>
+                    </mat-select>
+                </div>
+                <div>
+                    <button (click)="filter(timeInput)"
+                        class="flex flex-row items-center justify-center bg-white px-2 py-1 border-2 rounded ml-2 text-gray-400 drop-shadow-xl">
+                        <mat-icon>filter_list</mat-icon>
+                    </button>
+                </div>
+                <div>
+                    <button (click)="add($event)"
+                        class="flex flex-row items-center justify-center bg-green-600 p-2 pr-4 border-2 rounded-lg ml-2 text-white drop-shadow-xl">
+                        <mat-icon>add</mat-icon>
+                        Thêm đơn vị
+                    </button>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <div class="mt-4 drop-shadow-xl">
+        <div class="mat-elevation-z8">
+            <div class="w-full flex flex-row items-center bg-white p-2 text-sm">
+                <p class="text-green-600 font-medium">Tìm kiếm:</p> &nbsp;
+                <div class="border-2 border-green-400 rounded h-auto w-48 justify-center flex p-2 drop-shadow-xl">
+                    <input matInput (keyup)="applyFilter($event)" placeholder="Nhập nội dung" #input />
+                </div>
+            </div>
+            <table mat-table [dataSource]="dataSource" matSort>
+        
+                <ng-container matColumnDef="transportId">
+                    <th mat-header-cell *matHeaderCellDef mat-sort-header> ID </th>
+                    <td mat-cell *matCellDef="let row"> {{row.transportId}} </td>
+                </ng-container>
+    
+                <ng-container matColumnDef="transportName">
+                    <th mat-header-cell *matHeaderCellDef mat-sort-header> Tên Nông trại </th>
+                    <td mat-cell *matCellDef="let row"> {{row.transportName}} </td>
+                </ng-container>
+            
+                <ng-container matColumnDef="addressTransport">
+                    <th mat-header-cell *matHeaderCellDef mat-sort-header> Địa chỉ </th>
+                    <td mat-cell *matCellDef="let row"> {{row.addressTransport}} </td>
+                </ng-container>
+            
+                <ng-container matColumnDef="note">
+                    <th mat-header-cell *matHeaderCellDef mat-sort-header> Ghi chú </th>
+                    <td mat-cell *matCellDef="let row"> {{row.note}} </td>
+                </ng-container>
+    
+                <ng-container matColumnDef="email">
+                    <th mat-header-cell *matHeaderCellDef mat-sort-header> Email </th>
+                    <td mat-cell *matCellDef="let row"> {{row.email}} </td>
+                </ng-container>
+    
+                <ng-container matColumnDef="personInCharge">
+                    <th mat-header-cell *matHeaderCellDef mat-sort-header> Người đứng tên </th>
+                    <td mat-cell *matCellDef="let row"> {{row.personInCharge}} </td>
+                </ng-container>
+                
+                <ng-container matColumnDef="date_create">
+                    <th mat-header-cell *matHeaderCellDef mat-sort-header> Ngày tạo </th>
+                    <td mat-cell *matCellDef="let row"> {{row.date_create}} </td>
+                </ng-container>
+    
+                <ng-container matColumnDef="date_update">
+                    <th mat-header-cell *matHeaderCellDef mat-sort-header> Ngày cập nhật </th>
+                    <td mat-cell *matCellDef="let row"> {{row.date_update}} </td>
+                </ng-container>
+                <ng-container matColumnDef="system">
+                    <th mat-header-cell *matHeaderCellDef mat-sort-header> Sửa/Xóa</th>
+                    <td mat-cell *matCellDef="let row"> 
+                        <button mat-icon-button class="btnCssEdit" (click)="redirectToUpdate(row.transportId)">
+                            <mat-icon class="mat-18">edit</mat-icon>
+                        </button>
+                        <button mat-icon-button color="warn" (click)="redirectToDelete(row.transportId)">
+                            <mat-icon class="mat-18">delete</mat-icon>
+                        </button>
+                    </td>
+                </ng-container>
+    
+            
+                  <tr mat-header-row *matHeaderRowDef="displayedColumns"></tr>
+                  <tr mat-row *matRowDef="let row; columns: displayedColumns;"></tr>
+            
+                <!-- Row shown when there is no matching data. -->
+                  <tr class="mat-row" *matNoDataRow>
+                    <td class="mat-cell" colspan="4">No data matching the filter "{{input.value}}"</td>
+                </tr>
+            </table>
+
+            <mat-paginator [pageSizeOptions]="[10, 20]" aria-label="Select page of Transports"></mat-paginator>
+        </div>
+    </div>
+</div>

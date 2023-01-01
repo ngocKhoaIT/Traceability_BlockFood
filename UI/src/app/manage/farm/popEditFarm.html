@@ -1,0 +1,76 @@
+
+<h1 mat-dialog-title class="border-b-2 border-gray-200"> {{btnChange}} Nông trại </h1>
+<div mat-dialog-content class="m-4 border-b-2 border-gray-200">
+        <div class="grid gap-6 mb-6 md:grid-cols-2">
+            <div>
+                <label class="block mb-2 text-sm font-medium text-gray-900 dark:text-white">ID</label>
+                <input [(ngModel)] = "FarmDetails.farmId" disabled 
+                type="text" class="bg-gray-50 border border-gray-300 text-gray-400 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500" required>
+            </div>
+            <div>
+                <label class="block mb-2 text-sm font-medium text-gray-900 dark:text-white">Tên nông trại*</label>
+                <input [(ngModel)] = "FarmDetails.farmName" 
+                type="text" class="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500" placeholder="Nhập tên nông trại" required>
+            </div>
+            <div>
+                <label class="block mb-2 text-sm font-medium text-gray-900 dark:text-white">Chủ sở hữu*</label>
+                <div
+                    class="w-full flex flex-row justify-center items-center text-sm bg-gray-50 p-2 rounded mt-0 border border-gray-300">
+                    <mat-select [(ngModel)]="FarmDetails.farmerId">
+                        <mat-option *ngFor="let p of Persons" [value]="p.identification">
+                            {{p.lastName}}  {{p.firstName}}
+                        </mat-option>
+                    </mat-select>
+                </div>
+            </div>
+            <div>
+                <label class="block mb-2 text-sm font-medium text-gray-900 dark:text-white">Ghi chú</label>
+                <input [(ngModel)] = "FarmDetails.note"
+                type="text" class="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500" placeholder="Nhập tên dự án" required>
+            </div>
+            <div>
+                <label class="block mb-2 text-sm font-medium text-gray-900 dark:text-white">Địa chỉ*</label>
+                <input [(ngModel)] = "FarmDetails.addressFarm" 
+                type="text" class="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500" required>
+            </div>
+            <div>
+                <label class="block mb-2 text-sm font-medium text-gray-900 dark:text-white">Tỉnh/thành*</label>
+                <div
+                    class="w-full flex flex-row justify-center items-center text-sm bg-gray-50 p-2 rounded mt-0 border border-gray-300">
+                    <mat-select [(ngModel)]="p"
+                (selectionChange)="changeP(p)">
+                    <mat-option *ngFor="let p of provinces" [value]="p.id">
+                        {{p.nameP}}
+                    </mat-option>
+                </mat-select>
+                </div>
+            </div>
+            <div>
+                <label class="block mb-2 text-sm font-medium text-gray-900 dark:text-white">Quận/Huyện*</label>
+                <div
+                    class="w-full flex flex-row justify-center items-center text-sm bg-gray-50 p-2 rounded mt-0 border border-gray-300">
+                    <mat-select [(ngModel)]="d" (selectionChange)="changeD(d)">
+                        <mat-option *ngFor="let d of districts" [value]="d.id">
+                            {{d.nameD}}
+                        </mat-option>
+                        </mat-select>
+                </div>
+            </div>
+            <div>
+                <label class="block mb-2 text-sm font-medium text-gray-900 dark:text-white">Phường*</label>
+                <div
+                    class="w-full flex flex-row justify-center items-center text-sm bg-gray-50 p-2 rounded mt-0 border border-gray-300">
+                    <mat-select [(ngModel)]="w">
+                        <mat-option *ngFor="let w of wards" [value]="w.id">
+                            {{w.nameW}}
+                        </mat-option>
+                    </mat-select>
+                </div>
+            </div>
+        </div>
+</div>
+<div mat-dialog-actions>
+    <div class="buttonCss"><button mat-raised-button color="warn"  (click)="onNoClick()">Hủy</button>
+        <button mat-raised-button [ngStyle]="{'background-color': btnColor, 'color': 'white'}"
+        (click)="change($event)" cdkFocusInitial>{{btnChange}}</button></div>
+</div>  

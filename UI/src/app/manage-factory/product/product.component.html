@@ -1,0 +1,252 @@
+<div class="absolute w-full h-full bg-black opacity-30 z-100" *ngIf="loadService.isloading | async">
+    <mat-spinner style="top: 40%; left :48%; color: green;"></mat-spinner>
+</div>
+
+<div class="w-full h-full p-4 bg-lime-100 flex flex-col">
+    <div class="flex flex-row items-center mb-2">
+        <div class="basis-1/3 text-2xl font-medium text-green-800">
+            Sản xuất sản phẩm
+        </div>
+        <div class="basis-2/3 text-sm h-auto flex flex-col items-end">
+        </div>
+    </div>
+    <mat-tab-group>
+        <mat-tab label="Sản phẩm">
+            <div class="grid gap-6 mb-6 grid-cols-2 bg-white drop-shadow-xl border-2 p-4">
+                <div>
+                    <label class="block mb-2 text-sm font-medium text-gray-900 dark:text-white">Tên sản phẩm</label>
+                    <input [(ngModel)]="addProductRequest.productName" type="text" disabled
+                        class="bg-gray-50 border border-gray-300 text-gray-400 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500"
+                        required>
+                </div>
+                <div>
+                    <label class="block mb-2 text-sm font-medium text-gray-900 dark:text-white">Loại sản phẩm*</label>
+                    <div
+                        class="w-full flex flex-row justify-center items-center text-sm bg-gray-50 p-2 rounded mt-0 border border-gray-300">
+                        <mat-select [(ngModel)]="addProductRequest.typeProductId"
+                            (selectionChange)="onType(addProductRequest.typeProductId)"
+                            required>
+                            <mat-option *ngFor="let i of TypeProducts" [value]="i.typeProductId">
+                                {{i.typeName}} {{i.net_weight}}
+                            </mat-option>
+                        </mat-select>
+                    </div>
+                </div>
+                <div>
+                    <label class="block mb-2 text-sm font-medium text-gray-900 dark:text-white">Trái cây sử dụng*</label>
+                    <div
+                        class="w-full flex flex-row justify-center items-center text-sm bg-gray-50 p-2 rounded mt-0 border border-gray-300">
+                        <mat-select [(ngModel)]="addProductRequest.harvestId" required>
+                                <mat-option *ngFor="let i of Fruits" [value]="i.id">
+                                    {{i.fruitName}}
+                                </mat-option>
+                            </mat-select>
+                    </div>
+                </div>
+                <div>
+                    <label class="block mb-2 text-sm font-medium text-gray-900 dark:text-white">Khối lượng tịnh</label>
+                    <input [(ngModel)]="addProductRequest.net_weight" type="text" disabled
+                        class="bg-gray-50 border border-gray-300 text-gray-400 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500"
+                        required>
+                </div>
+                <div>
+                    <label class="block mb-2 text-sm font-medium text-gray-900 dark:text-white">Trọng lượng sử
+                        dụng*</label>
+                    <input [(ngModel)]="w" type="text"
+                        class="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500"
+                        required>
+                </div>
+                <div>
+                    <label class="block mb-2 text-sm font-medium text-gray-900 dark:text-white">Đơn vị*</label>
+                    <input [(ngModel)]="u" type="text" disabled
+                        class="bg-gray-50 border border-gray-300 text-gray-400 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500"
+                        required>
+                </div>
+            </div>
+            <div class="grid gap-6 mb-6 grid-cols-2 bg-white drop-shadow-xl border-2 p-4">
+                <div>
+                    <label class="block mb-2 text-sm font-medium text-gray-900 dark:text-white">Nhiệt độ*</label>
+                    <input [(ngModel)]="addProductRequest.temperature" type="text"
+                        class="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500"
+                        required>
+                </div>
+                <div>
+                    <label class="block mb-2 text-sm font-medium text-gray-900 dark:text-white">Độ ẩm*</label>
+                    <input [(ngModel)]="addProductRequest.humidity" type="text"
+                        class="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500"
+                        required>
+                </div>
+                <div>
+                    <label class="block mb-2 text-sm font-medium text-gray-900 dark:text-white">Quy trình sản xuất</label>
+                    <input [(ngModel)]="addProductRequest.procedureOfProduct" type="text" disabled
+                        class="bg-gray-50 border border-gray-300 text-gray-400 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500"
+                        required>
+                </div>
+                <div>
+                    <label class="block mb-2 text-sm font-medium text-gray-900 dark:text-white">Thành phần</label>
+                    <input [(ngModel)]="addProductRequest.elementOfProduct" type="text" disabled
+                        class="bg-gray-50 border border-gray-300 text-gray-400 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500"
+                        required>
+                </div>
+                <div class="col-span-2">
+                    <div>
+                        <label class="block mb-2 text-sm font-medium text-gray-900 dark:text-white" for="small_size">Hình ảnh</label>
+                        <input (change)="onChange($event)"
+                            class="w-64 mb-5 text-xs text-gray-900 border border-gray-300 rounded-lg cursor-pointer bg-gray-50 dark:text-gray-400 focus:outline-none dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400"
+                            id="small_size" type="file">
+                            <button (click)="onUpload()" class=" ml-4 text-xs p-2 bg-lime-500 rounded">Upload</button>
+                    </div>
+                </div>
+                <div class="col-span-2 flex flex-col items-end">
+                    <div class="flex flex-row items-center">
+                        <button mat-raised-button color="warn" (click)="cancel()" >Hủy</button>
+                        <button mat-raised-button class="btnCssCreate" (click)="add($event)">Sản xuất</button>
+                    </div>
+                    
+                </div>
+            </div>
+        </mat-tab>
+        <mat-tab label="Lịch sử sản xuất">
+            <div class="grid gap-6 mb-6 grid-cols-2 bg-white drop-shadow-lg border-2 p-4">
+                <div class="flex flex-row items-center w-full">
+                    <div class="mr-2 w-24">Chọn: </div>
+                    <div
+                        class="w-full flex flex-row justify-center items-center text-gray-400 bg-gray-100 p-2 rounded mt-0 border">
+                        <mat-select class="w-24" [(ngModel)]="schoice">
+                            <mat-option *ngFor="let lv of TypeProducts" [value]="lv.typeProductId">
+                                {{lv.typeName}}
+                            </mat-option>
+                        </mat-select>
+                    </div>
+                </div>
+                <div class="flex flex-row items-center w-full">
+                    <div class="mr-2 w-24">Thời gian: </div>
+                    <div
+                        class="w-full flex flex-row justify-center items-center text-gray-400 bg-gray-100 p-2 rounded mt-0 border">
+                        <mat-icon>calendar_today</mat-icon>
+                        <mat-select class="w-24" [(ngModel)]="timeInput">
+                            <mat-option *ngFor="let lv of times" [value]="lv">
+                                {{lv}}
+                            </mat-option>
+                        </mat-select>
+                    </div>
+                </div>
+
+                <div class="flex flex-row items-center w-full">
+                    <div class="mr-2 w-24">TL từ: </div>
+                    <input [(ngModel)]="w_from" type="text" 
+                        class="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500"
+                        required>
+                </div>
+
+                <div class="flex flex-row items-center w-full">
+                    <div class="mr-2 w-24">TL đến: </div>
+                        <input [(ngModel)]="w_to" type="text" 
+                        class="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500"
+                        required>
+                </div>
+
+                <div></div>
+                <div class="flex flex-row items-center justify-end">
+                    <div>
+                        <button (click)="filter(timeInput, schoice)"
+                            class="flex flex-row items-center justify-center bg-white px-2 py-1 border-2 bg-green-600 rounded ml-2 mr-2 text-white drop-shadow-xl">
+                            <mat-icon>filter_list</mat-icon>
+                            Lọc
+                        </button>
+                    </div>
+                </div>
+            </div>
+            <div class="mt-4 drop-shadow-xl">
+                <div class="mat-elevation-z8">
+                    <div class="w-full flex flex-row items-center bg-white p-2 text-sm">
+                        <p class="text-green-600 font-medium">Tìm kiếm:</p> &nbsp;
+                        <div
+                            class="border-2 border-green-400 rounded h-auto w-48 justify-center flex p-2 drop-shadow-xl">
+                            <input matInput (keyup)="applyFilterProduct($event)" placeholder="Nhập nội dung" #input />
+                        </div>
+                    </div>
+                    <table mat-table [dataSource]="dataSourceProduct" matSort>
+
+                        <ng-container matColumnDef="productId">
+                            <th mat-header-cell *matHeaderCellDef mat-sort-header> Mã sản phẩm </th>
+                            <td mat-cell *matCellDef="let row"> {{row.productId}} </td>
+                        </ng-container>
+
+                        <ng-container matColumnDef="productName">
+                            <th mat-header-cell *matHeaderCellDef mat-sort-header> Tên sản phẩm </th>
+                            <td mat-cell *matCellDef="let row"> {{row.productName}} </td>
+                        </ng-container>
+
+                        <ng-container matColumnDef="factoryId">
+                            <th mat-header-cell *matHeaderCellDef mat-sort-header> Mã sản phẩm </th>
+                            <td mat-cell *matCellDef="let row"> {{row.factoryId}} </td>
+                        </ng-container>
+
+                        <ng-container matColumnDef="harvestId">
+                            <th mat-header-cell *matHeaderCellDef mat-sort-header> Mã trái cây </th>
+                            <td mat-cell *matCellDef="let row"> {{row.harvestId}} </td>
+                        </ng-container>
+
+                        <ng-container matColumnDef="amountProduct_first">
+                            <th mat-header-cell *matHeaderCellDef mat-sort-header> Số lượng ban đầu </th>
+                            <td mat-cell *matCellDef="let row"> {{row.amountProduct_first}} </td>
+                        </ng-container>
+
+                        <ng-container matColumnDef="amountProduct">
+                            <th mat-header-cell *matHeaderCellDef mat-sort-header> Số lượng hiện tại </th>
+                            <td mat-cell *matCellDef="let row"> {{row.amountProduct}} </td>
+                        </ng-container>
+
+                        <ng-container matColumnDef="unit">
+                            <th mat-header-cell *matHeaderCellDef mat-sort-header> Đơn vị tính </th>
+                            <td mat-cell *matCellDef="let row"> {{row.unit}} </td>
+                        </ng-container>
+
+                        <ng-container matColumnDef="net_weight">
+                            <th mat-header-cell *matHeaderCellDef mat-sort-header> Khối lượng tịnh </th>
+                            <td mat-cell *matCellDef="let row"> {{row.net_weight}} </td>
+                        </ng-container>
+
+                        <ng-container matColumnDef="temperature">
+                            <th mat-header-cell *matHeaderCellDef mat-sort-header> Nhiệt độ </th>
+                            <td mat-cell *matCellDef="let row"> {{row.temperature}} </td>
+                        </ng-container>
+
+                        <ng-container matColumnDef="humidity">
+                            <th mat-header-cell *matHeaderCellDef mat-sort-header> Độ ẩm </th>
+                            <td mat-cell *matCellDef="let row"> {{row.humidity}} </td>
+                        </ng-container>
+
+                        <ng-container matColumnDef="mfg_date">
+                            <th mat-header-cell *matHeaderCellDef mat-sort-header> Ngày sản xuất </th>
+                            <td mat-cell *matCellDef="let row"> {{row.mfg_date}} </td>
+                        </ng-container>
+                        <ng-container matColumnDef="exp_date">
+                            <th mat-header-cell *matHeaderCellDef mat-sort-header> Hạn sử dụng </th>
+                            <td mat-cell *matCellDef="let row"> {{row.exp_date}} </td>
+                        </ng-container>
+                        <ng-container matColumnDef="elementOfProduct">
+                            <th mat-header-cell *matHeaderCellDef mat-sort-header> Thành phần </th>
+                            <td mat-cell *matCellDef="let row"> {{row.elementOfProduct}} </td>
+                        </ng-container>
+                        <ng-container matColumnDef="procedureOfProduct">
+                            <th mat-header-cell *matHeaderCellDef mat-sort-header> Hạn sử dụng </th>
+                            <td mat-cell *matCellDef="let row"> {{row.procedureOfProduct}} </td>
+                        </ng-container>
+
+                        <tr mat-header-row *matHeaderRowDef="displayedColumnsProduct"></tr>
+                        <tr mat-row *matRowDef="let row; columns: displayedColumnsProduct;"></tr>
+
+                        <!-- Row shown when there is no matching data. -->
+                        <tr class="mat-row" *matNoDataRow>
+                            <td class="mat-cell" colspan="4">No data matching the filter "{{input.value}}"</td>
+                        </tr>
+                    </table>
+
+                    <mat-paginator [pageSizeOptions]="[10, 20]" aria-label="Select page of Fruits"></mat-paginator>
+                </div>
+            </div>
+        </mat-tab>
+    </mat-tab-group>
+</div>

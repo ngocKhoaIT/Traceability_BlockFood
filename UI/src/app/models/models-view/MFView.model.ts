@@ -1,0 +1,18 @@
+export interface MFView {
+    billId : string,
+    fruitName : string,
+    harvestId : string,
+    farmId : string,
+    farmName : string,
+    addressFarm : string,
+    merchantId : string,
+    toPlace : string,
+    weight : number,
+    weightDelivery: number,
+    unit : string,
+    merchantName : string,
+    addressMerchant : string,
+    traderId : string,
+    toPlaceName : string,
+    addresstoPlace : string,
+}

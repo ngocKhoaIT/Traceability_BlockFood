@@ -1,0 +1,102 @@
+<div class="absolute w-full h-full bg-black opacity-30 z-100" *ngIf="loadService.isloading | async">
+    <mat-spinner style="top: 40%; left :48%; color: green;"></mat-spinner >
+</div>
+
+<div class="w-full h-full flex flex-col p-4 bg-lime-100">
+    <div class="flex flex-row items-center">
+        <div class="basis-1/3 text-2xl font-medium text-green-800">
+            Danh sách bị hủy
+        </div>
+        <div class="basis-2/3 text-sm h-auto flex flex-col items-end">
+            <div class="flex flex-row justify-center items-center">
+            </div>
+        </div>
+    </div>
+
+    <div class="grid gap-6 mb-6 grid-cols-2 bg-white drop-shadow-lg border-2 p-4">
+        <div class="flex flex-row items-center w-full">
+            <div class="mr-2 w-24">Chọn: </div>
+            <div
+                class="w-full flex flex-row justify-center items-center text-gray-400 bg-gray-100 p-2 rounded mt-0 border">
+                <mat-select class="w-24" [(ngModel)]="choice">
+                    <mat-option *ngFor="let lv of choices" [value]="lv.factoryId">
+                        {{lv.factoryName}}
+                    </mat-option>
+                </mat-select>
+            </div>
+        </div>
+        <div class="flex flex-row items-center w-full">
+            <div class="mr-2 w-24">Thời gian: </div>
+            <div
+                class="w-full flex flex-row justify-center items-center text-gray-400 bg-gray-100 p-2 rounded mt-0 border">
+                <mat-icon>calendar_today</mat-icon>
+                <mat-select class="w-24" [(ngModel)]="timeInput">
+                    <mat-option *ngFor="let lv of times" [value]="lv">
+                        {{lv}}
+                    </mat-option>
+                </mat-select>
+            </div>
+        </div>
+        <div></div>
+        <div class="flex flex-row items-center justify-end">
+            <div>
+                <button (click)="filter(timeInput, choice)"
+                    class="flex flex-row items-center justify-center bg-white px-2 py-1 border-2 bg-green-600 rounded ml-2 mr-2 text-white drop-shadow-xl">
+                    <mat-icon>filter_list</mat-icon>
+                    Lọc
+                </button>
+            </div>
+        </div>
+    </div>
+
+    <div class="mt-4 drop-shadow-xl">
+        <div class="mat-elevation-z8">
+            <div class="w-full flex flex-row items-center bg-white p-2 text-sm">
+                <p class="text-green-600 font-medium">Tìm kiếm:</p> &nbsp;
+                <div class="border-2 border-green-400 rounded h-auto w-48 justify-center flex p-2 drop-shadow-xl">
+                    <input matInput (keyup)="applyFilter($event)" placeholder="Nhập nội dung" #input />
+                </div>
+            </div>
+            <table mat-table [dataSource]="dataSource" matSort>
+                <ng-container matColumnDef="productId">
+                    <th mat-header-cell *matHeaderCellDef mat-sort-header> Mã sản phẩm </th>
+                    <td mat-cell *matCellDef="let row"> {{row.productId}} </td>
+                </ng-container>
+        
+            <ng-container matColumnDef="productName">
+                <th mat-header-cell *matHeaderCellDef mat-sort-header> Tên sản phẩm </th>
+                <td mat-cell *matCellDef="let row"> {{row.productName}} </td>
+            </ng-container>
+        
+            <ng-container matColumnDef="factoryName">
+                <th mat-header-cell *matHeaderCellDef mat-sort-header> Tên nhà máy </th>
+                <td mat-cell *matCellDef="let row"> {{row.factoryName}} </td>
+            </ng-container>
+        
+            <ng-container matColumnDef="addressFactory">
+                <th mat-header-cell *matHeaderCellDef mat-sort-header> Địa chỉ nhà máy </th>
+                <td mat-cell *matCellDef="let row"> {{row.addressFactory}} </td>
+            </ng-container>
+        
+            <ng-container matColumnDef="amount">
+                <th mat-header-cell *matHeaderCellDef mat-sort-header> Số lượng</th>
+                <td mat-cell *matCellDef="let row"> {{row.amount}} </td>
+            </ng-container>
+        
+            <ng-container matColumnDef="unit">
+                <th mat-header-cell *matHeaderCellDef mat-sort-header> Đơn vị tính </th>
+                <td mat-cell *matCellDef="let row"> {{row.unit}}</td>
+            </ng-container>
+        
+              <tr mat-header-row *matHeaderRowDef="displayedColumns"></tr>
+              <tr mat-row *matRowDef="let row; columns: displayedColumns;"></tr>
+        
+            <!-- Row shown when there is no matching data. -->
+              <tr class="mat-row" *matNoDataRow>
+                <td class="mat-cell" colspan="4">No data matching the filter "{{input.value}}"</td>
+            </tr>
+        </table>
+            <mat-paginator [pageSizeOptions]="[10, 20]" aria-label="Select page of Seeds"></mat-paginator>
+        </div>
+    </div>
+</div>

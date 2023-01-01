@@ -1,0 +1,51 @@
+<h1 mat-dialog-title>Gửi yêu cầu tới nông trại</h1>
+<div mat-dialog-content>
+    <table cellspacing="0"><tr>
+        <td><mat-form-field class="cssMatFormFieldTd" appearance="fill">
+                <mat-label>Cửa hàng</mat-label>
+                <input matInput id="toPlace" 
+                name="toPlace" [(ngModel)]="addDetail.toPlace"/>
+            </mat-form-field></td>
+    </tr></table>   
+
+        <table cellspacing="0"><tr>
+            <td><mat-form-field class="cssMatFormFieldTd" appearance="fill">
+                    <mat-label>Nhà máy</mat-label>
+                    <input matInput id="placeId" disabled="true"
+                    name="placeId" [(ngModel)]="addDetail.placeId"/>
+                </mat-form-field></td>
+        </tr></table>   
+        <table cellspacing="0"><tr>
+            <td><mat-form-field class="cssMatFormFieldTd" appearance="fill">
+                    <mat-label>Sản phẩm</mat-label>
+                    <input matInput id="goodsId" name="goodsId"
+                    [(ngModel)]="addDetail.goodsId" disabled="true">
+                    <mat-error>
+                        Field is <strong>required</strong>
+                    </mat-error>
+                </mat-form-field></td>
+        </tr></table>
+
+        <table cellspacing="0"><tr>
+            <td><mat-form-field class="cssMatFormFieldTd" appearance="fill">
+                    <mat-label>Số lượng</mat-label>
+                    <input matInput id="amount" name="amount" 
+                    [(ngModel)]="addDetail.amount" disabled="true">
+                </mat-form-field></td>
+            <td><mat-form-field class=" cssMatFormFieldTd" appearance="fill">
+                    <mat-label>Đơn vị tính</mat-label>
+                    <mat-select id="unit"  disabled="true"
+                        name="unit" [(ngModel)]="addDetail.unit">
+                            <mat-option *ngFor="let i of units" [value]="i">
+                                {{i}}
+                            </mat-option>
+                        </mat-select>
+            </mat-form-field></td>
+        </tr></table>
+
+</div>
+<div mat-dialog-actions>
+    <div class="buttonCss"><button mat-raised-button color="warn"  (click)="onNoClick()">Hủy</button>
+        <button mat-raised-button class="btnCssCreate"
+        (click)="change($event)" cdkFocusInitial>Chấp nhận</button></div>
+</div>  

@@ -1,0 +1,104 @@
+<div class="w-full h-full flex flex-col p-4 bg-lime-100">
+    <div class="flex flex-row items-center">
+        <div class="basis-1/3 text-2xl font-medium text-green-800">
+            Thông báo
+        </div>
+        <div class="basis-2/3 text-sm h-auto flex flex-col items-end">
+            <div class="flex flex-row justify-center items-center">
+                <div class="w-56 flex flex-row justify-center items-center text-gray-400 bg-white p-2 rounded mt-0 drop-shadow-xl" >
+                    <mat-icon>calendar_today</mat-icon>
+                    <mat-select class="w-36" [(ngModel)]="timeInput">
+                        <mat-option *ngFor="let lv of levels" [value]="lv">
+                            {{lv}}
+                        </mat-option>
+                    </mat-select>
+                </div>
+                <div>
+                    <button 
+                    class="flex flex-row items-center justify-center bg-white px-2 py-1 border-2 rounded ml-2 text-gray-400 drop-shadow-xl">
+                        <mat-icon>filter_list</mat-icon>
+                    </button>
+                </div>
+            </div>
+            </div>
+    </div>
+
+    <div class="mt-4 drop-shadow-xl">
+        <div class="mat-elevation-z8">
+            <div class="w-full flex flex-row items-center bg-white p-2 text-sm">
+                <p class="ext-green-600 font-medium ">Tìm kiếm:</p> &nbsp;
+                <div class="border-2 border-green-400 rounded h-auto w-48 justify-center flex p-2 drop-shadow-xl">
+                    <input matInput (keyup)="applyFilter($event)" placeholder="Nhập nội dung" #input/>
+                </div>
+            </div>
+            <table mat-table [dataSource]="dataSource" matSort>
+
+                <ng-container matColumnDef="id">
+                    <th mat-header-cell *matHeaderCellDef mat-sort-header> ID </th>
+                    <td mat-cell *matCellDef="let row"> {{row.id}} </td>
+                </ng-container>
+            
+                <ng-container matColumnDef="title">
+                    <th mat-header-cell *matHeaderCellDef mat-sort-header> Tiêu đề </th>
+                    <td mat-cell *matCellDef="let row"> {{row.title}} </td>
+                </ng-container>
+            
+                <ng-container matColumnDef="photoSend">
+                    <th mat-header-cell *matHeaderCellDef mat-sort-header> </th>
+                    <td mat-cell *matCellDef="let row"> <img src="{{photoPath}}/{{row.photoSend}}" width="20px" height="20px"/> </td>
+                </ng-container>
+            
+                <ng-container matColumnDef="sendName">
+                    <th mat-header-cell *matHeaderCellDef mat-sort-header> Tên người gửi </th>
+                    <td mat-cell *matCellDef="let row"> {{row.sendName}} </td>
+                </ng-container>
+            
+                <ng-container matColumnDef="roleSend">
+                    <th mat-header-cell *matHeaderCellDef mat-sort-header> Chức vụ </th>
+                    <td mat-cell *matCellDef="let row"> {{row.roleSend}} </td>
+                </ng-container>
+            
+                <ng-container matColumnDef="photoReceive">
+                    <th mat-header-cell *matHeaderCellDef mat-sort-header> </th>
+                    <td mat-cell *matCellDef="let row"> <img src="{{photoPath}}/{{row.photoReceive}}" width="20px" height="20px"/> </td>
+                </ng-container>
+            
+                <ng-container matColumnDef="receiveName">
+                    <th mat-header-cell *matHeaderCellDef mat-sort-header> Người nhận</th>
+                    <td mat-cell *matCellDef="let row"> {{row.receiveName}} </td>
+                </ng-container>
+            
+                <ng-container matColumnDef="roleReceive">
+                    <th mat-header-cell *matHeaderCellDef mat-sort-header> Chức vụ </th>
+                    <td mat-cell *matCellDef="let row"> {{row.roleReceive}} </td>
+                </ng-container>
+            
+                <ng-container matColumnDef="sendDate">
+                    <th mat-header-cell *matHeaderCellDef mat-sort-header> Ngày gửi </th>
+                    <td mat-cell *matCellDef="let row"> {{row.sendDate}} </td>
+                </ng-container>
+            
+                <ng-container matColumnDef="system">
+                    <th mat-header-cell *matHeaderCellDef mat-sort-header> Xem</th>
+                    <td mat-cell *matCellDef="let row">
+                        <button mat-icon-button color="{{clbtn(row.status_request)}}" (click)="view(row.id)">
+                            <mat-icon class="mat-18">remove_red_eye</mat-icon>
+                        </button>
+                    </td>
+                </ng-container>
+            
+            
+                  <tr mat-header-row *matHeaderRowDef="displayedColumns"></tr>
+                  <tr mat-row *matRowDef="let row; columns: displayedColumns;"></tr>
+            
+                <!-- Row shown when there is no matching data. -->
+                  <tr class="mat-row" *matNoDataRow>
+                    <td class="mat-cell" colspan="4">No data matching the filter "{{input.value}}"</td>
+                </tr>
+            </table>
+            
+        
+            <mat-paginator [pageSizeOptions]="[10, 20]" aria-label="Select page of Projects"></mat-paginator>
+        </div>
+    </div>
+</div>

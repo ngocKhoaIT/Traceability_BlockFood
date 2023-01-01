@@ -1,0 +1,16 @@
+export interface UTOView{
+    billId : string,
+    placeId : string,
+    placeName : string,
+    addressPlace : string,
+    goodsId : string,
+    goodsName : string,
+    amount : number,
+    amountDelivery : number,
+    unit : string,
+    toPlace : string,
+    toPlaceName : string,
+    addresstoPlace : string,
+    status_request : string,
+    date : string,
+}

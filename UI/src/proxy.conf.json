@@ -1,0 +1,8 @@
+{
+    "/api": {
+        "target": "https://blockfood.huit.edu.vn",
+        "secure": false,
+        "changeOrigin": true,
+        "logLevel": "debug"
+    }
+}

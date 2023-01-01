@@ -1,0 +1,65 @@
+mat-card {
+    max-width: 400px;
+    padding: 50px;
+    padding-top: 10px;
+    margin: 2em auto;
+    text-align: center;
+    height: 300px;
+    background-color: rgb(246, 246, 246);
+  }
+
+  h2{
+    color: #228B22;
+  }
+  
+  mat-form-field {
+    display: block;
+  }
+
+  ::ng-deep .snackbar{
+    background-color: beige!important;
+    color: #000;
+  }
+
+  .colorBtn{
+    background-color: #228B22;
+    color: white;
+    width: 100px;
+  }
+
+.bg-login{
+  background-repeat: no-repeat;
+  background-size: cover;
+  background-image: url(https://img5.thuthuatphanmem.vn/uploads/2021/12/30/anh-nen-mau-xanh-la-cay-cute-dep_032126967.jpg);
+  width: 100%;
+  height: 100%;
+}  
+
+table {
+  width: 100%;
+}
+
+.loader-container{
+  position: absolute;
+  width: 100%;
+  height: 100%;
+  background-color: black;
+  z-index: 99;
+  opacity: 0.3;
+}
+
+::ng-deep .mat-tab-group.mat-primary .mat-ink-bar, 
+.mat-tab-nav-bar.mat-primary .mat-ink-bar 
+{
+    background-color: #228B22;
+}
+
+::ng-deep .mat-form-field.mat-focused .mat-form-field-ripple
+{
+    background-color: #228B22;
+}
+
+::ng-deep .mat-form-field.mat-focused .mat-form-field-label
+{
+    color: #228B22;
+}

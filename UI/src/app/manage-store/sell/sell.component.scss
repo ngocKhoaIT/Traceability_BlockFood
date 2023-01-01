@@ -1,0 +1,32 @@
+.webcam{
+    position: absolute;
+    width: 50%;
+    height: 50%;
+    top: 0;
+    left: 25%;
+}
+
+.file-upload-button {
+    margin-left: 10px;
+    margin-top: 0px;
+    background-color: #fff;
+    background-repeat: no-repeat;
+    background-size: cover;
+    height: 2rem;
+    overflow: hidden;
+    position: relative;
+    width: 2rem;
+
+input[type="file"] {
+        font-size: 100px;
+        left: 0;
+        opacity: 0;
+        position: absolute;
+        top: 0;
+    }
+}
+
+.btnCssCreate{
+    background-color: #228B22;
+    color: #fff;
+}

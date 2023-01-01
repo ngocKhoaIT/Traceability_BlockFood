@@ -1,0 +1,114 @@
+<h1 mat-dialog-title class="border-b-2 border-gray-200"> {{btnChange}} Người dùng </h1>
+<div mat-dialog-content class="m-4 border-b-2 border-gray-200">
+        <div class="grid gap-6 mb-6 md:grid-cols-2">
+            <div>
+                <label class="block mb-2 text-sm font-medium text-gray-900 dark:text-white">ID</label>
+                <input [(ngModel)] = "PersonDetails.identification" disabled 
+                type="text" class="bg-gray-50 border border-gray-300 text-gray-400 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500" required>
+            </div>
+            <div>
+                <label class="block mb-2 text-sm font-medium text-gray-900 dark:text-white">Thuộc về*</label>
+                <div
+                    class="w-full flex flex-row justify-center items-center text-sm bg-gray-50 p-2 rounded mt-0 border border-gray-300">
+                    <mat-select [(ngModel)]="PersonDetails.working">
+                        <mat-option *ngFor="let s of works" [value]="s.id">
+                            {{s.name}}
+                        </mat-option>
+                    </mat-select>
+                </div>
+            </div>
+            <div>
+                <label class="block mb-2 text-sm font-medium text-gray-900 dark:text-white">Họ và tên lót*</label>
+                <input [(ngModel)] = "PersonDetails.lastName" 
+                type="text" class="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500" placeholder="Ví dụ: Phạm Ngọc" required>
+            </div>
+            <div>
+                <label class="block mb-2 text-sm font-medium text-gray-900 dark:text-white">Tên*</label>
+                <input [(ngModel)] = "PersonDetails.firstName" 
+                type="text" class="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500" placeholder="Ví dụ: Khoa" required>
+            </div>
+            <div>
+                <label class="block mb-2 text-sm font-medium text-gray-900 dark:text-white">Ngày sinh*</label>
+                <div class="flex flex-row items-center justify-end relative">
+                    <input [matDatepicker]="dp2" required [(ngModel)]="PersonDetails.birthDay"
+                    class="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500">
+                <mat-datepicker-toggle matSuffix [for]="dp2" class="btnDate"></mat-datepicker-toggle>
+                <mat-datepicker #dp2 disabled="false"></mat-datepicker></div>
+                    
+            </div>
+            <div>
+                <label class="block mb-2 text-sm font-medium text-gray-900 dark:text-white">Số điện thoại</label>
+                <input [(ngModel)] = "PersonDetails.phoneNumber"
+                type="text" class="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500" placeholder="09xx xxx xxx" required>
+            </div>
+            <div>
+                <label class="block mb-2 text-sm font-medium text-gray-900 dark:text-white">Email</label>
+                <input [(ngModel)] = "PersonDetails.email"
+                type="text" class="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500" placeholder="example@abc.com" required>
+            </div>
+            <div>
+                <label class="block mb-2 text-sm font-medium text-gray-900 dark:text-white">Giới tính</label>
+                <div
+                    class="w-full flex flex-row justify-center items-center text-sm bg-gray-50 p-2 rounded mt-0 border border-gray-300">
+                    <mat-select [(ngModel)]="PersonDetails.sex" id="sex" name="sex">
+                        <mat-option *ngFor="let s of sexs" [value]="s">
+                            {{s}}
+                        </mat-option>
+                    </mat-select>
+                </div>
+            </div>
+            <div>
+                <label class="block mb-2 text-sm font-medium text-gray-900 dark:text-white">Địa chỉ*</label>
+                <input [(ngModel)] = "PersonDetails.addressPerson" 
+                type="text" class="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500" required>
+            </div>
+            <div>
+                <label class="block mb-2 text-sm font-medium text-gray-900 dark:text-white">Tỉnh/thành*</label>
+                <div
+                    class="w-full flex flex-row justify-center items-center text-sm bg-gray-50 p-2 rounded mt-0 border border-gray-300">
+                    <mat-select [(ngModel)]="p"
+                (selectionChange)="changeP(p)">
+                    <mat-option *ngFor="let p of provinces" [value]="p.id">
+                        {{p.nameP}}
+                    </mat-option>
+                </mat-select>
+                </div>
+            </div>
+            <div>
+                <label class="block mb-2 text-sm font-medium text-gray-900 dark:text-white">Quận/Huyện*</label>
+                <div
+                    class="w-full flex flex-row justify-center items-center text-sm bg-gray-50 p-2 rounded mt-0 border border-gray-300">
+                    <mat-select [(ngModel)]="d" (selectionChange)="changeD(d)">
+                        <mat-option *ngFor="let d of districts" [value]="d.id">
+                            {{d.nameD}}
+                        </mat-option>
+                        </mat-select>
+                </div>
+            </div>
+            <div>
+                <label class="block mb-2 text-sm font-medium text-gray-900 dark:text-white">Phường*</label>
+                <div
+                    class="w-full flex flex-row justify-center items-center text-sm bg-gray-50 p-2 rounded mt-0 border border-gray-300">
+                    <mat-select [(ngModel)]="w">
+                        <mat-option *ngFor="let w of wards" [value]="w.id">
+                            {{w.nameW}}
+                        </mat-option>
+                    </mat-select>
+                </div>
+            </div>
+            <div class="col-span-2">
+                <div>
+                    <label class="block mb-2 text-sm font-medium text-gray-900 dark:text-white" for="small_size">Hình ảnh</label>
+                    <input (change)="onChange($event)"
+                        class="w-64 mb-5 text-xs text-gray-900 border border-gray-300 rounded-lg cursor-pointer bg-gray-50 dark:text-gray-400 focus:outline-none dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400"
+                        id="small_size" type="file">
+                        <button (click)="onUpload()" class=" ml-4 text-xs p-2 bg-lime-500 rounded">Upload</button>
+                </div>
+            </div>
+        </div>
+</div>
+<div mat-dialog-actions>
+    <div class="buttonCss"><button mat-raised-button color="warn"  (click)="onNoClick()">Hủy</button>
+        <button mat-raised-button [ngStyle]="{'background-color': btnColor, 'color': 'white'}"
+        (click)="change($event)" cdkFocusInitial>{{btnChange}}</button></div>
+</div>  

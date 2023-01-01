@@ -1,0 +1,61 @@
+
+<h1 mat-dialog-title class="border-b-2 border-gray-200"> Nhà máy lên đơn</h1>
+<div mat-dialog-content class="border-b-2 border-gray-200">
+    <div class="mt-4 drop-shadow-xl">
+        <div class="mat-elevation-z8">
+            <div class="w-full flex flex-row items-center bg-white p-2 text-sm">
+                <p class="text-green-600 font-medium">Tìm kiếm:</p> &nbsp;
+                <div class="border-2 border-green-400 rounded h-auto w-48 justify-center flex p-2 drop-shadow-xl">
+                    <input matInput (keyup)="applyFilter($event)" placeholder="Nhập nội dung" #input />
+                </div>
+            </div>
+            <table mat-table [dataSource]="dataSourceFruitHarvest" matSort>
+    
+                <ng-container matColumnDef="date_plant">
+                    <th mat-header-cell *matHeaderCellDef mat-sort-header> Ngày trồng </th>
+                    <td mat-cell *matCellDef="let row"> {{row.date_plant}} </td>
+                </ng-container>
+        
+            <ng-container matColumnDef="fruitName">
+                <th mat-header-cell *matHeaderCellDef mat-sort-header> Tên trái cây </th>
+                <td mat-cell *matCellDef="let row"> {{row.fruitName}} </td>
+            </ng-container>
+        
+            <ng-container matColumnDef="date_harvest">
+                <th mat-header-cell *matHeaderCellDef mat-sort-header> Ngày thu hoạch </th>
+                <td mat-cell *matCellDef="let row"> {{row.date_harvest}} </td>
+            </ng-container>
+    
+            <ng-container matColumnDef="weight_harvest">
+                <th mat-header-cell *matHeaderCellDef mat-sort-header> Trọng lượng </th>
+                <td mat-cell *matCellDef="let row"> {{row.weight_harvest}} </td>
+            </ng-container>
+    
+            <ng-container matColumnDef="unit">
+                <th mat-header-cell *matHeaderCellDef mat-sort-header> Đơn vị tính </th>
+                <td mat-cell *matCellDef="let row"> {{row.unit}} </td>
+            </ng-container>
+    
+            <ng-container matColumnDef="system">
+                <th mat-header-cell *matHeaderCellDef mat-sort-header> Chức năng </th>
+                <td mat-cell *matCellDef="let row" >
+                    <button mat-raised-button class="btnCssCreate" (click)="buyFruit(row.harvestId)">Mua</button>
+                </td>
+            </ng-container>
+    
+            
+              <tr mat-header-row *matHeaderRowDef="displayedColumnsFruitHarvest"></tr>
+              <tr mat-row *matRowDef="let row; columns: displayedColumnsFruitHarvest;"></tr>
+        
+            <!-- Row shown when there is no matching data. -->
+              <tr class="mat-row" *matNoDataRow>
+                <td class="mat-cell" colspan="4">No data matching the filter "{{input.value}}"</td>
+            </tr>
+        </table>
+            <mat-paginator [pageSizeOptions]="[10, 20]" aria-label="Select page of Seeds"></mat-paginator>
+        </div>
+    </div>
+</div>
+<div mat-dialog-actions>
+    <div class="buttonCss"><button mat-raised-button color="warn"  (click)="onNoClick()">Hủy</button>
+</div>  

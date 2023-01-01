@@ -1,0 +1,21 @@
+export interface Product{
+    productId : string,
+    productName : string,
+    factoryId: string,
+    amountProduct : number,
+    amountProduct_first : number,
+    harvestId : string,
+    typeProductId : number,
+    mfg_date : string,
+    exp_date : string,
+    net_weight : number,
+    unit : string,
+    temperature : number,
+    humidity : number,
+    procedureOfProduct : string,
+    elementOfProduct : string,
+    imageProduct: string,
+    _status : number,
+    date_create : string,
+    date_update : string
+}

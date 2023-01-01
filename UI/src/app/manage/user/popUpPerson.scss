@@ -1,0 +1,25 @@
+.cssMatFormFieldTd{
+    width: 100%;
+}
+
+table {
+    width: 100%;
+}
+
+.buttonCss{
+    text-align: end;
+    width: 97%;
+}
+
+.btnCssCreate{
+    background-color: #228B22;
+    color: #fff;
+}
+
+::ng-deep .mat-datepicker-toggle{
+    display: flex;
+    align-items: center;
+    flex-direction: row;
+    justify-items: center;
+    position: absolute !important;
+}

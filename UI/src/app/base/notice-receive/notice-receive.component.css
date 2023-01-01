@@ -1,0 +1,51 @@
+
+.mat-header-cell{
+    text-align: center;
+}
+
+mat-tab-group {
+    text-align: center;
+}
+    mat-tab-group p {
+    padding-top: 20px;
+        }
+
+.example-spacer {
+    flex: 1 1 auto;
+}
+
+table {
+    width: 100%;
+}
+
+
+.mat-form-field {
+    font-size: 14px;
+    width: 30%;
+}
+
+.cssMatFormField{
+    left: -20%;
+    padding-top: 10px;
+    width: 60%;
+}
+
+.cssMatFormFieldTd{
+    width: 80%;
+    left: -10%;
+}
+
+.example-form {
+    min-width: 150px;
+    max-width: 500px;
+    width: 100%;
+}
+
+.buttonCss{
+    text-align: end;
+    padding-right: 100px;
+}
+
+.mat-raised-button{
+    margin-left: 10px;
+}

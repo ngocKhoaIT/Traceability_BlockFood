@@ -1,0 +1,15 @@
+<mat-card class="example-card">
+    <mat-card-header>
+        <div mat-card-avatar><img src="{{photoPath}}/{{detail.photoSend}}" width="50px" height="50px" /></div>
+        <mat-card-title>{{detail.sendName}}</mat-card-title>
+        <mat-card-subtitle>{{detail.title}}</mat-card-subtitle>
+    </mat-card-header>
+    <mat-card-content>
+        <p>
+        {{detail.content}}
+        </p>
+    </mat-card-content>
+    <mat-card-actions>
+        <button mat-raised-button color="warn" (click)="onNoClick()">Thoát</button>
+    </mat-card-actions>
+</mat-card>

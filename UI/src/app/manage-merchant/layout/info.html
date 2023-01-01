@@ -1,0 +1,80 @@
+<table>
+    <tr>
+        <td width="201px">
+            <img src="{{img}}" width="200px" height="225px" />
+        </td>
+        <td>
+            <mat-label class="labelH5">
+                Mã người dùng:  
+            </mat-label>
+            &nbsp;
+                <mat-label>
+                    {{detail.identification}}
+                </mat-label>
+                <br>
+            <mat-label class="labelH5">
+                Tên người dùng:  
+            </mat-label>
+            &nbsp;
+                <mat-label>
+                    {{detail.lastName}} {{detail.firstName}}
+                </mat-label>
+                <br>
+            <mat-label class="labelH5">
+                Số điện thoại:  
+            </mat-label>
+            &nbsp;
+                <mat-label>
+                    {{detail.phoneNumber}}
+                </mat-label>
+                <br>
+            <mat-label class="labelH5">
+                Email:  
+            </mat-label>
+            &nbsp;
+                <mat-label>
+                    {{detail.email}}
+                </mat-label>
+                <br>
+            <mat-label class="labelH5">
+                Giới tính:  
+            </mat-label>
+            &nbsp;
+                <mat-label>
+                    {{detail.sex}}
+                </mat-label>
+                <br>
+                <mat-label class="labelH5">
+                    Ngày sinh:  
+                </mat-label>
+                &nbsp;
+                    <mat-label>
+                        {{detail.birthDay}}
+                    </mat-label>
+                    <br>
+                    <mat-label class="labelH5">
+                        Quyền:  
+                    </mat-label>
+                    &nbsp;
+                        <mat-label>
+                            {{detail.working}}
+                        </mat-label>
+                        <br>
+                        <mat-label class="labelH5">
+                            Địa chỉ:  
+                        </mat-label>
+                        &nbsp;
+                            <mat-label>
+                                {{detail.addressPerson}}
+                            </mat-label>
+        </td>
+    </tr>
+</table>
+<table>
+    <tr>
+        <td style="text-align: end;">
+        <button mat-raised-button color="warn" (click)="onNoClick()">
+            Trở lại
+        </button></td>
+    </tr>
+</table>

@@ -1,0 +1,80 @@
+
+
+.mat-header-cell{
+    text-align: center;
+}
+
+mat-tab-group {
+    text-align: left;
+}
+    mat-tab-group p {
+    padding-top: 20px;
+        }
+
+.example-spacer {
+    flex: 1 1 auto;
+}
+
+table {
+    width: 100%;
+    // margin-top: 10px;
+}
+
+
+.mat-form-field {
+    font-size: 14px;
+    width: 30%;
+}
+
+.cssMatFormField{
+    width: 100%;
+}
+
+.cssMatFormFieldTd{
+    width: 100%;
+}
+
+.example-form {
+    min-width: 150px;
+    max-width: 500px;
+    width: 100%;
+}
+
+.buttonCss{
+    text-align: end;
+    padding-right: 100px;
+}
+
+.mat-raised-button{
+    margin-left: 10px;
+}
+
+::ng-deep .mat-tab-label{
+    background-color: #c4ff93;
+}
+
+::ng-deep .mat-tab-group.mat-primary .mat-ink-bar, 
+.mat-tab-nav-bar.mat-primary .mat-ink-bar 
+{
+    background-color: #228B22;
+}
+
+::ng-deep .mat-form-field.mat-focused .mat-form-field-ripple
+{
+    background-color: #228B22;
+}
+
+::ng-deep .mat-form-field.mat-focused .mat-form-field-label
+{
+    color: #228B22;
+}
+
+.btnCssCreate{
+    background-color: #228B22;
+    color: #fff;
+}
+
+.btnCssEdit{
+    color: #edea16;
+}
+
