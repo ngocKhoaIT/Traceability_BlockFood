@@ -1,5 +1,6 @@
 import { NgModule } from '@angular/core';
 import { RouterModule, Routes } from '@angular/router';
+import { ListFarmByFruitComponent } from '../base/list-farm-by-fruit/list-farm-by-fruit.component';
 import { NoticeReceiveComponent } from '../base/notice-receive/notice-receive.component';
 import { NoticeSendComponent } from '../base/notice-send/notice-send.component';
 import { SendComponent } from '../base/send/send.component';
@@ -81,6 +82,9 @@ const routes: Routes = [
   },
   {
     path: 'staticFactory/:id', component:StaticFactoryComponent, canActivate: [RoleFactoryGuard] 
+  },
+  {
+    path: 'listfarmbyfruit', component:ListFarmByFruitComponent, canActivate: [RoleFactoryGuard]
   }
 ];
 

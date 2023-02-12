@@ -3,7 +3,9 @@ import { MatBottomSheet } from '@angular/material/bottom-sheet';
 import { MatDialog, MatDialogRef, MAT_DIALOG_DATA } from '@angular/material/dialog';
 import { MatSnackBar } from '@angular/material/snack-bar';
 import { ActivatedRoute, Router } from '@angular/router';
+import { ChangePasswordComponent } from 'src/app/base/change-password/change-password.component';
 import { SendComponent } from 'src/app/base/send/send.component';
+import { UpdateAccountComponent } from 'src/app/base/update-account/update-account.component';
 import { Person } from 'src/app/models/person.model';
 import { APIservicesService } from 'src/app/services/apiservices.service';
 import { environment } from 'src/environments/environment';
@@ -34,6 +36,20 @@ export class FactoryLayoutComponent implements OnInit {
   notifications: string = this.photoPath + "bell.png"
   sended: string = this.photoPath + "mail.png"
   sending: string = this.photoPath + "send.png"
+  key: string = this.photoPath + "key.png"
+
+  changePass(id: string){
+    const dialogRef = this.dialog.open(ChangePasswordComponent, {
+      width: '500px',
+      height: 'auto',
+      data: id,
+    });
+
+    dialogRef.afterClosed().subscribe(result => {
+      this.ngOnInit(),
+      console.log('The dialog was closed');
+    });
+  }
 
   iden = ''
   info(id: string){
@@ -153,7 +169,7 @@ export class InFoFactory implements OnInit{
     public dialogRef: MatDialogRef<InFoFactory>,
     @Inject(MAT_DIALOG_DATA) public data: string,
     private apiService: APIservicesService,
-    private _snackBar: MatSnackBar,
+    public dialog: MatDialog
   ){}
 
   photoPath: string = environment.photoUrl 
@@ -186,5 +202,19 @@ export class InFoFactory implements OnInit{
   }
   onNoClick(){
     this.dialogRef.close()
+  }
+
+  updateInfo(){
+    this.onNoClick()
+    const dialogRef = this.dialog.open(UpdateAccountComponent, {
+      width: 'auto',
+      height: 'auto',
+      data: this.detail.identification,
+    });
+
+    dialogRef.afterClosed().subscribe(result => {
+      this.ngOnInit(),
+      console.log('The dialog was closed');
+    });
   }
 }

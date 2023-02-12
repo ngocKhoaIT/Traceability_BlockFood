@@ -42,6 +42,7 @@ namespace TraceabilityAPI.Models
         public DbSet<Customer> Customers { get; set; }
         public DbSet<OrderBill> OrderBills { get; set; }
         public DbSet<DetailOrder> DetailOrders { get; set; }
+        public DbSet<Blockchain> Blocks { get; set; }
 
         protected override void OnModelCreating(ModelBuilder builder)
         {

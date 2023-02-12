@@ -35,6 +35,13 @@ namespace TraceabilityAPI.Controllers
             return _unit.TypeProducts.getTypeProductsbyFilter(id, req);
         }
 
+        [HttpGet]
+        [Route("{id},{req}")]
+        public JsonResult CheckName(string id, string req)
+        {
+            return _unit.TypeProducts.checkName(id, req);
+        }
+
         [HttpPost]
         public JsonResult AddTypeProduct(TypeProduct f)
         {

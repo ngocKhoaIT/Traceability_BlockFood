@@ -16,6 +16,8 @@ import { LayoutPageComponent } from './view/layout/layout.component';
 import { DetailComponent } from './view/detail/detail.component';
 
 import { AuthGuard } from './shared/auth.guard';
+import { ContactComponent } from './view/contact/contact.component';
+import { InformationComponent } from './view/information/information.component';
 
 const routes: Routes = [
   {
@@ -38,7 +40,15 @@ const routes: Routes = [
       {
         path: 'detail/:id',
         component: DetailComponent
-      }
+      },
+      {
+        path: 'contact',
+        component: ContactComponent,
+      },
+      {
+        path: 'information',
+        component: InformationComponent,
+      },
   ]
   },
   //NoticeDelete

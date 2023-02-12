@@ -58,6 +58,16 @@
                 <th mat-header-cell *matHeaderCellDef mat-sort-header> Đơn vị tính </th>
                 <td mat-cell *matCellDef="let row"> {{row.unit}} </td>
             </ng-container>
+
+            <ng-container matColumnDef="amountDelivery">
+                <th mat-header-cell *matHeaderCellDef mat-sort-header> Trọng/Số lượng Đã nhận </th>
+                <td mat-cell *matCellDef="let row"> {{row.amountDelivery}} </td>
+            </ng-container>
+        
+            <ng-container matColumnDef="unit2">
+                <th mat-header-cell *matHeaderCellDef mat-sort-header> Đơn vị tính </th>
+                <td mat-cell *matCellDef="let row"> Kg/Cái </td>
+            </ng-container>
         
         
             <ng-container matColumnDef="system">

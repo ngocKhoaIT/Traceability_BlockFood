@@ -17,6 +17,7 @@ import { popEditTransport, TransportComponent } from '../manage/transport/transp
 import { popUpPerson, popUpUser, UserComponent } from '../manage/user/user.component';
 import { MerchantComponent, popEditMerchant } from '../manage/merchant/merchant.component';
 import { StatisticComponent } from '../manage/statistic/statistic.component';
+import { BlockchainComponent } from '../manage/blockchain/blockchain.component';
 
 
 
@@ -44,6 +45,7 @@ import { StatisticComponent } from '../manage/statistic/statistic.component';
     popEditMerchant,
 
     StatisticComponent,
+    BlockchainComponent,
   ],
   imports: [
     CommonModule,

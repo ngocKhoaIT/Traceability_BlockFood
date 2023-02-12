@@ -1,4 +1,10 @@
-
+::ng-deep .mat-datepicker-toggle{
+    display: flex;
+    align-items: center;
+    flex-direction: row;
+    justify-items: center;
+    position: absolute !important;
+}
 .mat-header-cell{
     text-align: center;
 }

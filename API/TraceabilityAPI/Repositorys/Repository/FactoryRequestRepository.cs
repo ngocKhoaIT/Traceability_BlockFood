@@ -128,7 +128,7 @@ namespace TraceabilityAPI.Repositorys.Repository
                                                             amount = f1.amount,
                                                             unit = f1.unit,
                                                             status_btn = f1.status_btn,
-                                                            date = f1.date_create
+                                                            date = f1.date_update
                                                         });
 
             var productlist = factorylist.Join(product, f1 => f1.productId, f2 => f2.productId,
@@ -231,6 +231,7 @@ namespace TraceabilityAPI.Repositorys.Repository
             if (result != null)
             {
                 result.status_request = req;
+                result.date_update= DateTime.Now;
                 context.Update(result);
             }
         }

@@ -37,6 +37,36 @@
                 </mat-select>
             </div>
         </div>
+        <div></div>
+        <div class="flex flex-row items-center justify-end">
+            <div>
+                <button (click)="filter(timeInput,choice)"
+                    class="flex flex-row items-center justify-center bg-white px-2 py-1 border-2 bg-green-600 rounded ml-2 mr-2 text-white drop-shadow-xl">
+                    <mat-icon>filter_list</mat-icon>
+                    Lọc
+                </button>
+            </div>
+        </div>
+    </div>
+
+    <div class="grid gap-6 mb-6 grid-cols-2 bg-white drop-shadow-lg border-2 p-4">
+        <div>
+            <div class="flex flex-row items-center w-full">
+                <div class="mr-2 w-24">Mã sản phẩm test: </div>
+                <input [(ngModel)]="testSell" type="text" 
+                    class="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500"
+                    required>
+            </div>
+        </div>
+        <div class="flex flex-row items-center justify-end">
+            <div>
+                <button (click)="testAPI(testSell)"
+                    class="flex flex-row items-center justify-center bg-white px-2 py-1 border-2 bg-green-600 rounded ml-2 mr-2 text-white drop-shadow-xl">
+                    <mat-icon>filter_list</mat-icon>
+                    Test API
+                </button>
+            </div>
+        </div>
     </div>
 
     <div class="mt-4 drop-shadow-xl">

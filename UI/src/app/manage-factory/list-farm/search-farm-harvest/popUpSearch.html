@@ -13,7 +13,7 @@
     
                 <ng-container matColumnDef="date_plant">
                     <th mat-header-cell *matHeaderCellDef mat-sort-header> Ngày trồng </th>
-                    <td mat-cell *matCellDef="let row"> {{row.date_plant}} </td>
+                    <td mat-cell *matCellDef="let row"> {{loadService.changeFormatDate(row.date_plant)}} </td>
                 </ng-container>
         
             <ng-container matColumnDef="fruitName">
@@ -23,7 +23,7 @@
         
             <ng-container matColumnDef="date_harvest">
                 <th mat-header-cell *matHeaderCellDef mat-sort-header> Ngày thu hoạch </th>
-                <td mat-cell *matCellDef="let row"> {{row.date_harvest}} </td>
+                <td mat-cell *matCellDef="let row"> {{loadService.changeFormatDate(row.date_harvest)}} </td>
             </ng-container>
     
             <ng-container matColumnDef="weight_harvest">

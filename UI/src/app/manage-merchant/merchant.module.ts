@@ -8,15 +8,11 @@ import { ListWaitMerchantComponent } from './list-wait/listwaitmerchant.componen
 import { ListSubmitMerchantComponent, popUpDetail } from './list-submit/listsubmitmerchant.component';
 import { ListCancelMerchantComponent } from './list-cancel/listcancelmerchant.component';
 import { StaticMerchantComponent } from './static-merchant/static-merchant.component';
-import { HttpClientModule, HTTP_INTERCEPTORS } from '@angular/common/http';
+import { HTTP_INTERCEPTORS } from '@angular/common/http';
 import { InterceptorService } from '../services/interceptor.service';
 import { MatNativeDateModule } from '@angular/material/core';
 import { FormsModule, ReactiveFormsModule } from '@angular/forms';
-import { CKEditorModule } from 'ckeditor4-angular';
-import { FlexLayoutModule } from '@angular/flex-layout';
 import { MaterialModule } from '../material/material.module';
-import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
-
 
 @NgModule({
   declarations: [

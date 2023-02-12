@@ -268,7 +268,18 @@ export class popUpBuyProduct implements OnInit {
   }
 
   change(event: Event) {
-    this.testService.getIdProduct(this.data.h)
+    if(this.addDetail.amount <= 0)
+    {
+      this._snackBar.open('Nhập số lớn hơn 0', 'OK', {
+        horizontalPosition: 'center',
+        verticalPosition: 'top',
+        duration: 1500,
+        panelClass: ['snackbar']
+      });
+    }
+    else
+    {
+      this.testService.getIdProduct(this.data.h)
       .subscribe({
         next: (re1) => {
           if (this.addDetail.amount > re1.amountProduct) {
@@ -312,5 +323,6 @@ export class popUpBuyProduct implements OnInit {
           }
         }
       })
+    }
   }
 }

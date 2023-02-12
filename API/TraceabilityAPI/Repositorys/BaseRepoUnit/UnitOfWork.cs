@@ -34,6 +34,7 @@ namespace TraceabilityAPI.Repositorys.BaseRepoUnit
             Addresses= new AddressRepository(_context);
             Orders = new OrderRepository(_context);
             Customers = new CustomerRepository(_context);
+            Blocks = new BlockchainRepository(_context);
         }
 
         public IFarm Farms { get; private set; }
@@ -60,6 +61,7 @@ namespace TraceabilityAPI.Repositorys.BaseRepoUnit
         public INotice Notices { get; private set; }
         public IOrder Orders { get; private set; }
         public ICustomer Customers { get; private set; }
+        public IBlock Blocks { get; private set; }
 
         public int Complete()
         {

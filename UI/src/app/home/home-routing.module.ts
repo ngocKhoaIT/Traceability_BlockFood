@@ -16,6 +16,7 @@ import { StatisticComponent } from '../manage/statistic/statistic.component';
 import { StoreComponent } from '../manage/store/store.component';
 import { TransportComponent } from '../manage/transport/transport.component';
 import { UserComponent } from '../manage/user/user.component';
+import { BlockchainComponent } from '../manage/blockchain/blockchain.component';
 
 const routes: Routes = [
   { path: '', component: StatisticComponent },
@@ -47,6 +48,11 @@ const routes: Routes = [
   {
     path: 'user',
     component: UserComponent,
+    canActivate: [RoleGuard]
+  },
+  {
+    path: 'blockchain',
+    component: BlockchainComponent,
     canActivate: [RoleGuard]
   },
   {

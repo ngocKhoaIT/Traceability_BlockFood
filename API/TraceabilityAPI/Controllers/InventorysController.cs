@@ -5,10 +5,12 @@ using TraceabilityAPI.Models;
 using TraceabilityAPI.Repositorys.BaseRepoUnit;
 using QRCoder;
 using TraceabilityAPI.Models.ModelViews;
+using Microsoft.AspNetCore.Authorization;
 
 namespace TraceabilityAPI.Controllers
 {
     [Route("api/[controller]/[Action]")]
+    [Authorize]
     [ApiController]
     public class InventorysController : ControllerBase
     {
@@ -23,9 +25,9 @@ namespace TraceabilityAPI.Controllers
 
         [HttpGet]
         [Route("{id}")]
-        public InventoryStore Get(int id)
+        public InventoryStore Get(string id)
         {
-            return _unit.Inventorys.Get(id);
+            return _unit.Inventorys .GetString(id);
         }
 
         [HttpGet]
@@ -115,7 +117,7 @@ namespace TraceabilityAPI.Controllers
                     storeId = f.storeId,
                     amount = f.amount,
                     unit = f.unit,
-                    imageQR = imageOutPut[1],
+                    imageQR = f.imageQR,
                     status_request = f.status_request,
                     _status = 1,
                     date_create = DateTime.Now,
@@ -136,36 +138,12 @@ namespace TraceabilityAPI.Controllers
                 _unit.Complete();
             }
 
-            StringBuilder str = new StringBuilder();
-            str.Append("<table border=`" + "1px" + "`b>");
-            str.Append("<tr>");
-            str.Append("<td><b><font face=Arial Narrow size=3>id</font></b></td>");
-            str.Append("<td><b><font face=Arial Narrow size=3>goodsId</font></b></td>");
-            str.Append("<td><b><font face=Arial Narrow size=3>date_create</font></b></td>");
-            str.Append("<td><b><font face=Arial Narrow size=3>imagePath</font></b></td>");
-            str.Append("</tr>");
-
-            foreach (var a in apList)
-            {
-                str.Append("<tr>");
-                str.Append("<td><font face=Arial Narrow size=" + "14px" + ">" + a.id.ToString() + "</font></td>");
-                str.Append("<td><font face=Arial Narrow size=" + "14px" + ">" + a.goodsId.ToString() + "</font></td>");
-                str.Append("<td><font face=Arial Narrow size=" + "14px" + ">" + a.date_receive.ToString() + "</font></td>");
-                str.Append("<td><img src=`" + a.imagePath.ToString() + "` /></td>");
-                str.Append("</tr>");
-            }
-
-            str.Append("</table>");
-            HttpContext.Response.Headers.Add("content-disposition", "attachment; filename=Information" + DateTime.Now.Year.ToString() + ".xls");
-            this.Response.ContentType = "application/vnd.ms-excel";
-            byte[] temp = System.Text.Encoding.UTF8.GetBytes(str.ToString());
-
             foreach (var i in imageList)
             {
                 System.IO.File.Delete(i);
             }
 
-            return File(temp, "application/vnd.ms-excel");
+            return new JsonResult("Thêm thành công");
         }
 
         private static Byte[] BitmapToBytes(Bitmap img)
@@ -216,7 +194,7 @@ namespace TraceabilityAPI.Controllers
                     storeId = f.storeId,
                     amount = 1,
                     unit = f.unit,
-                    imageQR = imageOutPut[1],
+                    imageQR = f.imageQR,
                     status_request = f.status_request,
                     _status = 1,
                     date_create = DateTime.Now,
@@ -236,36 +214,37 @@ namespace TraceabilityAPI.Controllers
                 _unit.Complete();
             }
 
-            StringBuilder str = new StringBuilder();
-            str.Append("<table border=`" + "1px" + "`b>");
-            str.Append("<tr>");
-            str.Append("<td><b><font face=Arial Narrow size=3>id</font></b></td>");
-            str.Append("<td><b><font face=Arial Narrow size=3>goodsId</font></b></td>");
-            str.Append("<td><b><font face=Arial Narrow size=3>date_create</font></b></td>");
-            str.Append("<td><b><font face=Arial Narrow size=3>imagePath</font></b></td>");
-            str.Append("</tr>");
+            //StringBuilder str = new StringBuilder();
+            //str.Append("<table border=`" + "1px" + "`b>");
+            //str.Append("<tr>");
+            //str.Append("<td><b><font face=Arial Narrow size=3>id</font></b></td>");
+            //str.Append("<td><b><font face=Arial Narrow size=3>goodsId</font></b></td>");
+            //str.Append("<td><b><font face=Arial Narrow size=3>date_create</font></b></td>");
+            //str.Append("<td><b><font face=Arial Narrow size=3>imagePath</font></b></td>");
+            //str.Append("</tr>");
 
-            foreach(var a in apList)
-            {
-                str.Append("<tr>");
-                str.Append("<td><font face=Arial Narrow size=" + "14px" + ">" + a.id.ToString() + "</font></td>");
-                str.Append("<td><font face=Arial Narrow size=" + "14px" + ">" + a.goodsId.ToString() + "</font></td>");
-                str.Append("<td><font face=Arial Narrow size=" + "14px" + ">" + a.date_receive.ToString() + "</font></td>");
-                str.Append("<td><img src=`" + a.imagePath.ToString() + "` /></td>");
-                str.Append("</tr>");
-            }
+            //foreach(var a in apList)
+            //{
+            //    str.Append("<tr>");
+            //    str.Append("<td><font face=Arial Narrow size=" + "14px" + ">" + a.id.ToString() + "</font></td>");
+            //    str.Append("<td><font face=Arial Narrow size=" + "14px" + ">" + a.goodsId.ToString() + "</font></td>");
+            //    str.Append("<td><font face=Arial Narrow size=" + "14px" + ">" + a.date_receive.ToString() + "</font></td>");
+            //    str.Append("<td><img src=`" + a.imagePath.ToString() + "` /></td>");
+            //    str.Append("</tr>");
+            //}
 
-            str.Append("</table>");
-            HttpContext.Response.Headers.Add("content-disposition", "attachment; filename=Information" + DateTime.Now.Year.ToString() + ".xls");
-            this.Response.ContentType = "application/vnd.ms-excel";
-            byte[] temp = System.Text.Encoding.UTF8.GetBytes(str.ToString());
+            //str.Append("</table>");
+            //HttpContext.Response.Headers.Add("content-disposition", "attachment; filename=Information" + DateTime.Now.Year.ToString() + ".xls");
+            //this.Response.ContentType = "application/vnd.ms-excel";
+            //byte[] temp = System.Text.Encoding.UTF8.GetBytes(str.ToString());
 
             foreach(var i in imageList)
             {
                 System.IO.File.Delete(i);
             }
-            
-            return File(temp, "application/vnd.ms-excel");
+
+            //return File(temp, "application/vnd.ms-excel");
+            return new JsonResult("Thêm thành công");
         }
 
         [HttpPost]

@@ -52,7 +52,7 @@
                 <div>
                     <label class="block mb-2 text-sm font-medium text-gray-900 dark:text-white">Trọng lượng sử
                         dụng*</label>
-                    <input [(ngModel)]="w" type="text"
+                    <input [(ngModel)]="w" type="number"
                         class="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500"
                         required>
                 </div>
@@ -65,14 +65,51 @@
             </div>
             <div class="grid gap-6 mb-6 grid-cols-2 bg-white drop-shadow-xl border-2 p-4">
                 <div>
+                    <label class="block mb-2 text-sm font-medium text-gray-900 dark:text-white">Số lượng sản xuất*</label>
+                    <input [(ngModel)]="addProductRequest.amountProduct" type="number"
+                        class="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500"
+                        required>
+                </div>
+                <div>
+                    <label class="block mb-2 text-sm font-medium text-gray-900 dark:text-white">Đơn vị tính*</label>
+                        <div
+                            class="w-full flex flex-row justify-center items-center text-sm bg-gray-50 p-2 rounded mt-0 border border-gray-300">
+                            <mat-select [(ngModel)]="addProductRequest.unit" required>
+                                    <mat-option *ngFor="let i of units" [value]="i">
+                                        {{i}}
+                                    </mat-option>
+                                </mat-select>
+                        </div>
+                </div>
+                <div>
+                    <label class="block mb-2 text-sm font-medium text-gray-900 dark:text-white">Ngày sản xuất*</label>
+                    <div class="flex flex-row items-center justify-end relative">
+                        <input [(ngModel)]="addProductRequest.mfg_date" type="text" disabled [matDatepicker]="dp1"
+                            required
+                            class="bg-gray-50 border border-gray-300 text-gray-400 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500">
+                        <mat-datepicker-toggle matSuffix [for]="dp1" class="btnDate"></mat-datepicker-toggle>
+                        <mat-datepicker #dp1 disabled="false"></mat-datepicker>
+                    </div>
+                </div>
+                <div>
+                    <label class="block mb-2 text-sm font-medium text-gray-900 dark:text-white">Hạn sử dụng*</label>
+                    <div class="flex flex-row items-center justify-end relative">
+                        <input [(ngModel)]="addProductRequest.exp_date" type="text" disabled [matDatepicker]="dp2"
+                            required
+                            class="bg-gray-50 border border-gray-300 text-gray-400 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500">
+                        <mat-datepicker-toggle matSuffix [for]="dp2" class="btnDate"></mat-datepicker-toggle>
+                        <mat-datepicker #dp2 disabled="false"></mat-datepicker>
+                    </div>
+                </div>
+                <div>
                     <label class="block mb-2 text-sm font-medium text-gray-900 dark:text-white">Nhiệt độ*</label>
-                    <input [(ngModel)]="addProductRequest.temperature" type="text"
+                    <input [(ngModel)]="addProductRequest.temperature" type="number"
                         class="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500"
                         required>
                 </div>
                 <div>
                     <label class="block mb-2 text-sm font-medium text-gray-900 dark:text-white">Độ ẩm*</label>
-                    <input [(ngModel)]="addProductRequest.humidity" type="text"
+                    <input [(ngModel)]="addProductRequest.humidity" type="number"
                         class="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500"
                         required>
                 </div>
@@ -134,14 +171,14 @@
 
                 <div class="flex flex-row items-center w-full">
                     <div class="mr-2 w-24">TL từ: </div>
-                    <input [(ngModel)]="w_from" type="text" 
+                    <input [(ngModel)]="w_from" type="number" 
                         class="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500"
                         required>
                 </div>
 
                 <div class="flex flex-row items-center w-full">
                     <div class="mr-2 w-24">TL đến: </div>
-                        <input [(ngModel)]="w_to" type="text" 
+                        <input [(ngModel)]="w_to" type="number" 
                         class="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500"
                         required>
                 </div>
@@ -220,18 +257,18 @@
 
                         <ng-container matColumnDef="mfg_date">
                             <th mat-header-cell *matHeaderCellDef mat-sort-header> Ngày sản xuất </th>
-                            <td mat-cell *matCellDef="let row"> {{row.mfg_date}} </td>
+                            <td mat-cell *matCellDef="let row"> {{loadService.changeFormatDate(row.mfg_date)}} </td>
                         </ng-container>
                         <ng-container matColumnDef="exp_date">
                             <th mat-header-cell *matHeaderCellDef mat-sort-header> Hạn sử dụng </th>
-                            <td mat-cell *matCellDef="let row"> {{row.exp_date}} </td>
+                            <td mat-cell *matCellDef="let row"> {{loadService.changeFormatDate(row.exp_date)}} </td>
                         </ng-container>
                         <ng-container matColumnDef="elementOfProduct">
                             <th mat-header-cell *matHeaderCellDef mat-sort-header> Thành phần </th>
                             <td mat-cell *matCellDef="let row"> {{row.elementOfProduct}} </td>
                         </ng-container>
                         <ng-container matColumnDef="procedureOfProduct">
-                            <th mat-header-cell *matHeaderCellDef mat-sort-header> Hạn sử dụng </th>
+                            <th mat-header-cell *matHeaderCellDef mat-sort-header> Quy trình </th>
                             <td mat-cell *matCellDef="let row"> {{row.procedureOfProduct}} </td>
                         </ng-container>
 

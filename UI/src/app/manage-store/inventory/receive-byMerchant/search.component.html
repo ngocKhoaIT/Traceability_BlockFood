@@ -60,6 +60,16 @@
                 <th mat-header-cell *matHeaderCellDef mat-sort-header> Đơn vị tính </th>
                 <td mat-cell *matCellDef="let row"> {{row.unit}} </td>
             </ng-container>
+
+            <ng-container matColumnDef="weightDelivery">
+                <th mat-header-cell *matHeaderCellDef mat-sort-header> Trọng lượng đã nhận </th>
+                <td mat-cell *matCellDef="let row"> {{row.weightDelivery}} </td>
+            </ng-container>
+
+            <ng-container matColumnDef="unit2">
+                <th mat-header-cell *matHeaderCellDef mat-sort-header> Đơn vị tính </th>
+                <td mat-cell *matCellDef="let row"> Kg </td>
+            </ng-container>
         
             <ng-container matColumnDef="system">
                 <th mat-header-cell *matHeaderCellDef mat-sort-header> Chức năng </th>

@@ -1,4 +1,5 @@
-﻿using TraceabilityAPI.Models;
+﻿using Microsoft.AspNetCore.Mvc;
+using TraceabilityAPI.Models;
 using TraceabilityAPI.Repositorys.BaseRepoUnit;
 using TraceabilityAPI.Repositorys.Interface;
 
@@ -26,6 +27,25 @@ namespace TraceabilityAPI.Repositorys.Repository
         public IEnumerable<Seed> getAllSeed(string id)
         {
             return context.Seeds.Where(t => t._status == 1 && t.farmId == id).OrderByDescending(t => t.date_create).ToList();
+        }
+
+        public JsonResult checkName(string id, string name)
+        {
+            var a = context.Seeds.Where(t => t.farmId == id && t.seedName == name).FirstOrDefault();
+            if (a != null)
+            {
+                return new JsonResult("Đã tồn tại");
+            }
+            else
+            {
+                return new JsonResult("Chưa tồn tại");
+            }    
+        }
+
+        public IEnumerable<Seed> getAllSeedExists()
+        {
+            IList<Seed> seeds = context.Seeds.Where(t => t._status == 1).OrderBy(t => t.seedName).ToList();
+            return seeds.DistinctBy(t => t.seedName);
         }
 
         public IEnumerable<Seed> getSeedsbyFilter(string id,string searchString)

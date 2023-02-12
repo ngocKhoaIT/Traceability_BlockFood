@@ -4,8 +4,8 @@ import { NoticeReceiveComponent } from '../base/notice-receive/notice-receive.co
 import { NoticeSendComponent } from '../base/notice-send/notice-send.component';
 import { SendComponent } from '../base/send/send.component';
 import { RoleMerchantGuard } from '../shared/roleMerchant.guard';
-import { MerchantLayoutComponent } from './layout/layout.component';
 import { ListCancelMerchantComponent } from './list-cancel/listcancelmerchant.component';
+import { ListFarmByFruitComponent } from '../base/list-farm-by-fruit/list-farm-by-fruit.component';
 import { ListSubmitMerchantComponent } from './list-submit/listsubmitmerchant.component';
 import { ListWaitMerchantComponent } from './list-wait/listwaitmerchant.component';
 import { SearchFarmComponent } from './search-farm-harvest/search.component';
@@ -39,6 +39,9 @@ const routes: Routes = [
   },
   {
     path: 'staticMerchant/:id', component:StaticMerchantComponent, canActivate: [RoleMerchantGuard]
+  },
+  {
+    path: 'listfarmbyfruit', component:ListFarmByFruitComponent, canActivate: [RoleMerchantGuard]
   }
 ];
 

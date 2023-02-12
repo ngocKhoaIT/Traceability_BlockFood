@@ -18,7 +18,7 @@ import { environment } from 'src/environments/environment';
 })
 export class TypeProductComponent implements OnInit {
 
-  displayedColumnsTypeProduct: string[] = ['typeProductId', 'typeName', 'info', 'system']
+  displayedColumnsTypeProduct: string[] = ['typeProductId', 'typeName', 'net_weight', 'brand', 'procedureOfProduct', 'elementOfProduct', 'system']
 
   dataSourceTypeProduct = new MatTableDataSource<TypeProduct>;
 
@@ -217,6 +217,24 @@ export class popUpType implements OnInit {
 
   change(event: Event) {
     const id = this.data.id
+    if(this.addTypeProductRequest.typeName === "" || this.addTypeProductRequest.procedureOfProduct ===""
+        || this.addTypeProductRequest.elementOfProduct === "" || this.addTypeProductRequest.net_weight <= 0
+        || this.addTypeProductRequest.brand === ""){
+          this._snackBar.open('Chưa nhập đủ dữ liệu hoặc nhập sai', 'OK', {
+            horizontalPosition: 'center',
+            verticalPosition: 'top',
+            duration: 1500,
+            panelClass: ['snackbar']
+          });
+    }
+    else{
+      this.apiService.checkNameType(this.data.factory, this.addTypeProductRequest.typeName)
+      .subscribe({
+        next: (ret) =>{
+
+        }
+      })
+    }
     if (id !== 0) {
       this.apiService.updateTypeProduct(this.addTypeProductRequest)
       .subscribe({

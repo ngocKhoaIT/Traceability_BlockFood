@@ -140,7 +140,7 @@ export class popUpSearchFarm implements OnInit {
   constructor(
     public dialogRef: MatDialogRef<popUpSearchFarm>,
     @Inject(MAT_DIALOG_DATA) public data: { id: string, f: string, u: string },
-    private testService: APIservicesService,
+    private testService: APIservicesService, public loadService: LoaderService,
     private _snackBar: MatSnackBar, public dialog: MatDialog,
   ) {
     this.farm = ''
@@ -280,7 +280,18 @@ export class popUpBuy implements OnInit {
   }
 
   change(event: Event) {
-    this.testService.getIdFruitHarvest(this.data.h)
+    if(this.addDetail.amount <= 0)
+    {
+      this._snackBar.open('Nhập số lớn hơn 0', 'OK', {
+        horizontalPosition: 'center',
+        verticalPosition: 'top',
+        duration: 1500,
+        panelClass: ['snackbar']
+      });
+    }
+    else
+    {
+      this.testService.getIdFruitHarvest(this.data.h)
       .subscribe({
         next: (re1) => {
           const hientai = re1.weight_harvest
@@ -331,5 +342,6 @@ export class popUpBuy implements OnInit {
             })
         }
       })
+    }
   }
 }

@@ -73,7 +73,7 @@ export class ListSubmitSFComponent implements OnInit {
               next: (re) => {
                 this.place = re.workingFor
                 this.user = ''
-                this.testService.getAllFactoryRequestbyPlaces(re.workingFor, 'Đã xác nhận',"Today_NM")
+                this.testService.getAllFactoryRequestbyPlaces(re.workingFor, 'Đã xác nhận',"Last 7 Day_Đăng")
                   .subscribe({
                     next: (f) => {
                       this.dataSource = new MatTableDataSource(f);
@@ -84,12 +84,6 @@ export class ListSubmitSFComponent implements OnInit {
                       console.log(response);
                     }
                   });
-                this.testService.getAllFactorys()
-                .subscribe({
-                  next: (re2) =>{
-                    this.choices = re2
-                  }
-                })
               }
             })
         }
@@ -114,7 +108,7 @@ export class ListSubmitSFComponent implements OnInit {
 
   times: string[] = ['Today', 'Last 7 Day', 'Last Month', 'Last 12 Months', 'All Time']
 
-  choices: Factory[] = []
+  choices:  string[] = ["Đăng", "Đang tìm", "Đang vận chuyển", "Đã hoàn tất"]
   choice = ''
 
   filter(req: string, id: string) {
@@ -189,41 +183,53 @@ export class popUpDetailSF implements OnInit {
   }
 
   change(event: Event) {
-    this.addDetail.billId = ''
-    this.addDetail._status = 0
-    this.addDetail.amountDelivery = 0
-    this.addDetail.status_request = 'Đang tìm'
-    this.addDetail.date_create = '2022-10-11T07:40:25.49'
-    this.addDetail.date_update = '2022-10-11T07:40:25.49'
-    this.testService.addUpToTransport(this.addDetail)
-      .subscribe({
-        next: (re) => {
-          this.dialogRef.close();
-          this.testService.updateStatusBntFactory(this.addDetail.goodsId, this.addDetail.toPlace, 'Đang tìm')
-            .subscribe({
-              next: (re) => {
-                this.addNotice.sendId = this.data.us
-                this.addNotice.title = "Đăng tìm đơn vị vận chuyển"
-                this.addNotice.content = "Tìm đơn vị vận chuyển để chuyển hàng"
-                this.addNotice.receiveDate = '2022-10-11T07:40:25.49'
-                this.addNotice.sendDate = '2022-10-11T07:40:25.49'
-                this.testService.addNoticeAllTransport(this.addNotice)
-                  .subscribe({
-                    next: (rewq) => {
-
-                    }
-                  })
-              }
-            })
-
-          this._snackBar.open('Đã tạo đơn và tìm đơn vị vận chuyển', 'OK', {
-            horizontalPosition: 'center',
-            verticalPosition: 'top',
-            duration: 1500,
-            panelClass: ['snackbar']
-          });
-        }
-      })
+    if(this.addDetail.amount <= 0)
+    {
+      this._snackBar.open('Nhập số lớn hơn 0', 'OK', {
+        horizontalPosition: 'center',
+        verticalPosition: 'top',
+        duration: 1500,
+        panelClass: ['snackbar']
+      });
+    }
+    else
+    {
+      this.addDetail.billId = ''
+      this.addDetail._status = 0
+      this.addDetail.amountDelivery = 0
+      this.addDetail.status_request = 'Đang tìm'
+      this.addDetail.date_create = '2022-10-11T07:40:25.49'
+      this.addDetail.date_update = '2022-10-11T07:40:25.49'
+      this.testService.addUpToTransport(this.addDetail)
+        .subscribe({
+          next: (re) => {
+            this.dialogRef.close();
+            this.testService.updateStatusBntFactory(this.addDetail.goodsId, this.addDetail.toPlace, 'Đang tìm')
+              .subscribe({
+                next: (re) => {
+                  this.addNotice.sendId = this.data.us
+                  this.addNotice.title = "Đăng tìm đơn vị vận chuyển"
+                  this.addNotice.content = "Tìm đơn vị vận chuyển để chuyển hàng"
+                  this.addNotice.receiveDate = '2022-10-11T07:40:25.49'
+                  this.addNotice.sendDate = '2022-10-11T07:40:25.49'
+                  this.testService.addNoticeAllTransport(this.addNotice)
+                    .subscribe({
+                      next: (rewq) => {
+  
+                      }
+                    })
+                }
+              })
+  
+            this._snackBar.open('Đã tạo đơn và tìm đơn vị vận chuyển', 'OK', {
+              horizontalPosition: 'center',
+              verticalPosition: 'top',
+              duration: 1500,
+              panelClass: ['snackbar']
+            });
+          }
+        })
+    }
   }
 
   addNotice: NoticeData = {

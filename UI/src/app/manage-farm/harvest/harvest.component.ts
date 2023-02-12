@@ -167,71 +167,85 @@ export class HarvestComponent implements OnInit {
   }
 
   add(w: number, u: string) {
-    let date = new Date(this.addHarvestRequest.date_harvest)
-    var d = this.datePipe.transform(date, 'yyyy-MM-dd')
+    if (this.addHarvestRequest.date_harvest !== "" && u !== ""
+      && w > 0) {
+      let date = new Date(this.addHarvestRequest.date_harvest)
+      const d = this.datePipe.transform(date, 'yyyy-MM-dd')
 
-    if (d != null) {
-      this.testService.getIfHarverst(this.addHarvestRequest.fruitId, d)
-        .subscribe({
-          next: (value) => {
-            console.log(value)
-            if (value === "Đủ thời gian") {
-              this.testService.exChangeFruit(w, u)
-                .subscribe({
-                  next: (re) => {
-                    const a = parseFloat(re.toString())
-                    this.addHarvestRequest._status = 0;
-                    this.addHarvestRequest.harvestId = '',
-                      this.addHarvestRequest.weight_harvest = a,
+      if (d !== null)
+        this.testService.getIfHarverst(this.addHarvestRequest.fruitId, d)
+          .subscribe({
+            next: (value) => {
+              console.log(value)
+              if (value === "Đủ thời gian") {
+                this.testService.exChangeFruit(w, u)
+                  .subscribe({
+                    next: (re) => {
+                      const a = parseFloat(re.toString())
+                      this.addHarvestRequest._status = 0;
+                      this.addHarvestRequest.harvestId = ''
+                      this.addHarvestRequest.weight_harvest = a
                       this.addHarvestRequest.weight_harvest_first = a
-                    this.addHarvestRequest.unit = 'Kg'
-                    this.addHarvestRequest.status_request = '',
+                      this.addHarvestRequest.unit = 'Kg'
+                      this.addHarvestRequest.status_request = ''
                       this.addHarvestRequest.date_create = '2022-10-11T07:40:25.49';
-                    this.addHarvestRequest.date_update = '2022-10-11T07:40:25.49';
-                    this.testService.addFruitHarvest(this.addHarvestRequest)
-                      .subscribe({
-                        next: (f) => {
-                          this.ngOnInit();
-                          this.addHarvestRequest.harvestId = '',
-                            this.addHarvestRequest.unit = '',
-                            this.addHarvestRequest.fruitId = '',
-                            this.addHarvestRequest.weight_harvest = 0,
+                      this.addHarvestRequest.date_update = '2022-10-11T07:40:25.49';
+                      this.testService.addFruitHarvest(this.addHarvestRequest)
+                        .subscribe({
+                          next: (f) => {
+                            this.addHarvestRequest.harvestId = ''
+                            this.addHarvestRequest.unit = ''
+                            this.addHarvestRequest.fruitId = ''
+                            this.addHarvestRequest.weight_harvest = 0
+                            this.w = 0
+                            this.u = ""
 
                             this.addNotice.sendId = this.user
-                          this.addNotice.receiveDate = '2022-10-11T07:40:25.49'
-                          this.addNotice.sendDate = '2022-10-11T07:40:25.49'
-                          this.testService.addNoticeHarvest(this.addNotice)
-                            .subscribe({
-                              next: (rew) => {
+                            this.addNotice.receiveDate = '2022-10-11T07:40:25.49'
+                            this.addNotice.sendDate = '2022-10-11T07:40:25.49'
+                            this.testService.addNoticeHarvest(this.addNotice)
+                              .subscribe({
+                                next: (rew) => {
+                                  if(rew !== null){
+                                    console.log("a")
+                                    this.ngOnInit();
+                                  }
+                                }
+                              })
 
-                              }
-                            })
-
-                          this._snackBar.open('Thêm thành công', 'OK', {
-                            horizontalPosition: 'center',
-                            verticalPosition: 'top',
-                            duration: 1500,
-                            panelClass: ['snackbar']
-                          });
-                        }
-                      })
-                  }
-                })
+                            this._snackBar.open('Thêm thành công', 'OK', {
+                              horizontalPosition: 'center',
+                              verticalPosition: 'top',
+                              duration: 1500,
+                              panelClass: ['snackbar']
+                            });
+                          }
+                        })
+                    }
+                  })
+              }
+              else {
+                this.addHarvestRequest.date_harvest = ''
+                this._snackBar.open('Không đủ 190 ngày để thu hoạch', 'OK', {
+                  horizontalPosition: 'center',
+                  verticalPosition: 'top',
+                  duration: 1500,
+                  panelClass: ['snackbar']
+                });
+              }
+            },
+            error: (e) => {
+              console.log(e)
             }
-            else {
-              this.addHarvestRequest.date_harvest = ''
-              this._snackBar.open('Không đủ 190 ngày để thu hoạch', 'OK', {
-                horizontalPosition: 'center',
-                verticalPosition: 'top',
-                duration: 1500,
-                panelClass: ['snackbar']
-              });
-            }
-          },
-          error: (e) => {
-            console.log(e)
-          }
-        })
+          })
+    }
+    else {
+      this._snackBar.open('Dữ liệu chưa nhập đủ hoặc nhập sai !!', 'OK', {
+        horizontalPosition: 'center',
+        verticalPosition: 'top',
+        duration: 1500,
+        panelClass: ['snackbar']
+      });
     }
 
   }
@@ -241,6 +255,8 @@ export class HarvestComponent implements OnInit {
       this.addHarvestRequest.unit = '',
       this.addHarvestRequest.fruitId = '',
       this.addHarvestRequest.weight_harvest = 0;
+    this.w = 0
+    this.u = ""
   }
 
   seeds: Seed[] = []
@@ -255,7 +271,7 @@ export class HarvestComponent implements OnInit {
   schoice = 0
 
   filter(req: string, id: number) {
-    this.testService.getFruitHarvestsFilter(this.farm, req +"_"+id+"_"+this.w_to.toString()+"_"+this.w_from.toString())
+    this.testService.getFruitHarvestsFilter(this.farm, req + "_" + id + "_" + this.w_to.toString() + "_" + this.w_from.toString())
       .subscribe({
         next: (f) => {
           this.Harvests = f;

@@ -22,6 +22,11 @@ export class AuthService {
     return this.http.get(this.baseApiUrl+'api/Accounts/checkUser/' + id)
   }
 
+  //Đổi mật khẩu
+  changePassword(id: string, pw: string){
+    return this.http.get(this.baseApiUrl + "api/Accounts/changePassword/"+id+","+pw)
+  }
+
   IsLoggedIn(){
     return localStorage.getItem('token') !=null
   }

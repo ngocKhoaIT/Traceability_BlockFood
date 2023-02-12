@@ -71,16 +71,16 @@
         
             <ng-container matColumnDef="humidity">
                 <th mat-header-cell *matHeaderCellDef mat-sort-header> Độ ẩm khi vận chuyển</th>
-                <td mat-cell *matCellDef="let row"> {{row.humidity}} </td>
+                <td mat-cell *matCellDef="let row"> {{row.humidity}}% </td>
             </ng-container>
             
             <ng-container matColumnDef="temperature">
                 <th mat-header-cell *matHeaderCellDef mat-sort-header> Nhiệt độ</th>
-                <td mat-cell *matCellDef="let row"> {{row.temperature}} </td>
+                <td mat-cell *matCellDef="let row"> {{row.temperature}}°C </td>
             </ng-container>
         
             <ng-container matColumnDef="status_request">
-                <th mat-header-cell *matHeaderCellDef mat-sort-header> Đơn vị tính </th>
+                <th mat-header-cell *matHeaderCellDef mat-sort-header> Trạng thái    </th>
                 <td mat-cell *matCellDef="let row"> {{row.status_request}}</td>
             </ng-container>
         

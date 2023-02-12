@@ -15,7 +15,7 @@ import { LoaderService } from 'src/app/services/loader.service';
 export class ListSoldComponent implements OnInit {
 
   displayedColumns: string[] = ['id', 'goodsName', 'storeName', 'addressStore',
-    'amount', 'unit', 'imageQR'];
+    'amount', 'unit'];
 
   dataSource = new MatTableDataSource<ILView>;
 

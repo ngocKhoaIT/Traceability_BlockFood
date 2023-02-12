@@ -98,9 +98,9 @@ namespace TraceabilityAPI.Repositorys.Repository
             return new JsonResult(acb3.OrderByDescending(t=>t.sendDate));
         }
 
-        public JsonResult getAllReciveId(string id)
+        public JsonResult getAllReciveId(string id, string searchString)
         {
-            var a = context.Notices.Where(t => t.receiveId == id).ToList();
+            var a = context.Notices.Where(t => t.receiveId == id).OrderByDescending(t=>t.sendDate).ToList();
             var c = context.UserLogins.ToList();
             var b = context.Persons.ToList();
 
@@ -179,13 +179,44 @@ namespace TraceabilityAPI.Repositorys.Repository
                                                     receiveName = t2.lastName + " " + t2.firstName,
                                                     photoReceive = t2.imagePerson,
                                                 });
+            if (searchString == null)
+            {
 
-            return new JsonResult(acb3.OrderByDescending(t => t.sendDate));
+            }
+            else
+            {
+                searchString = searchString.Trim();
+                if (searchString == "Today")
+                {
+                    acb3 = acb3.Where(t => t.receiveDate.Date == DateTime.Now.Date);
+                }
+                else if (searchString == "Last 7 Day")
+                {
+                    var ad = DateTime.Now.Date.AddDays(-7);
+                    acb3 = acb3.Where(t => t.receiveDate.Date <= DateTime.Now.Date && t.receiveDate.Date >= ad);
+                }
+                else if (searchString == "Last Month")
+                {
+                    var ad = DateTime.Now.Date.AddMonths(-1);
+                    acb3 = acb3.Where(t => t.receiveDate.Date <= DateTime.Now.Date && t.receiveDate.Date >= ad);
+                }
+                else if (searchString == "Last 12 Months")
+                {
+                    var ad = DateTime.Now.Date.AddYears(-1);
+                    acb3 = acb3.Where(t => t.receiveDate.Date <= DateTime.Now.Date && t.receiveDate.Date >= ad);
+                }
+                else
+                {
+                    acb3 = acb3;
+                }
+            }
+
+            return new JsonResult(acb3);
         }
 
-        public JsonResult getAllSendId(string id)
+        public JsonResult getAllSendId(string id, string searchString)
         {
-            var a = context.Notices.Where(t => t.sendId == id).ToList();
+            var a = context.Notices.Where(t => t.sendId == id).OrderByDescending(t => t.sendDate).ToList();
             var c = context.UserLogins.ToList();
             var b = context.Persons.ToList();
 
@@ -265,12 +296,44 @@ namespace TraceabilityAPI.Repositorys.Repository
                                                     photoReceive = t2.imagePerson,
                                                 });
 
-            return new JsonResult(acb3.OrderByDescending(t => t.sendDate));
+            if (searchString == null)
+            {
+
+            }
+            else
+            {
+                searchString = searchString.Trim();
+                if (searchString == "Today")
+                {
+                    acb3 = acb3.Where(t => t.sendDate.Date == DateTime.Now.Date);
+                }
+                else if (searchString == "Last 7 Day")
+                {
+                    var ad = DateTime.Now.Date.AddDays(-7);
+                    acb3 = acb3.Where(t => t.sendDate.Date <= DateTime.Now.Date && t.sendDate.Date >= ad);
+                }
+                else if (searchString == "Last Month")
+                {
+                    var ad = DateTime.Now.Date.AddMonths(-1);
+                    acb3 = acb3.Where(t => t.sendDate.Date <= DateTime.Now.Date && t.sendDate.Date >= ad);
+                }
+                else if (searchString == "Last 12 Months")
+                {
+                    var ad = DateTime.Now.Date.AddYears(-1);
+                    acb3 = acb3.Where(t => t.sendDate.Date <= DateTime.Now.Date && t.sendDate.Date >= ad);
+                }
+                else
+                {
+                    acb3 = acb3;
+                }
+            }
+
+            return new JsonResult(acb3);
         }
 
         public JsonResult getAllSendIdRequest(string id, string req)
         {
-            var a = context.Notices.Where(t => t.sendId == id && t.status_request == req).ToList();
+            var a = context.Notices.Where(t => t.sendId == id && t.status_request == req).OrderByDescending(t=>t.sendDate).ToList();
             var c = context.UserLogins.ToList();
             var b = context.Persons.ToList();
 
@@ -350,7 +413,7 @@ namespace TraceabilityAPI.Repositorys.Repository
                                                     photoReceive = t2.imagePerson,
                                                 });
 
-            return new JsonResult(acb3.OrderByDescending(t => t.sendDate));
+            return new JsonResult(acb3);
         }
 
         public string getID()

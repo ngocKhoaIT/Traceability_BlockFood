@@ -1,18 +1,18 @@
 import { ComponentFixture, TestBed } from '@angular/core/testing';
 
-import { ListWaitFSComponent } from './listwait.component';
+import { ListWaitSFComponent } from './listwait.component';
 
-describe('ListWaitFSComponent', () => {
-  let component: ListWaitFSComponent;
-  let fixture: ComponentFixture<ListWaitFSComponent>;
+describe('ListWaitSFComponent', () => {
+  let component: ListWaitSFComponent;
+  let fixture: ComponentFixture<ListWaitSFComponent>;
 
   beforeEach(async () => {
     await TestBed.configureTestingModule({
-      declarations: [ ListWaitFSComponent ]
+      declarations: [ ListWaitSFComponent ]
     })
     .compileComponents();
 
-    fixture = TestBed.createComponent(ListWaitFSComponent);
+    fixture = TestBed.createComponent(ListWaitSFComponent);
     component = fixture.componentInstance;
     fixture.detectChanges();
   });

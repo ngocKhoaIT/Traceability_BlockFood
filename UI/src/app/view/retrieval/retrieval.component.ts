@@ -127,5 +127,5 @@ export class RetrievalComponent implements OnInit {
     } 
   }
 
-  qr: string = this.photoPath + 'qr-code.png'
+  qr: string = this.photoPath + 'barcode-scanner.png'
 }

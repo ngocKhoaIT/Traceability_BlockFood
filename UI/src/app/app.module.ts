@@ -24,12 +24,20 @@ import { NoticeDelete } from './base/notice-delete/notice-delete.component';
 import { RetrievalComponent } from './view/retrieval/retrieval.component';
 import { LayoutPageComponent } from './view/layout/layout.component';
 import { DetailComponent } from './view/detail/detail.component';
-import {DatePipe} from '@angular/common';
+import {DatePipe, HashLocationStrategy, LocationStrategy} from '@angular/common';
 
 import { NoticeReceiveComponent } from './base/notice-receive/notice-receive.component';
 import { NoticeSendComponent } from './base/notice-send/notice-send.component';
 import { SendComponent } from './base/send/send.component';
 import { NoticeViewComponent } from './base/notice-view/notice-view.component';
+import { ListFarmByFruitComponent } from './base/list-farm-by-fruit/list-farm-by-fruit.component';
+import { ChangePasswordComponent } from './base/change-password/change-password.component';
+import { UpdateAccountComponent } from './base/update-account/update-account.component';
+import { ContactComponent } from './view/contact/contact.component';
+import { InformationComponent } from './view/information/information.component';
+
+import { NFC, Ndef } from '@ionic-native/nfc/ngx';
+import { ForgotComponent } from './base/forgot/forgot.component';
 
 
 @NgModule({
@@ -44,11 +52,16 @@ import { NoticeViewComponent } from './base/notice-view/notice-view.component';
     DetailComponent,
     RetrievalComponent,
 
-
     NoticeReceiveComponent,
     NoticeSendComponent,
     SendComponent,
     NoticeViewComponent,
+    ListFarmByFruitComponent,
+    ChangePasswordComponent,
+    UpdateAccountComponent,
+    ContactComponent,
+    InformationComponent,
+    ForgotComponent,
   ],
   imports: [
     BrowserModule,
@@ -62,9 +75,11 @@ import { NoticeViewComponent } from './base/notice-view/notice-view.component';
     HttpClientModule,
     MatNativeDateModule,
     WebcamModule,
-    NgxScannerQrcodeModule
+    NgxScannerQrcodeModule,
   ],
-  providers: [DatePipe,{provide: HTTP_INTERCEPTORS, useClass: InterceptorService, multi: true}],
-  bootstrap: [AppComponent]
+  providers: [DatePipe,NFC,Ndef,
+    {provide: HTTP_INTERCEPTORS, useClass: InterceptorService, multi: true},
+    {provide: LocationStrategy, useClass: HashLocationStrategy}],
+    bootstrap: [AppComponent]
 })
 export class AppModule { }

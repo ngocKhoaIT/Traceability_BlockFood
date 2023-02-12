@@ -1,4 +1,5 @@
-﻿using Microsoft.AspNetCore.Http;
+﻿using Microsoft.AspNetCore.Authorization;
+using Microsoft.AspNetCore.Http;
 using Microsoft.AspNetCore.Mvc;
 using TraceabilityAPI.Models;
 using TraceabilityAPI.Repositorys.BaseRepoUnit;
@@ -6,6 +7,7 @@ using TraceabilityAPI.Repositorys.BaseRepoUnit;
 namespace TraceabilityAPI.Controllers
 {
     [Route("api/[controller]/[Action]")]
+    [Authorize]
     [ApiController]
     public class ProductsController : ControllerBase
     {
@@ -41,6 +43,13 @@ namespace TraceabilityAPI.Controllers
         public JsonResult GetAllProductbyFactoryView(string id,string p)
         {
             return _unit.Products.getAllProductbyFactoryView(id,p);
+        }
+
+        [HttpGet]
+        [Route("{mfg},{exp}")]
+        public JsonResult CheckDate(string mfg, string exp)
+        {
+            return _unit.Products.checkDate(mfg, exp);
         }
 
         [HttpPost]

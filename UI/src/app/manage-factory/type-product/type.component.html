@@ -54,10 +54,25 @@
                     <th mat-header-cell *matHeaderCellDef mat-sort-header> Tên loại sản phẩm </th>
                     <td mat-cell *matCellDef="let row"> {{row.typeName}} </td>
                 </ng-container>
+
+                <ng-container matColumnDef="net_weight">
+                    <th mat-header-cell *matHeaderCellDef mat-sort-header> Khối lượng tịnh </th>
+                    <td mat-cell *matCellDef="let row"> {{row.net_weight}} </td>
+                </ng-container>
             
-                <ng-container matColumnDef="info">
-                    <th mat-header-cell *matHeaderCellDef mat-sort-header> Tên loại sản phẩm </th>
-                    <td mat-cell *matCellDef="let row"> {{row.info}} </td>
+                <ng-container matColumnDef="procedureOfProduct">
+                    <th mat-header-cell *matHeaderCellDef mat-sort-header> Quy trình </th>
+                    <td mat-cell *matCellDef="let row"> {{row.procedureOfProduct}} </td>
+                </ng-container>
+
+                <ng-container matColumnDef="elementOfProduct">
+                    <th mat-header-cell *matHeaderCellDef mat-sort-header> Thành phần </th>
+                    <td mat-cell *matCellDef="let row"> {{row.elementOfProduct}} </td>
+                </ng-container>
+
+                <ng-container matColumnDef="brand">
+                    <th mat-header-cell *matHeaderCellDef mat-sort-header> Thương hiệu </th>
+                    <td mat-cell *matCellDef="let row"> {{row.brand}} </td>
                 </ng-container>
             
                 <ng-container matColumnDef="system">

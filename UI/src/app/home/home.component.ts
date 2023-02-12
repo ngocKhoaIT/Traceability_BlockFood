@@ -27,6 +27,7 @@ export class HomeComponent implements OnInit {
   sending: string = this.photoPath + "send.png"
   checkout: string = this.photoPath + "check-out.png"
   infor: string = this.photoPath + "info.png"
+  type: string = this.photoPath + "type_product.png"
 
   hidden = false;
 

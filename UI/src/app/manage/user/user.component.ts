@@ -1,7 +1,6 @@
 import { DatePipe, formatDate } from '@angular/common';
 import { AfterViewInit, Component, Inject, LOCALE_ID, OnInit, ViewChild } from '@angular/core';
-import { GridAlignRowsStyleBuilder } from '@angular/flex-layout';
-import { FormBuilder, FormControl, FormGroup, FormGroupDirective, NgForm, NgModel, Validators } from '@angular/forms';
+import { FormControl, FormGroupDirective, NgForm} from '@angular/forms';
 import { ErrorStateMatcher } from '@angular/material/core';
 import { MatDialog, MatDialogRef, MAT_DIALOG_DATA } from '@angular/material/dialog';
 import { MatPaginator } from '@angular/material/paginator';
@@ -724,9 +723,10 @@ export class popUpUser implements OnInit, AfterViewInit {
   }
 
   change(event: Event) {
-    if (this.UserDetails._passwordHash !== this.UserDetails._passwordSalt) {
+    if (this.UserDetails._passwordHash !== this.UserDetails._passwordSalt  
+      || this.UserDetails.userName.length < 8 || this.UserDetails._passwordHash.length < 8) {
       this.passrepass = false
-      this._snackBar.open('Mật khẩu không khớp', 'OK', {
+      this._snackBar.open('Mật khẩu không khớp hoặc tên tài khoản và mật khẩu chưa đủ 8 ký tự', 'OK', {
         horizontalPosition: 'center',
         verticalPosition: 'top',
         duration: 1500,
@@ -739,7 +739,6 @@ export class popUpUser implements OnInit, AfterViewInit {
       const id = this.data;
 
       if (id !== '') {
-        this.loginValid = true;
         this.apiService.updateUser(this.UserDetails)
           .subscribe({
             next: (re) => {

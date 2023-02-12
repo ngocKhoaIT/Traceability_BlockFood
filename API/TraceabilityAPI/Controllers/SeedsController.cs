@@ -1,4 +1,5 @@
-﻿using Microsoft.AspNetCore.Http;
+﻿using Microsoft.AspNetCore.Authorization;
+using Microsoft.AspNetCore.Http;
 using Microsoft.AspNetCore.Mvc;
 using TraceabilityAPI.Models;
 using TraceabilityAPI.Repositorys.BaseRepoUnit;
@@ -6,6 +7,7 @@ using TraceabilityAPI.Repositorys.BaseRepoUnit;
 namespace TraceabilityAPI.Controllers
 {
     [Route("api/[controller]/[Action]")]
+    [Authorize]
     [ApiController]
     public class SeedsController : ControllerBase
     {
@@ -21,6 +23,19 @@ namespace TraceabilityAPI.Controllers
         public Seed Get(int id)
         {
             return _unit.Seeds.Get(id);
+        }
+
+        [HttpGet]
+        [Route("{id},{name}")]
+        public JsonResult CheckName(string id, string name)
+        {
+            return _unit.Seeds.checkName(id,name);
+        }
+
+        [HttpGet]
+        public IEnumerable<Seed> GetAllSeedExist()
+        {
+            return _unit.Seeds.getAllSeedExists();
         }
 
         [HttpGet]

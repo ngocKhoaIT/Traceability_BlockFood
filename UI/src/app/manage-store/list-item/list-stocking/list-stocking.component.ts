@@ -15,7 +15,7 @@ import { LoaderService } from 'src/app/services/loader.service';
 export class ListStockingComponent implements OnInit {
 
   displayedColumns: string[] = ['id', 'goodsName', 'storeName', 'addressStore',
-    'amount', 'unit', 'imageQR'];
+    'amount', 'unit'];
 
   dataSource = new MatTableDataSource<ILView>;
 
@@ -58,6 +58,14 @@ export class ListStockingComponent implements OnInit {
             })
         }
       }
+    })
+  }
+
+  testSell = ""
+  testAPI(id: string){
+    this.testService.updateStatusInventory(id)
+    .subscribe({
+      next: (re) =>{                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                           }
     })
   }
 

@@ -1,4 +1,5 @@
-﻿using Microsoft.AspNetCore.Http;
+﻿using Microsoft.AspNetCore.Authorization;
+using Microsoft.AspNetCore.Http;
 using Microsoft.AspNetCore.Mvc;
 using TraceabilityAPI.Models;
 using TraceabilityAPI.Repositorys.BaseRepoUnit;
@@ -6,6 +7,7 @@ using TraceabilityAPI.Repositorys.BaseRepoUnit;
 namespace TraceabilityAPI.Controllers
 {
     [Route("api/[controller]/[Action]")]
+    [Authorize]
     [ApiController]
     public class FactorysController : ControllerBase
     {

@@ -29,15 +29,15 @@ export class InventoryFactorybyStoreComponent implements OnInit {
   paginator!: MatPaginator;
   @ViewChild(MatSort)
   sort!: MatSort;
-  mcId: string
   UpTos: UTOView[] = [];
 
   constructor(private testService: APIservicesService,
     public dialog: MatDialog, private route: ActivatedRoute,
     private _snackBar: MatSnackBar, public loadService: LoaderService) {
-    this.mcId = ''
+
   }
 
+  mcId = ''
   user = ''
 
   ngOnInit(): void {
@@ -78,7 +78,7 @@ export class InventoryFactorybyStoreComponent implements OnInit {
     _status: 0,
     date_create: '',
     date_update: '',
-    checkM : 0,
+    checkM: 0,
   }
 
   addNotice: NoticeData = {
@@ -107,7 +107,11 @@ export class InventoryFactorybyStoreComponent implements OnInit {
     title: '',
   }
 
-  receive(id: string, a: number, u: string, mci: string,p: string) {
+  receive(id: string, a: number, u: string, mci: string, p: string) {
+    this.testService.updateStatusBnt(id, this.mcId, 'Đã hoàn tất')
+      .subscribe({
+        next: (re3) => { }
+      })
     this.testService.exChangeFruit(a, u)
       .subscribe({
         next: (re1) => {
@@ -123,34 +127,29 @@ export class InventoryFactorybyStoreComponent implements OnInit {
           this.testService.addInventoryFactory(this.addInventory)
             .subscribe({
               next: (re) => {
-                this.testService.updateStatusBnt(re.harvestId, this.mcId, 'Đã hoàn tất')
+                this.testService.updateStatusPtoP(mci)
                   .subscribe({
-                    next: (re) => {
-                      this.testService.updateStatusPtoP(mci)
+                    next: (e) => {
+                      this.ngOnInit()
+                      this.addNotice.sendId = this.user
+                      this.addNotice.receiveId = e.transportId
+                      this.addNotice.title = "Đã nhận hàng"
+                      this.addNotice.content = "Đã vận chuyển từ nông trại tới nhà máy"
+                      this.addNotice.receiveDate = '2022-10-11T07:40:25.49'
+                      this.addNotice.sendDate = '2022-10-11T07:40:25.49'
+                      this.testService.addNoticeTransport(this.addNotice)
                         .subscribe({
-                          next: (e) => {
-                            this.ngOnInit()
-                            this.addNotice.sendId = this.user
-                            this.addNotice.receiveId = e.transportId
-                            this.addNotice.title = "Đã nhận hàng"
-                            this.addNotice.content = "Đã vận chuyển từ nông trại tới nhà máy"
-                            this.addNotice.receiveDate = '2022-10-11T07:40:25.49'
-                            this.addNotice.sendDate = '2022-10-11T07:40:25.49'
-                            this.testService.addNoticeTransport(this.addNotice)
+                          next: (rew) => {
+                            this.addNotice2.sendId = this.user
+                            this.addNotice2.receiveId = p
+                            this.addNotice2.title = "Đã nhận trái"
+                            this.addNotice2.content = "Đã vận chuyển từ nông trại tới nhà máy"
+                            this.addNotice2.receiveDate = '2022-10-11T07:40:25.49'
+                            this.addNotice2.sendDate = '2022-10-11T07:40:25.49'
+                            this.testService.addNoticeFarm(this.addNotice2)
                               .subscribe({
                                 next: (rew) => {
-                                  this.addNotice2.sendId = this.user
-                                  this.addNotice2.receiveId = p
-                                  this.addNotice2.title = "Đã nhận trái"
-                                  this.addNotice2.content = "Đã vận chuyển từ nông trại tới nhà máy"
-                                  this.addNotice2.receiveDate = '2022-10-11T07:40:25.49'
-                                  this.addNotice2.sendDate = '2022-10-11T07:40:25.49'
-                                  this.testService.addNoticeFarm(this.addNotice2)
-                                    .subscribe({
-                                      next: (rew) => {
-      
-                                      }
-                                    })
+
                                 }
                               })
                           }
@@ -161,7 +160,6 @@ export class InventoryFactorybyStoreComponent implements OnInit {
                         })
                     }
                   })
-
                 this.testService.updateStatus(id, this.mcId, 'Đã xác nhận')
                   .subscribe({
                     next: (re => { this.ngOnInit() })

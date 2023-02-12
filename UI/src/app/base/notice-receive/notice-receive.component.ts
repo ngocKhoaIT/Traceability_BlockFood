@@ -17,16 +17,16 @@ import { NoticeViewComponent } from '../notice-view/notice-view.component';
 })
 export class NoticeReceiveComponent implements OnInit {
 
-  displayedColumns: string[] = ['id', 'title', 'photoSend', 'sendName', 'roleSend', 
-                                'photoReceive', 'receiveName', 'roleReceive',  
-                                'sendDate', 'system'];
-                                
+  displayedColumns: string[] = ['id', 'title', 'photoSend', 'sendName', 'roleSend',
+    'photoReceive', 'receiveName', 'roleReceive',
+    'sendDate', 'system'];
+
   dataSource = new MatTableDataSource<Notice>;
 
   photoPath = environment.photoUrl
-  
+
   constructor(private testService: APIservicesService, private router: Router
-    ,public dialog: MatDialog, private route:ActivatedRoute,
+    , public dialog: MatDialog, private route: ActivatedRoute,
     public loadService: LoaderService) { }
 
   @ViewChild(MatPaginator)
@@ -34,19 +34,19 @@ export class NoticeReceiveComponent implements OnInit {
   @ViewChild(MatSort)
   sort!: MatSort;
 
-  view(id: string){
-    this.testService.updateStatusNT(id,'Đã xem')
-    .subscribe({
-      next: (re) => {
-        
-      }
-    })
+  view(id: string) {
+    this.testService.updateStatusNT(id, 'Đã xem')
+      .subscribe({
+        next: (re) => {
+
+        }
+      })
     const dialogRef = this.dialog.open(NoticeViewComponent, {
       width: '400px',
       height: '400px',
       data: id,
     });
-  
+
     dialogRef.afterClosed().subscribe(result => {
       window.location.reload()
       console.log('The dialog was closed');
@@ -57,29 +57,42 @@ export class NoticeReceiveComponent implements OnInit {
 
   levels: string[] = ['Today', 'Last 7 Day', 'Last Month', 'Last 12 Months', 'All Time']
 
-  clbtn(id: string)
-  {
-    if(id == 'Đã gửi')
+  clbtn(id: string) {
+    if (id == 'Đã gửi')
       return 'primary'
     else return 'warn'
   }
+
+  user = ""
 
   ngOnInit(): void {
     this.route.paramMap.subscribe({
       next: (params) => {
         const id = params.get('id');
-        if(id){
-              this.testService.getAllReceiveId(id)
-              .subscribe({
-                next: (re) => {
-                  this.dataSource = new MatTableDataSource(re);
-                  this.dataSource.paginator = this.paginator;
-                  this.dataSource.sort = this.sort;
-                }
-              })
-            }
+        if (id) {
+          this.user = id
+          this.testService.getAllReceiveId(id, "Today")
+            .subscribe({
+              next: (re) => {
+                this.dataSource = new MatTableDataSource(re);
+                this.dataSource.paginator = this.paginator;
+                this.dataSource.sort = this.sort;
+              }
+            })
+        }
       },
     })
+  }
+
+  filter(id: string) {
+    this.testService.getAllReceiveId(this.user, id)
+      .subscribe({
+        next: (re) => {
+          this.dataSource = new MatTableDataSource(re);
+          this.dataSource.paginator = this.paginator;
+          this.dataSource.sort = this.sort;
+        }
+      })
   }
 
   applyFilter(event: Event) {

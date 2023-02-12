@@ -76,7 +76,17 @@ export class ListViewInventoryFactoryComponent implements OnInit {
   choices : Farm[] = []
 
   filter(req : string, id: string){
-
+    this.testService.getAllInventoryFactorybyFactorys(this.factoryId,req + "_" + id)
+    .subscribe({
+      next: (f)=>{
+        this.dataSourceTypeProduct = new MatTableDataSource(f);
+        this.dataSourceTypeProduct.paginator = this.paginator;
+        this.dataSourceTypeProduct.sort = this.sort;
+      },
+      error: (response) => {
+        console.log(response);
+      }
+    });
   }
 
   applyFilterTypeProduct(event: Event) {

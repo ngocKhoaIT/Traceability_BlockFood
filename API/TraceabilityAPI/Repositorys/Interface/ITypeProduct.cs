@@ -1,4 +1,5 @@
-﻿using TraceabilityAPI.Models;
+﻿using Microsoft.AspNetCore.Mvc;
+using TraceabilityAPI.Models;
 using TraceabilityAPI.Repositorys.BaseRepoUnit;
 
 namespace TraceabilityAPI.Repositorys.Interface
@@ -7,6 +8,7 @@ namespace TraceabilityAPI.Repositorys.Interface
     {
         void Delete(int id);
         IEnumerable<TypeProduct> getAllTypeProduct();
+        JsonResult checkName(string id, string name);
         IEnumerable<TypeProduct> getTypeProductsbyFilter(string id, string searchString);
     }
 }

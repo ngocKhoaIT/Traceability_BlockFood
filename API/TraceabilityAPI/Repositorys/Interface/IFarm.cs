@@ -12,5 +12,7 @@ namespace TraceabilityAPI.Repositorys.Interface
         void Delete(string id);
         IEnumerable<Farm> getAllFarm();
         JsonResult getAllFarmHarvestbyMerchant();
+        JsonResult getAllFarmbyFruit(string req);
+        JsonResult staticFarm(string id);
     }
 }

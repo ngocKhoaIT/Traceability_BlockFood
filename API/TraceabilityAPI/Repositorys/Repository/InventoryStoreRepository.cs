@@ -60,7 +60,7 @@ namespace TraceabilityAPI.Repositorys.Repository
                                     unit = t1.unit,
                                     imageQR = t1.imageQR,
                                     date = t1.date_create
-                                });
+                                }).ToList();
 
             var b = harvest.Join(fruit, t1 => t1.fruitId, t2 => t2.fruitId,
                                     (t1, t2) => new
@@ -68,7 +68,7 @@ namespace TraceabilityAPI.Repositorys.Repository
                                         harvestId = t1.harvestId,
                                         fruitId = t1.fruitId,
                                         fruitName = t2.fruitName,
-                                    });
+                                    }).ToList();
 
             List<IL> ils = new List<IL>();
 

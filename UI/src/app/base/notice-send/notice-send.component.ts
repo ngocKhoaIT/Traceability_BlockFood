@@ -47,12 +47,15 @@ export class NoticeSendComponent implements OnInit {
       });
     }
 
+    user =""
+
     ngOnInit(): void {
       this.route.paramMap.subscribe({
         next: (params) => {
           const id = params.get('id');
           if(id){
-            this.testService.getAllSendId(id)
+            this.user = id
+            this.testService.getAllSendId(id,"Today")
             .subscribe({
               next: (re) => {
               this.dataSource = new MatTableDataSource(re);
@@ -63,6 +66,17 @@ export class NoticeSendComponent implements OnInit {
             }
           },
         })
+      }
+
+      filter(id: string) {
+        this.testService.getAllSendId(this.user,id)
+            .subscribe({
+              next: (re) => {
+              this.dataSource = new MatTableDataSource(re);
+              this.dataSource.paginator = this.paginator;
+              this.dataSource.sort = this.sort;
+            }
+            })
       }
 
       timeInput = 'Today'

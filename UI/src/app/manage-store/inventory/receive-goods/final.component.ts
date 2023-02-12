@@ -20,8 +20,8 @@ import { LoaderService } from 'src/app/services/loader.service';
 export class FinalComponent implements OnInit {
 
   displayedColumnsStore: string[] = ['billId', 'placeName', 'addressPlace'
-    , 'toPlaceName', 'addresstoPlace'
-    , 'goodsName', 'amount', 'unit', 'system'];
+    , 'toPlaceName', 'addresstoPlace' , 'goodsName', 'amount', 'unit', 
+    'amountDelivery', 'unit2', 'system'];
 
   dataSourceStore = new MatTableDataSource<UTOView>;
 
@@ -178,17 +178,17 @@ export class FinalComponent implements OnInit {
       this.testService.addInventoryAutoProduct(this.addInventory)
         .subscribe(
           response => {
-            let fileName = response.headers.get('content-disposition')
-              ?.split(';')[1].split('=')[1];
-            let blob: Blob = response.body as Blob;
+            // let fileName = response.headers.get('content-disposition')
+            //   ?.split(';')[1].split('=')[1];
+            // let blob: Blob = response.body as Blob;
 
-            let a = document.createElement('a')
-            if (fileName !== undefined) {
-              a.download = fileName
-            }
+            // let a = document.createElement('a')
+            // if (fileName !== undefined) {
+            //   a.download = fileName
+            // }
 
-            a.href = window.URL.createObjectURL(blob)
-            a.click()
+            // a.href = window.URL.createObjectURL(blob)
+            // a.click()
           }
         )
       this.testService.updateStatusUTO(mci, 'Đã xác nhận').
@@ -344,103 +344,38 @@ export class popUpReceiveFruit implements OnInit {
   }
 
   change(event: Event) {
-    if (this.data.b.startsWith('BMFP')) {
-      this.testService.getIdMerchantFarm(this.data.b)
-        .subscribe({
-          next: (re) => {
-            this.tong = parseFloat(this.addDetail.amount.toString()) + parseFloat(re.weight_delivery.toString())
-            this.testService.exChangeFruit(this.data.a, this.data.u)
-              .subscribe({
-                next: (ex) => {
-                  const exp = parseFloat(ex.toString())
-                  if (this.tong > exp) {
-                    this._snackBar.open('Số lượng không đủ!!!', 'OK', {
-                      horizontalPosition: 'center',
-                      verticalPosition: 'top',
-                      duration: 3000,
-                      panelClass: ['snackbar']
-                    });
-                  }
-                  else {
-                    this.testService.addInventory(this.addDetail)
-                      .subscribe(response => {
-                        let fileName = response.headers.get('content-disposition')
-                          ?.split(';')[1].split('=')[1];
-                        let blob: Blob = response.body as Blob;
-
-                        let a = document.createElement('a')
-                        if (fileName !== undefined) {
-                          a.download = fileName
-                        }
-
-                        a.href = window.URL.createObjectURL(blob)
-                        a.click()
-                        this.testService.updateWeightMF(this.data.b, this.tong)
-                          .subscribe({
-                            next: (re2) => {
-                              if (this.tong === exp) {
-                                this.dialogRef.close('Đã xong')
-                                this._snackBar.open('Đã nhập đủ số lượng nhận hàng!!!', 'OK', {
-                                  horizontalPosition: 'center',
-                                  verticalPosition: 'top',
-                                  duration: 3000,
-                                  panelClass: ['snackbar']
-                                });
-                              }
-                              else {
-                                this.addDetail.amount = 0
-                                this._snackBar.open('Đã nhập thành công!!!', 'OK', {
-                                  horizontalPosition: 'center',
-                                  verticalPosition: 'top',
-                                  duration: 3000,
-                                  panelClass: ['snackbar']
-                                });
-                              }
-                            }
-                          })
-                      }
-
-                      )
-                  }
-                }
-              })
-          }
-        })
+    if(this.addDetail.amount <= 0)
+    {
+      this._snackBar.open('Nhập số lớn hơn 0!!!', 'OK', {
+        horizontalPosition: 'center',
+        verticalPosition: 'top',
+        duration: 3000,
+        panelClass: ['snackbar']
+      });
     }
-    else {
-      this.testService.getIdUpToTransport(this.data.b)
-        .subscribe({
-          next: (re) => {
-            this.tong = parseFloat(this.addDetail.amount.toString()) + parseFloat(re.amountDelivery.toString())
-            this.testService.exChangeFruit(this.data.a, this.data.u)
-              .subscribe({
-                next: (ex) => {
-                  const exp = parseFloat(ex.toString())
-                  if (this.tong > exp) {
-
-                    this._snackBar.open('Số lượng không đủ!!!', 'OK', {
-                      horizontalPosition: 'center',
-                      verticalPosition: 'top',
-                      duration: 3000,
-                      panelClass: ['snackbar']
-                    });
-                  }
-                  else {
-                    this.testService.addInventory(this.addDetail)
-                      .subscribe(
-                        response => {
-                          let fileName = response.headers.get('content-disposition')
-                            ?.split(';')[1].split('=')[1];
-                          let blob: Blob = response.body as Blob;
-
-                          let a = document.createElement('a')
-                          if (fileName !== undefined) {
-                            a.download = fileName
-                          }
-
-                          a.href = window.URL.createObjectURL(blob)
-                          a.click()
-                          this.testService.updateAmountUTO(this.data.b, this.tong)
+    else
+    {
+      if (this.data.b.startsWith('BMFP')) {
+        this.testService.getIdMerchantFarm(this.data.b)
+          .subscribe({
+            next: (re) => {
+              this.tong = parseFloat(this.addDetail.amount.toString()) + parseFloat(re.weight_delivery.toString())
+              this.testService.exChangeFruit(this.data.a, this.data.u)
+                .subscribe({
+                  next: (ex) => {
+                    const exp = parseFloat(ex.toString())
+                    if (this.tong > exp) {
+                      this._snackBar.open('Số lượng không đủ!!!', 'OK', {
+                        horizontalPosition: 'center',
+                        verticalPosition: 'top',
+                        duration: 3000,
+                        panelClass: ['snackbar']
+                      });
+                    }
+                    else {
+                      this.testService.addInventory(this.addDetail)
+                        .subscribe(response => {
+                          this.testService.updateWeightMF(this.data.b, this.tong)
                             .subscribe({
                               next: (re2) => {
                                 if (this.tong === exp) {
@@ -464,13 +399,68 @@ export class popUpReceiveFruit implements OnInit {
                               }
                             })
                         }
-
-                      )
+  
+                        )
+                    }
                   }
-                }
-              })
-          }
-        })
+                })
+            }
+          })
+      }
+      else {
+        this.testService.getIdUpToTransport(this.data.b)
+          .subscribe({
+            next: (re) => {
+              this.tong = parseFloat(this.addDetail.amount.toString()) + parseFloat(re.amountDelivery.toString())
+              this.testService.exChangeFruit(this.data.a, this.data.u)
+                .subscribe({
+                  next: (ex) => {
+                    const exp = parseFloat(ex.toString())
+                    if (this.tong > exp) {
+  
+                      this._snackBar.open('Số lượng không đủ!!!', 'OK', {
+                        horizontalPosition: 'center',
+                        verticalPosition: 'top',
+                        duration: 3000,
+                        panelClass: ['snackbar']
+                      });
+                    }
+                    else {
+                      this.testService.addInventory(this.addDetail)
+                        .subscribe(
+                          response => {
+                            this.testService.updateAmountUTO(this.data.b, this.tong)
+                              .subscribe({
+                                next: (re2) => {
+                                  if (this.tong === exp) {
+                                    this.dialogRef.close('Đã xong')
+                                    this._snackBar.open('Đã nhập đủ số lượng nhận hàng!!!', 'OK', {
+                                      horizontalPosition: 'center',
+                                      verticalPosition: 'top',
+                                      duration: 3000,
+                                      panelClass: ['snackbar']
+                                    });
+                                  }
+                                  else {
+                                    this.addDetail.amount = 0
+                                    this._snackBar.open('Đã nhập thành công!!!', 'OK', {
+                                      horizontalPosition: 'center',
+                                      verticalPosition: 'top',
+                                      duration: 3000,
+                                      panelClass: ['snackbar']
+                                    });
+                                  }
+                                }
+                              })
+                          }
+  
+                        )
+                    }
+                  }
+                })
+            }
+          })
+      }
     }
   }
 }

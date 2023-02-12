@@ -8,6 +8,7 @@ using System.Security.Claims;
 using System.Text;
 using TraceabilityAPI.Models;
 using TraceabilityAPI.Repositorys.BaseRepoUnit;
+using TraceabilityAPI.Repositorys.Interface;
 
 namespace TraceabilityAPI.Controllers
 {
@@ -39,6 +40,26 @@ namespace TraceabilityAPI.Controllers
             }
         }
 
+        [HttpGet]
+        [Route("{id},{pw}")]
+        [AllowAnonymous]
+        public async Task<ActionResult> changePassword(string id, string pw)
+        {
+            var check = context.UserLogins.Where(t=>t.userName == id).SingleOrDefault();
+            if(check == null)
+            {
+                return new JsonResult("Không tồn tại tài khoảng này");
+            }
+            else
+            {
+                check._passwordHash = BCrypt.Net.BCrypt.HashPassword(pw);
+                check._passwordSalt = BCrypt.Net.BCrypt.HashPassword(pw);
+                context.Update(check);
+                context.SaveChanges();
+                return new JsonResult("Đổi mật khẩu thành công");
+            }    
+        }
+
         [HttpPost]
         [AllowAnonymous]
         public async Task<ActionResult> Register(UserLogin user)
@@ -61,6 +82,8 @@ namespace TraceabilityAPI.Controllers
 
             return Ok(u);
         }
+
+
 
         [HttpPost]
         [AllowAnonymous]

@@ -15,8 +15,8 @@
             <div
                 class="w-full flex flex-row justify-center items-center text-gray-400 bg-gray-100 p-2 rounded mt-0 border">
                 <mat-select class="w-24" [(ngModel)]="choice">
-                    <mat-option *ngFor="let lv of choices" [value]="lv.factoryId">
-                        {{lv.factoryName}}
+                    <mat-option *ngFor="let lv of choices" [value]="lv">
+                        {{lv}}
                     </mat-option>
                 </mat-select>
             </div>

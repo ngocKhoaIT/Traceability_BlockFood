@@ -1,0 +1,73 @@
+<div class="w-full h-screen bg-gray-200 flex flex-row items-center justify-center  max-md:h-auto">
+    <div class="mt-14 p-4 w-full h-[90%] grid grid-cols-2 gap-4 max-md:grid-cols-1">
+        <div class="flex flex-col items-center justify-start">
+            <div class="m-4 text-4xl font-light">
+                CONTACT
+            </div>
+            <div class="flex w-full flex-col items-start justify-start pl-8">
+                <div class="flex flex-row w-full text-sm mb-6">
+                    <mat-icon>phone</mat-icon>
+                    <p class="ml-6 text-gray-600"> (+84) 918 167 586</p>
+                </div>
+                <div class="flex flex-row w-full text-sm mb-6">
+                    <mat-icon>email</mat-icon>
+                    <p class="ml-6 text-gray-600"> phamngockhoa2806@gmail.com</p>
+                </div>
+                <div class="flex flex-row w-full text-sm mb-6">
+                    <mat-icon>location_on</mat-icon>
+                    <p class="ml-6 text-gray-600"> 73/14/7 Tân Sơn Nhì, Phường Tân Sơn Nhì, Quận Tân Phú, Tp. Hồ Chí Minh</p>
+                </div>
+                <div class="flex flex-row w-full text-sm mb-6 items-center justify-center border-y-2 border-black" >
+                    <div *ngFor="let card of cards" class="p-4">
+                        <button>
+                            <img src="{{card.icon}}" height="50px" width="50px" />
+                        </button>
+                    </div>
+                </div>
+                <div class="flex flex-row w-full items-center justify-center text-xs">
+                    @ All OF THE RIGHTS RESERVED 
+                </div>
+            </div>
+        </div>
+        <div class="bg-white drop-shadow-xl grid grid-cols-2 gap-4 p-4">
+            <div>
+                <label class="block mb-2 text-sm font-medium text-gray-900 dark:text-white">Họ và tên đệm*</label>
+                <input [(ngModel)]="hovalotLH" type="text"
+                    class="bg-gray-50 border border-gray-500 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500"
+                    required placeholder="Ví dụ: Phạm Ngọc">
+            </div>
+            <div>
+                <label class="block mb-2 text-sm font-medium text-gray-900 dark:text-white">Tên*</label>
+                <input [(ngModel)]="tenLH" type="text"
+                    class="bg-gray-50 border border-gray-500 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500"
+                    required placeholder="Ví dụ: Khoa">
+            </div>
+            <div>
+                <label class="block mb-2 text-sm font-medium text-gray-900 dark:text-white">Email*</label>
+                <input [(ngModel)]="email" type="text"
+                    class="bg-gray-50 border border-gray-500 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500"
+                    required placeholder="Ví dụ: abc@gmail.com">
+            </div>
+            <div>
+                <label class="block mb-2 text-sm font-medium text-gray-900 dark:text-white">Số điện thoại*</label>
+                <input [(ngModel)]="sdt" type="text"
+                    class="bg-gray-50 border border-gray-500 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500"
+                    required placeholder="Ví dụ: 0918167586">
+            </div>
+            <div class="col-span-2">
+                <div>
+                    <label class="block mb-2 text-sm font-medium text-gray-900 dark:text-white">Nội dung</label>
+                    <textarea [(ngModel)]="noidung" class="bg-gray-50 border border-gray-500 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500" 
+                    placeholder="Nhập nội dung" cols="30" rows="10"></textarea>
+                </div>
+            </div>
+            <div class="col-span-2 flex flex-row w-full items-end justify-end">
+                <div>
+                    <button class="flex flex-row w-24 items-center justify-center bg-white px-2 py-1 border-2 bg-green-600 rounded ml-2 mr-2 text-white drop-shadow-xl">
+                            Gửi
+                        </button>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>

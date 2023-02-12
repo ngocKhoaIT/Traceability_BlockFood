@@ -37,6 +37,19 @@ namespace TraceabilityAPI.Repositorys.Repository
 
         }
 
+        public JsonResult checkDate(string mfg, string exp)
+        {
+            DateTime date_mfg = DateTime.Parse(mfg);
+            DateTime date_exp = DateTime.Parse(exp);
+
+            var date = date_exp - date_mfg;
+            if (date.TotalDays <= 0)
+            {
+                return new JsonResult("Không hợp lệ");
+            }
+            else return new JsonResult("Hợp lệ");
+        }
+
         public IEnumerable<Product> getAllProductbyFactory(string id, string searchString)
         {
             var fList = context.Factorys.Where(t => t._status == 1 && t.factoryId == id).OrderByDescending(t => t.date_create).ToList();

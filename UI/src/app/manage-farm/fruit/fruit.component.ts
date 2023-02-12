@@ -116,23 +116,6 @@ export class FruitComponent implements OnInit {
         }
       })
 
-    this.formGroup = this._formBuilder.group({
-      Ctrl1: [{ value: this.addFruitRequest.farmId, disabled: true },
-      Validators.required,],
-      Ctrl2: ['1', Validators.required],
-      Ctrl3: ['', Validators.required],
-      Ctrl4: ['Cải tạo địa hình tương đối bằng phẳng, hơi cao ở giữa để thoát nước nhanh.', Validators.required],
-      Ctrl5: ['Hệ thống tưới tiêu tự động', Validators.required],
-      Ctrl6: ['', Validators.required],
-      Ctrl7: ['Cây', Validators.required],
-      Ctrl8: ['Tưới phân bón lá Lay-O, Combi-5 ,komix… và bón định kỳ thường xuyên 1-2 lần/tháng.', Validators.required],
-      Ctrl9: ['Sâu vẽ bùa: dùng thuốc Polytin 0.2%, slrespa 0.2%. Sâu đục thân cành: dùng thuốc O fatox 0.1%, Symi sidin 0.2%. Bệnh thán thư: Mancozeb 80WP, Daconil 75WP, Antracol 70WP,… Bệnh loét lá và bệnh sẹo: gây hại trên cành, lá, quả: dùng Boocdo. Bệnh chảy gôm: dùng Boocdo, Benlat , Alliette.', Validators.required],
-      Ctrl10: [{ value: 'Bưởi da xanh', disabled: true },
-      Validators.required,],
-      Ctrl11: [{ value: 'Trồng mới', disabled: true },
-      Validators.required,],
-    });
-
     this.addFruitRequest.seedId = 1
     this.addFruitRequest.fruitName = 'Bưởi da xanh'
     this.addFruitRequest.unit = 'Cây'
@@ -144,25 +127,41 @@ export class FruitComponent implements OnInit {
   }
 
   add(event: Event) {
-    this.addFruitRequest._status = 0;
-    this.addFruitRequest.fruitId = '';
-    this.addFruitRequest.date_create = '2022-10-11T07:40:25.49';
-    this.addFruitRequest.date_update = '2022-10-11T07:40:25.49';
-    this.testService.addFruit(this.addFruitRequest)
-      .subscribe({
-        next: (f) => {
-          this.ngOnInit();
-          this.addFruitRequest.fruitName = ''
-          this.addFruitRequest.seedId = 0,
-
-            this._snackBar.open('Thêm thành công', 'OK', {
-              horizontalPosition: 'center',
-              verticalPosition: 'top',
-              duration: 1500,
-              panelClass: ['snackbar']
-            });
-        }
-      })
+    if(this.addFruitRequest.seedId === 0 || this.addFruitRequest.amount <= 0 || typeof(this.addFruitRequest.amount) !== 'number' 
+    || this.addFruitRequest.date_plant === "" || this.addFruitRequest.land === "" || this.addFruitRequest.pesticides === "" 
+    || this.addFruitRequest.fertilizer === "" || this.addFruitRequest.technology === "")
+    {
+      this._snackBar.open('Dữ liệu chưa nhập đủ hoặc nhập sai !!', 'OK', {
+        horizontalPosition: 'center',
+        verticalPosition: 'top',
+        duration: 1500,
+        panelClass: ['snackbar']
+      });
+    }
+    else
+    {
+      this.addFruitRequest._status = 0;
+      this.addFruitRequest.fruitId = '';
+      this.addFruitRequest.date_create = '2022-10-11T07:40:25.49';
+      this.addFruitRequest.date_update = '2022-10-11T07:40:25.49';
+      this.testService.addFruit(this.addFruitRequest)
+        .subscribe({
+          next: (f) => {
+            this.ngOnInit();
+            this.addFruitRequest.fruitName = ''
+            this.addFruitRequest.seedId = 0,
+            this.addFruitRequest.amount = 0
+            this.addFruitRequest.date_plant = ""
+  
+              this._snackBar.open('Thêm thành công', 'OK', {
+                horizontalPosition: 'center',
+                verticalPosition: 'top',
+                duration: 1500,
+                panelClass: ['snackbar']
+              });
+          }
+        }) 
+    }
   }
 
   changeFruitName(name: number) {
@@ -175,7 +174,9 @@ export class FruitComponent implements OnInit {
   }
   cancel() {
     this.addFruitRequest.fruitName = ''
-    this.addFruitRequest.seedId = 0;
+    this.addFruitRequest.seedId = 0
+    this.addFruitRequest.amount = 0
+    this.addFruitRequest.date_plant = ""
   }
 
   timeInput = 'Today'

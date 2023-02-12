@@ -48,7 +48,7 @@ export class ListViewTransportComponent implements OnInit {
           .subscribe({
             next: (re) => {
               this.place = re.workingFor
-              this.testService.getAllTransportPtoPbyTransports(re.workingFor,"Last 7 Day_Tl")
+              this.testService.getAllTransportPtoPbyTransports(re.workingFor,"Last 7 Day_TL")
                 .subscribe({
                   next: (f)=>{
                     this.dataSource = new MatTableDataSource(f);

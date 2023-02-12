@@ -1,7 +1,9 @@
 import { Component, OnInit } from '@angular/core';
+import { MatDialog } from '@angular/material/dialog';
 import { MatSnackBar } from '@angular/material/snack-bar';
 import { Router } from '@angular/router';
 import { environment } from 'src/environments/environment';
+import { ForgotComponent } from '../base/forgot/forgot.component';
 import { User } from '../models/user.model';
 import { APIservicesService } from '../services/apiservices.service';
 import { AuthService } from '../services/auth.service';
@@ -30,6 +32,7 @@ export class LoginComponent implements OnInit {
   linkYTB = ""
 
   responseData : any
+  pageLH = "pagelayout/contact"
 
   toPage(id: string){
     this._router.navigateByUrl(id)
@@ -37,12 +40,25 @@ export class LoginComponent implements OnInit {
 
   constructor(private _router: Router,
     private _authService: APIservicesService, private auth: AuthService,
-    private _snackBar: MatSnackBar, public loadService: LoaderService) { 
+    private _snackBar: MatSnackBar, public loadService: LoaderService, public dialog: MatDialog) { 
       localStorage.clear()
     }
 
   ngOnInit(): void {
     this.hide = true
+  }
+
+  forgot(){
+    const dialogRef = this.dialog.open(ForgotComponent, {
+      width: 'auto',
+      height: 'auto',
+      data: "",
+    });
+
+    dialogRef.afterClosed().subscribe(result => {
+      this.ngOnInit(),
+      console.log('The dialog was closed');
+    });
   }
 
   onSubmit(){
@@ -122,6 +138,10 @@ export class LoginComponent implements OnInit {
     var _atobData = atob(_extractedToken.toString());
     var _finaldata = JSON.parse(_atobData);
     return _finaldata.userName
+  }
+
+  onHide(){
+    this.hide = !this.hide
   }
 
   loginAccount : User = {

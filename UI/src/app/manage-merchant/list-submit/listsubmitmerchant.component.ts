@@ -254,7 +254,7 @@ export class popUpDetail implements OnInit {
           this.testService.addNoticeAllTransport(this.addNotice)
             .subscribe({
               next: (rewq) => {
-
+                
               }
             })
           this.dialogRef.close();

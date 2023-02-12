@@ -28,6 +28,7 @@ namespace TraceabilityAPI.Repositorys.BaseRepoUnit
         IAddress Addresses { get; }
         IOrder Orders { get; }
         ICustomer Customers { get; }
+        IBlock Blocks { get; }
         int Complete();
     }
 }

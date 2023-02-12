@@ -240,26 +240,50 @@ export class popUpSeed implements OnInit {
         });
       }
       else {
-        this.loginValid = true;
-        this.SeedDetails._status = 0;
-        this.SeedDetails.seedId = 0;
-        this.SeedDetails.date_create = '2022-10-11T07:40:25.49';
-        this.SeedDetails.date_update = '2022-10-11T07:40:25.49';
-        this.apiService.addSeed(this.SeedDetails)
-          .subscribe({
-            next: (f) => {
-              this.ngOnInit();
+        if (this.SeedDetails.seedName !== "") {
+          this.apiService.checkNameSeed(this.data.farm, this.SeedDetails.seedName)
+            .subscribe({
+              next: (re) => {
+                if (re.toString() == "Đã tồn tại") {
+                  this._snackBar.open('Giống cây này đã tồn tại', 'OK', {
+                    horizontalPosition: 'center',
+                    verticalPosition: 'top',
+                    duration: 1500,
+                    panelClass: ['snackbar']
+                  });
+                }
+                else {
+                  this.SeedDetails._status = 0;
+                  this.SeedDetails.seedId = 0;
+                  this.SeedDetails.date_create = '2022-10-11T07:40:25.49';
+                  this.SeedDetails.date_update = '2022-10-11T07:40:25.49';
+                  this.apiService.addSeed(this.SeedDetails)
+                    .subscribe({
+                      next: (f) => {
+                        this.ngOnInit();
 
-              this.dialogRef.close();
+                        this.dialogRef.close();
 
-              this._snackBar.open('Thêm thành công', 'OK', {
-                horizontalPosition: 'center',
-                verticalPosition: 'top',
-                duration: 1500,
-                panelClass: ['snackbar']
-              });
-            }
-          })
+                        this._snackBar.open('Thêm thành công', 'OK', {
+                          horizontalPosition: 'center',
+                          verticalPosition: 'top',
+                          duration: 1500,
+                          panelClass: ['snackbar']
+                        });
+                      }
+                    })
+                }
+              }
+            })
+        }
+        else{
+          this._snackBar.open('Chưa nhập đủ dữ liệu', 'OK', {
+            horizontalPosition: 'center',
+            verticalPosition: 'top',
+            duration: 1500,
+            panelClass: ['snackbar']
+          });
+        }
       }
     }
   }

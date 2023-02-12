@@ -8,6 +8,7 @@ using TraceabilityAPI.Repositorys.Interface;
 namespace TraceabilityAPI.Controllers
 {
     [Route("api/[controller]/[Action]")]
+    [Authorize]
     [ApiController]
     public class NoticesController : ControllerBase
     {
@@ -34,10 +35,10 @@ namespace TraceabilityAPI.Controllers
         }
 
         [HttpGet]
-        [Route("{id}")]
-        public JsonResult GetAllSendId(string id)
+        [Route("{id},{req}")]
+        public JsonResult GetAllSendId(string id, string req)
         {
-            return _unit.Notices.getAllSendId(id);
+            return _unit.Notices.getAllSendId(id, req);
         }
 
 
@@ -49,10 +50,10 @@ namespace TraceabilityAPI.Controllers
         }
 
         [HttpGet]
-        [Route("{id}")]
-        public JsonResult GetAllReceiveId(string id)
+        [Route("{id},{req}")]
+        public JsonResult GetAllReceiveId(string id, string req)
         {
-            return _unit.Notices.getAllReciveId(id);
+            return _unit.Notices.getAllReciveId(id, req);
         }
 
 
@@ -85,9 +86,9 @@ namespace TraceabilityAPI.Controllers
         [HttpPost]
         public JsonResult AddNoticeHarvest(Notice og)
         {
-            var factory = context.UserLogins.Where(t => t._status == 1 && t._role == "Nhà máy sản xuất").ToList();
-            var merchant = context.UserLogins.Where(t => t._status == 1 && t._role == "Thương lái").ToList();
-            var store = context.UserLogins.Where(t => t._status == 1 && t._role == "Cửa hàng").ToList();
+            var factory = context.UserLogins.Where(t => t._status == 1 && t._role == "factory").ToList();
+            var merchant = context.UserLogins.Where(t => t._status == 1 && t._role == "merchant").ToList();
+            var store = context.UserLogins.Where(t => t._status == 1 && t._role == "store").ToList();
 
             foreach(var item in factory)
             {
@@ -145,7 +146,7 @@ namespace TraceabilityAPI.Controllers
         [HttpPost]
         public JsonResult AddNoticeFarm(Notice og)
         {
-            var farm = context.UserLogins.Where(t => t._status == 1 && t._role == "Nông trại").ToList();
+            var farm = context.UserLogins.Where(t => t._status == 1 && t._role == "farm").ToList();
             foreach (var item in farm)
             {
                 var Notices = new Notice
@@ -214,7 +215,7 @@ namespace TraceabilityAPI.Controllers
         [HttpPost]
         public JsonResult AddNoticeAllTransport(Notice og)
         {
-            var transport = context.UserLogins.Where(t => t._status == 1 && t._role == "Đơn vị vận chuyển").ToList();
+            var transport = context.UserLogins.Where(t => t._status == 1 && t._role == "transport").ToList();
             foreach (var item in transport)
             {
                 var Notices = new Notice
@@ -283,7 +284,7 @@ namespace TraceabilityAPI.Controllers
         [HttpPost]
         public JsonResult AddNoticeAllStore(Notice og)
         {
-            var store = context.UserLogins.Where(t => t._status == 1 && t._role == "Cửa hàng").ToList();
+            var store = context.UserLogins.Where(t => t._status == 1 && t._role == "store").ToList();
             foreach (var item in store)
             {
                 var Notices = new Notice

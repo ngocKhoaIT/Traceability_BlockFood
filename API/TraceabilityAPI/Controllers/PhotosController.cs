@@ -3,10 +3,12 @@ using Microsoft.AspNetCore.Mvc;
 using System.Drawing;
 using TraceabilityAPI.Models;
 using IronBarCode;
+using Microsoft.AspNetCore.Authorization;
 
 namespace TraceabilityAPI.Controllers
 {
     [Route("api/[controller]/[Action]")]
+    [Authorize]
     [ApiController]
     public class PhotosController : ControllerBase
     {

@@ -1,4 +1,5 @@
-﻿using TraceabilityAPI.Models;
+﻿using Microsoft.AspNetCore.Mvc;
+using TraceabilityAPI.Models;
 using TraceabilityAPI.Repositorys.BaseRepoUnit;
 using TraceabilityAPI.Repositorys.Interface;
 
@@ -11,6 +12,19 @@ namespace TraceabilityAPI.Repositorys.Repository
         public TypeProductRepository(DataDbContext context) : base(context)
         {
             this.context = context;
+        }
+
+        public JsonResult checkName(string id, string name)
+        {
+            var a = context.TypeProducts.Where(t=> t.factoryId == id && t.typeName == name).FirstOrDefault();
+            if(a != null)
+            {
+                return new JsonResult("Đã tồn tại");
+            }
+            else
+            {
+                return new JsonResult("Chưa tồn tại");
+            }    
         }
 
         public void Delete(int id)

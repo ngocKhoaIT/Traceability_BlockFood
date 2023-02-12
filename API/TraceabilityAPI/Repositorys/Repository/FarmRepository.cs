@@ -24,6 +24,64 @@ namespace TraceabilityAPI.Repositorys.Repository
             }
         }
 
+        public JsonResult staticFarm(string id)
+        {
+            var fruits = context.Fruits.Where(t => t.farmId == id).ToList();
+            var fruitHs = context.FruitHarvests.ToList();
+
+            var fruitList = fruits.Join(fruitHs, t1 => t1.fruitId, t2 => t2.fruitId, (t1, t2) => new
+            {
+                fruitId = t1.fruitId,
+                fruitName = t1.fruitName,
+                farmId = t1.farmId,
+
+            });
+
+            foreach(var i in fruits)
+            {
+
+            }
+
+            return new JsonResult("");
+        }
+
+        public JsonResult getAllFarmbyFruit(string req)
+        {
+            var person = context.Persons.Where(t => t._status == 1).ToList();
+            var farm = context.Farms.Where(t => t._status == 1).OrderBy(t => t.farmName).ToList();
+            var fruit = context.Fruits.Where(t => t._status == 1 && t.fruitName == req).ToList().GroupBy(t => t.farmId).Select(s => new {
+                farmId = s.Key,
+            });
+
+            var farmlist = farm.Join(fruit, t1 => t1.farmId, t2 => t2.farmId,
+                                      (t1, t2) => new Farm
+                                      {
+                                          farmId = t1.farmId,
+                                          farmName = t1.farmName,
+                                          addressFarm = t1.addressFarm,
+                                          date_create= t1.date_create,
+                                          date_update= t1.date_update,
+                                          farmerId= t1.farmerId,
+                                          note= t1.note,
+                                          _status = t1._status
+                                      });
+
+            var farmList = farmlist.Join(person, t1 => t1.farmerId, t2 => t2.identification,
+                                      (t1, t2) => new
+                                      {
+                                          farmId = t1.farmId,
+                                          farmName = t1.farmName,
+                                          addressFarm = t1.addressFarm,
+                                          farmerId = t1.farmerId,
+                                          farmerName = t2.lastName + " " + t2.firstName,
+                                          note = t1.note,
+                                          phoneNumber = t2.phoneNumber,
+                                          email = t2.email,
+                                      });
+
+            return new JsonResult(farmList);
+        }
+
         public IEnumerable<Farm> getAllFarm()
         {
             return context.Farms.Where(t => t._status == 1).OrderBy(t => t.farmName).ToList();

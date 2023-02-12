@@ -21,8 +21,8 @@ import { LoaderService } from 'src/app/services/loader.service';
 export class InventoryMerchantbyStoreComponent implements OnInit {
 
   displayedColumnsFactory: string[] = ['billId', 'fruitName', 'farmName', 'addressFarm',
-    'merchantName', 'addressMerchant', 'weight',
-    'unit', 'system'];
+    'merchantName', 'addressMerchant', 'weight', 'unit', 'weightDelivery',
+    'unit2', 'system'];
 
   dataSourceFactory = new MatTableDataSource<MFView>;
 

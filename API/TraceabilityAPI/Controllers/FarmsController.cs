@@ -1,4 +1,5 @@
-﻿using Microsoft.AspNetCore.Http;
+﻿using Microsoft.AspNetCore.Authorization;
+using Microsoft.AspNetCore.Http;
 using Microsoft.AspNetCore.Mvc;
 using TraceabilityAPI.Models;
 using TraceabilityAPI.Repositorys.BaseRepoUnit;
@@ -6,6 +7,7 @@ using TraceabilityAPI.Repositorys.BaseRepoUnit;
 namespace TraceabilityAPI.Controllers
 {
     [Route("api/[controller]/[Action]")]
+    [Authorize]
     [ApiController]
     public class FarmsController : ControllerBase
     {
@@ -43,9 +45,23 @@ namespace TraceabilityAPI.Controllers
 
         [HttpGet]
         [Route("{req}")]
+        public JsonResult StaticsFarm(string req)
+        {
+            return _unit.Farms.staticFarm(req);
+        }
+
+        [HttpGet]
+        [Route("{req}")]
         public JsonResult GetFarmsbyFilter(string req)
         {
             return _unit.Farms.getFarmsbyFilter(req);
+        }
+
+        [HttpGet]
+        [Route("{req}")]
+        public JsonResult GetFarmsbyFruit(string req)
+        {
+            return _unit.Farms.getAllFarmbyFruit(req);
         }
 
         [HttpPost]

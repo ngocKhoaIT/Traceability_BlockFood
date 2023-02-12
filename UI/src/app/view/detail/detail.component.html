@@ -376,7 +376,7 @@
                                         </mat-label>
                                         &nbsp;
                                         <mat-label>
-                                            {{detailFull.tTransportMF}}
+                                            {{detailFull.tTransportMF}}°C
                                         </mat-label>
                                     </td>
                                     <td>
@@ -385,7 +385,7 @@
                                         </mat-label>
                                         &nbsp;
                                         <mat-label>
-                                            {{detailFull.hTransportMF}}
+                                            {{detailFull.hTransportMF}}%
                                         </mat-label>
                                     </td>
                                 </tr>
@@ -418,7 +418,7 @@
                                         </mat-label>
                                         &nbsp;
                                         <mat-label>
-                                            {{detailFull.tTransportUTO}}
+                                            {{detailFull.tTransportUTO}}°C
                                         </mat-label>
                                     </td>
                                     <td>
@@ -427,7 +427,7 @@
                                         </mat-label>
                                         &nbsp;
                                         <mat-label>
-                                            {{detailFull.hTransportUTO}}
+                                            {{detailFull.hTransportUTO}}%
                                         </mat-label>
                                     </td>
                                 </tr>
@@ -460,11 +460,21 @@
                                 <tr>
                                     <td>
                                         <mat-label class="labelH5">
-                                            Ảnh mã QR:
+                                            Trạng thái:
+                                        </mat-label>
+                                        &nbsp;
+                                        <mat-label>
+                                            {{status}}
                                         </mat-label>
                                     </td>
                                     <td>
-                                        <img src="{{qrImage}}" width="200px" height="250px" />
+                                        <mat-label class="labelH5">
+                                            Tồn kho:
+                                        </mat-label>
+                                        &nbsp;
+                                        <mat-label>
+                                            {{amount}}
+                                        </mat-label>
                                     </td>
                                 </tr>
                             </table>
@@ -728,7 +738,7 @@
                                         </mat-label>
                                         &nbsp;
                                         <mat-label>
-                                            {{detailWTM.tfactory}}
+                                            {{detailWTM.tfactory}}°C
                                         </mat-label>
                                     </td>
                                     <td>
@@ -737,7 +747,7 @@
                                         </mat-label>
                                         &nbsp;
                                         <mat-label>
-                                            {{detailWTM.hfactory}}
+                                            {{detailWTM.hfactory}}%
                                         </mat-label>
                                     </td>
                                 </tr>
@@ -818,7 +828,7 @@
                                         </mat-label>
                                         &nbsp;
                                         <mat-label>
-                                            {{detailWTM.tTransportUTO2}}
+                                            {{detailWTM.tTransportUTO2}}°C
                                         </mat-label>
                                     </td>
                                     <td>
@@ -827,7 +837,7 @@
                                         </mat-label>
                                         &nbsp;
                                         <mat-label>
-                                            {{detailWTM.hTransportUTO2}}
+                                            {{detailWTM.hTransportUTO2}}%
                                         </mat-label>
                                     </td>
                                 </tr>
@@ -860,7 +870,7 @@
                                         </mat-label>
                                         &nbsp;
                                         <mat-label>
-                                            {{detailWTM.tTransportUTO}}
+                                            {{detailWTM.tTransportUTO}}°C
                                         </mat-label>
                                     </td>
                                     <td>
@@ -869,7 +879,7 @@
                                         </mat-label>
                                         &nbsp;
                                         <mat-label>
-                                            {{detailWTM.hTransportUTO}}
+                                            {{detailWTM.hTransportUTO}}%
                                         </mat-label>
                                     </td>
                                 </tr>
@@ -902,21 +912,31 @@
                                 <tr>
                                     <td>
                                         <mat-label class="labelH5">
-                                            Ảnh trái cây thu hoạch:
+                                            Trạng thái:
+                                        </mat-label>
+                                        &nbsp;
+                                        <mat-label>
+                                            {{status}}
                                         </mat-label>
                                     </td>
                                     <td>
-                                        <img src="{{photoPath}}{{detailWTM.imageFH}}" width="200px" height="250px" />
+                                        <mat-label class="labelH5">
+                                            Tồn kho:
+                                        </mat-label>
+                                        &nbsp;
+                                        <mat-label>
+                                            {{amount}}
+                                        </mat-label>
                                     </td>
                                 </tr>
                                 <tr>
                                     <td>
                                         <mat-label class="labelH5">
-                                            Ảnh mã QR:
+                                            Ảnh trái cây thu hoạch:
                                         </mat-label>
                                     </td>
                                     <td>
-                                        <img src="{{qrImage}}" width="200px" height="250px" />
+                                        <img src="{{photoPath}}{{detailWTM.imageFH}}" width="200px" height="250px" />
                                     </td>
                                 </tr>
                             </table>
@@ -1175,7 +1195,7 @@
                                         </mat-label>
                                         &nbsp;
                                         <mat-label>
-                                            {{detailLiveFull.tTransportMF}}
+                                            {{detailLiveFull.tTransportMF}}°C
                                         </mat-label>
                                     </td>
                                     <td>
@@ -1184,7 +1204,7 @@
                                         </mat-label>
                                         &nbsp;
                                         <mat-label>
-                                            {{detailLiveFull.hTransportMF}}
+                                            {{detailLiveFull.hTransportMF}}%
                                         </mat-label>
                                     </td>
                                 </tr>
@@ -1217,11 +1237,21 @@
                                 <tr>
                                     <td>
                                         <mat-label class="labelH5">
-                                            Ảnh mã QR:
+                                            Trạng thái:
+                                        </mat-label>
+                                        &nbsp;
+                                        <mat-label>
+                                            {{status}}
                                         </mat-label>
                                     </td>
                                     <td>
-                                        <img src="{{qrImage}}" width="200px" height="250px" />
+                                        <mat-label class="labelH5">
+                                            Tồn kho:
+                                        </mat-label>
+                                        &nbsp;
+                                        <mat-label>
+                                            {{amount}}
+                                        </mat-label>
                                     </td>
                                 </tr>
                             </table>
@@ -1436,7 +1466,7 @@
                                     </mat-label>
                                     &nbsp;
                                     <mat-label>
-                                        {{detailLiveWTM.tTransportUTO}}
+                                        {{detailLiveWTM.tTransportUTO}}°C
                                     </mat-label>
                                 </td>
                                 <td>
@@ -1445,7 +1475,7 @@
                                     </mat-label>
                                     &nbsp;
                                     <mat-label>
-                                        {{detailLiveWTM.hTransportUTO}}
+                                        {{detailLiveWTM.hTransportUTO}}%
                                     </mat-label>
                                 </td>
                             </tr>
@@ -1476,11 +1506,21 @@
                             <tr>
                                 <td>
                                     <mat-label class="labelH5">
-                                        Ảnh mã QR:
+                                        Trạng thái:
+                                    </mat-label>
+                                    &nbsp;
+                                    <mat-label>
+                                        {{status}}
                                     </mat-label>
                                 </td>
                                 <td>
-                                    <img src="{{qrImage}}" width="200px" height="250px" />
+                                    <mat-label class="labelH5">
+                                        Tồn kho:
+                                    </mat-label>
+                                    &nbsp;
+                                    <mat-label>
+                                        {{amount}}
+                                    </mat-label>
                                 </td>
                             </tr>
                         </table>
@@ -1491,7 +1531,7 @@
     </div>
 </div>
 
-<div class="m-4">
+<div class="m-2">
     <a (click)="changeCheck5()">Tìm sản phẩm tương tự ở cửa hàng khác</a>
 </div>
 

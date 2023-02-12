@@ -6,6 +6,7 @@ namespace TraceabilityAPI.Repositorys.Interface
 {
     public interface IProduct : IBase<Product>
     {
+        JsonResult checkDate(string mfg, string exp);
         void sell(string id, int w);
         string id();
         void Delete(string id);

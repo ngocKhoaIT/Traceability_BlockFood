@@ -52,6 +52,7 @@ app.UseStaticFiles(new StaticFileOptions
     RequestPath = "/Photos"
 });
 
+app.UseAuthentication();
 app.UseAuthorization();
 
 app.MapControllers();

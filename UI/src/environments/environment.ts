@@ -6,7 +6,8 @@ export const environment = {
   production: true,
   baseApiUrl: 'https://localhost:7270/',
   photoUrl: 'https://localhost:7270/Photos/',
-  webUrl : 'http://localhost:4200/pagelayout/detail/'
+  webUrl : 'http://localhost:4200/pagelayout/detail/',
+  blockUrl : 'http://localhost:8080/'
 };
 
 /*
