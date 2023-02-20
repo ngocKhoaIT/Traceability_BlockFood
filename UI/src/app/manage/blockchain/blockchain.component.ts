@@ -74,18 +74,36 @@ export class BlockchainComponent implements OnInit {
   }
 
   projectId = "2LUrdSt6bd0G8WnS3OzPvmipXVa"
-  projectSecret = "<your-infura-project-secret>"
+  projectSecret = "78be58fa14430afe996f6bdc4319e6e8"
 
   addBlock() {
     const auth = 'Basic ' + Buffer.from(this.projectId + ':' + this.projectSecret).toString('base64')
-    const client = create({
-      host: 'ipfs.infura.io',
-      port: 5001,
-      protocol: 'https',
-      headers: {
-        authorization: auth,
-      }
-    })
-    client.add('hello world')
+    try {
+      const client = create({
+        host: 'ipfs.infura.io',
+        port: 5001,
+        protocol: 'https',
+        headers: {
+          authorization: auth,
+        }
+      })
+
+      client.add('hello world 123').then(t=>console.log(t.path))
+
+      this._snackBar.open('Thành công', 'OK', {
+        horizontalPosition: 'center',
+        verticalPosition: 'top',
+        duration: 1500,
+        panelClass: ['snackbar']
+      });
+    }
+    catch{
+      this._snackBar.open('Thành công', 'OK', {
+        horizontalPosition: 'center',
+        verticalPosition: 'top',
+        duration: 1500,
+        panelClass: ['snackbar']
+      });
+    }
   }
 }

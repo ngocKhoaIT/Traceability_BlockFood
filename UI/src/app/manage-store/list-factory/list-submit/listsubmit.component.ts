@@ -176,8 +176,6 @@ export class popUpDetailSF implements OnInit {
     date_update: '',
   }
 
-  units: string[] = ['Kg', 'Tấn', 'Tạ', 'Yến']
-
   onNoClick(): void {
     this.dialogRef.close();
   }

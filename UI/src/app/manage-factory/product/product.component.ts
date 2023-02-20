@@ -23,7 +23,7 @@ import { environment } from 'src/environments/environment';
 export class ProductComponent implements OnInit {
 
   displayedColumnsProduct: string[] = ['productId', 'productName', 'amountProduct', 'unit',
-    'mfg_date', 'exp_date', 'net_weight', 'amountProduct_first',
+    'mfg_date', 'exp_date', 'net_weight', 
     'temperature', 'humidity', 'procedureOfProduct', 'elementOfProduct'
   ];
 

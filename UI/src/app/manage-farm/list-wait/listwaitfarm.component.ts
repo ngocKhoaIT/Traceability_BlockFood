@@ -26,7 +26,7 @@ import { LoaderService } from 'src/app/services/loader.service';
 export class ListWaitFarmComponent implements OnInit {
 
   displayedColumns: string[] = ['haverstId', 'fruitName', 'placeName', 'address',
-    'farm', 'amount', 'unit', 'system'];
+    'amount', 'unit', 'system'];
 
   dataSource = new MatTableDataSource<FQView>;
 

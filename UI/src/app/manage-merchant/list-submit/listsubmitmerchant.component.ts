@@ -110,7 +110,7 @@ export class ListSubmitMerchantComponent implements OnInit {
 
   times: string[] = ['Today', 'Last 7 Day', 'Last Month', 'Last 12 Months', 'All Time']
 
-  choices: string[] = ["Đăng", "Đang vận chuyển", "Hoàn tất"]
+  choices: string[] = ["Đăng", "Đang vận chuyển", "Đã hoàn tất"]
   choice = ''
 
   filter(req: string, id: string) {

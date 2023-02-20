@@ -265,11 +265,21 @@
                         </ng-container>
                         <ng-container matColumnDef="elementOfProduct">
                             <th mat-header-cell *matHeaderCellDef mat-sort-header> Thành phần </th>
-                            <td mat-cell *matCellDef="let row"> {{row.elementOfProduct}} </td>
+                            <td mat-cell *matCellDef="let row"> 
+                                <div class="ml-1 inline-block w-[200px]">
+                                    <span class="truncate block">
+                                        {{row.elementOfProduct}}
+                                    </span>
+                                </div></td>
                         </ng-container>
                         <ng-container matColumnDef="procedureOfProduct">
                             <th mat-header-cell *matHeaderCellDef mat-sort-header> Quy trình </th>
-                            <td mat-cell *matCellDef="let row"> {{row.procedureOfProduct}} </td>
+                            <td mat-cell *matCellDef="let row"> 
+                                <div class="ml-1 inline-block w-[200px]">
+                                    <span class="truncate block">
+                                        {{row.procedureOfProduct}}
+                                    </span>
+                                </div></td>
                         </ng-container>
 
                         <tr mat-header-row *matHeaderRowDef="displayedColumnsProduct"></tr>

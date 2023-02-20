@@ -2,8 +2,6 @@ import { DOCUMENT } from '@angular/common';
 import { Component, Inject, OnInit } from '@angular/core';
 import { MatSnackBar } from '@angular/material/snack-bar';
 import { Router } from '@angular/router';
-import { WebcamImage } from 'ngx-webcam';
-import { Observable, Subject } from 'rxjs';
 import { APIservicesService } from 'src/app/services/apiservices.service';
 import { environment } from 'src/environments/environment';
 

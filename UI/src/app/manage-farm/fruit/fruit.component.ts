@@ -1,12 +1,10 @@
-import { Component, Inject, OnInit, ViewChild } from '@angular/core';
-import { FormBuilder, FormGroup, Validators } from '@angular/forms';
-import { MatDialog, MatDialogRef, MAT_DIALOG_DATA } from '@angular/material/dialog';
+import { Component,OnInit, ViewChild } from '@angular/core';
+import { FormBuilder, FormGroup} from '@angular/forms';
 import { MatPaginator } from '@angular/material/paginator';
 import { MatSnackBar } from '@angular/material/snack-bar';
 import { MatSort } from '@angular/material/sort';
 import { MatTableDataSource } from '@angular/material/table';
 import { ActivatedRoute, Router } from '@angular/router';
-import { NoticeDelete } from 'src/app/base/notice-delete/notice-delete.component';
 import { Farm } from 'src/app/models/farm.model';
 import { Fruit } from 'src/app/models/fruit.model';
 import { Seed } from 'src/app/models/seed.model';
@@ -153,7 +151,7 @@ export class FruitComponent implements OnInit {
             this.addFruitRequest.amount = 0
             this.addFruitRequest.date_plant = ""
   
-              this._snackBar.open('Thêm thành công', 'OK', {
+              this._snackBar.open('Trồng thành công', 'OK', {
                 horizontalPosition: 'center',
                 verticalPosition: 'top',
                 duration: 1500,

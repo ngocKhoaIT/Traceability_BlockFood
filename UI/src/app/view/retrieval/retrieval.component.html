@@ -13,10 +13,10 @@
                 <!-- <button class="file-upload-button" [ngStyle]="{'background-image': 'url('+qr+')'}">
                     <input type="file" #fileInput (change)="onChange(fileInput)" />
                 </button> -->
-                <button class="file-upload-button" (click)="action.start()" (click)="webcamChange()"
+                <!-- <button class="file-upload-button" (click)="action.start()" (click)="webcamChange()"
                     [ngStyle]="{'background-image': 'url('+qr+')'}">
                     
-                </button>
+                </button> -->
             </div>
             <!-- <webcam [hidden]="checkCamera" class="webcam" [trigger]="invokeObservable" (imageCapture)="captureImg($event)"></webcam> -->
             <ngx-scanner-qrcode #action="scanner" class="webcam" [hidden]="checkCamera"></ngx-scanner-qrcode>

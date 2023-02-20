@@ -10,6 +10,7 @@ import { DetailLiveWTM } from 'src/app/models/models-view/detailLiveWTM.model';
 import { DetailWTM } from 'src/app/models/models-view/detailWTM.model';
 import { ILView } from 'src/app/models/models-view/ILView.model';
 import { APIservicesService } from 'src/app/services/apiservices.service';
+import { LoaderService } from 'src/app/services/loader.service';
 import { environment } from 'src/environments/environment';
 
 @Component({
@@ -18,8 +19,7 @@ import { environment } from 'src/environments/environment';
   styleUrls: ['./detail.component.scss']
 })
 export class DetailComponent implements OnInit {
-
-  constructor(private _router: Router, private route:ActivatedRoute,
+  constructor(private route:ActivatedRoute,public loaderService : LoaderService,
     private _authService: APIservicesService,
     @Inject(LOCALE_ID) public locale: string) {
   }

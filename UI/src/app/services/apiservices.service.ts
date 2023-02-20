@@ -970,4 +970,5 @@ export class APIservicesService {
   getAllBlockchainFilter(req: string): Observable<Block[]>{
     return this.http.get<Block[]>(this.baseApiUrl + "api/Blockchains/GetAllFilter/"+ req)
   }
+
 }

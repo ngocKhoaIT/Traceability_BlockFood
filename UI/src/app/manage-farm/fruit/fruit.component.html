@@ -167,22 +167,42 @@
             
                         <ng-container matColumnDef="fertilizer">
                             <th mat-header-cell *matHeaderCellDef mat-sort-header> Phân bón </th>
-                            <td mat-cell *matCellDef="let row"> {{row.fertilizer}} </td>
+                            <td mat-cell *matCellDef="let row"> 
+                                <div class="ml-1 inline-block w-[150px]">
+                                    <span class="truncate block">
+                                        {{row.fertilizer}}
+                                    </span>
+                                </div> </td>
                         </ng-container>
             
                         <ng-container matColumnDef="pesticides">
                             <th mat-header-cell *matHeaderCellDef mat-sort-header> Thuốc trừ sâu </th>
-                            <td mat-cell *matCellDef="let row"> {{row.pesticides}} </td>
+                            <td mat-cell *matCellDef="let row"> 
+                                <div class="ml-1 inline-block w-[150px]">
+                                    <span class="truncate block">
+                                        {{row.pesticides}}
+                                    </span>
+                                </div> </td>
                         </ng-container>
             
                         <ng-container matColumnDef="land">
                             <th mat-header-cell *matHeaderCellDef mat-sort-header> Thổ nhưỡng </th>
-                            <td mat-cell *matCellDef="let row"> {{row.land}} </td>
+                            <td mat-cell *matCellDef="let row"> 
+                                <div class="ml-1 inline-block w-[150px]">
+                                    <span class="truncate block">
+                                        {{row.land}}
+                                    </span>
+                                </div> </td>
                         </ng-container>
             
                         <ng-container matColumnDef="technology">
                             <th mat-header-cell *matHeaderCellDef mat-sort-header> Công nghệ </th>
-                            <td mat-cell *matCellDef="let row"> {{row.technology}} </td>
+                            <td mat-cell *matCellDef="let row"> 
+                                <div class="ml-1 inline-block w-[150px]">
+                                    <span class="truncate block">
+                                        {{row.technology}}
+                                    </span>
+                                </div> </td>
                         </ng-container>
             
                         <ng-container matColumnDef="status_activity">
@@ -192,7 +212,7 @@
             
                         <ng-container matColumnDef="date_plant">
                             <th mat-header-cell *matHeaderCellDef mat-sort-header> Ngày trồng </th>
-                            <td mat-cell *matCellDef="let row"> {{row.date_plant}} </td>
+                            <td mat-cell *matCellDef="let row"> {{loadService.changeFormatDate(row.date_plant)}} </td>
                         </ng-container>
             
                           <tr mat-header-row *matHeaderRowDef="displayedColumnsFruit"></tr>

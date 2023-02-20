@@ -8,4 +8,5 @@ export interface ILView {
     amount : number,
     unit : string,
     imageQR : string,
+    date: string
 }

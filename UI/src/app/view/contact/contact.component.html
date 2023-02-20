@@ -2,7 +2,7 @@
     <div class="mt-14 p-4 w-full h-[90%] grid grid-cols-2 gap-4 max-md:grid-cols-1">
         <div class="flex flex-col items-center justify-start">
             <div class="m-4 text-4xl font-light">
-                CONTACT
+                LIÊN HỆ
             </div>
             <div class="flex w-full flex-col items-start justify-start pl-8">
                 <div class="flex flex-row w-full text-sm mb-6">
@@ -56,14 +56,15 @@
             </div>
             <div class="col-span-2">
                 <div>
-                    <label class="block mb-2 text-sm font-medium text-gray-900 dark:text-white">Nội dung</label>
+                    <label class="block mb-2 text-sm font-medium text-gray-900 dark:text-white">Nội dung*</label>
                     <textarea [(ngModel)]="noidung" class="bg-gray-50 border border-gray-500 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500" 
                     placeholder="Nhập nội dung" cols="30" rows="10"></textarea>
                 </div>
             </div>
             <div class="col-span-2 flex flex-row w-full items-end justify-end">
                 <div>
-                    <button class="flex flex-row w-24 items-center justify-center bg-white px-2 py-1 border-2 bg-green-600 rounded ml-2 mr-2 text-white drop-shadow-xl">
+                    <button class="flex flex-row w-24 items-center justify-center bg-white px-2 py-1 border-2 bg-green-600 rounded ml-2 mr-2 text-white drop-shadow-xl"
+                    (click)="send()">
                             Gửi
                         </button>
                 </div>

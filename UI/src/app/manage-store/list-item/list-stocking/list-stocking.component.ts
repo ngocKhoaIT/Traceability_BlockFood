@@ -1,5 +1,6 @@
 import { Component, OnInit, ViewChild } from '@angular/core';
 import { MatPaginator } from '@angular/material/paginator';
+import { MatSnackBar } from '@angular/material/snack-bar';
 import { MatSort } from '@angular/material/sort';
 import { MatTableDataSource } from '@angular/material/table';
 import { ActivatedRoute } from '@angular/router';
@@ -25,7 +26,7 @@ export class ListStockingComponent implements OnInit {
   sort!: MatSort;
 
   constructor(private testService: APIservicesService,
-    private route: ActivatedRoute,
+    private route: ActivatedRoute, private _snackBar: MatSnackBar,
     public loadService: LoaderService) {
   }
 
@@ -65,7 +66,14 @@ export class ListStockingComponent implements OnInit {
   testAPI(id: string){
     this.testService.updateStatusInventory(id)
     .subscribe({
-      next: (re) =>{                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                           }
+      next: (re) =>{
+        this._snackBar.open('Đã test API bán hàng thành công', 'OK', {
+          horizontalPosition: 'center',
+          verticalPosition: 'top',
+          duration: 1500,
+          panelClass: ['snackbar']
+        });
+        this.ngOnInit()                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                       }
     })
   }
 

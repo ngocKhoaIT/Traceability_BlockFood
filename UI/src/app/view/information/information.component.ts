@@ -1,6 +1,7 @@
 import { Platform } from '@angular/cdk/platform';
 import { Component, OnInit } from '@angular/core';
 import { Ndef, NFC } from '@ionic-native/nfc/ngx';
+import { environment } from 'src/environments/environment';
 
 @Component({
   selector: 'app-information',
@@ -16,6 +17,12 @@ export class InformationComponent implements OnInit {
 
   ngOnInit(): void {
   }
+
+  photoPath = environment.photoUrl
+
+  item1 : string = this.photoPath + 'nongtrai.jfif'
+  item2 : string = this.photoPath + 'nhamay.jfif'
+  item3 : string = this.photoPath + 'cuahang.jfif'
 
   addListenNFC() {
     this.platform

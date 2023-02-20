@@ -1,0 +1,69 @@
+﻿namespace TraceabilityAPI.Models.ModelViews
+{
+    public class DetailFull
+    {
+        public string? id { get; set; }
+        public string? productId { get; set; }
+        public string? productName { get; set; } 
+        public string? factoryId { get; set; }
+        public string? factoryName { get; set; }
+        public string? factoryEmail { get; set; }
+        public string? addressFactory { get; set; }
+        public string? harvestId { get; set; }
+        public string? ifId { get; set; }
+        public DateTime date_harvest { get; set; }
+        public DateTime mfg_date { get; set; }
+        public DateTime exp_date { get; set; } 
+        public decimal net_weight { get; set; }
+        public string? procedureOfProduct { get; set; }
+        public string? elementOfProduct { get; set; }
+        public decimal tfactory { get; set; }
+        public decimal hfactory { get; set; }
+        public string? storeId { get; set; }
+        public string? storeName { get; set; }
+        public string? storePhone { get; set; }
+        public string? storeEmail { get; set; }
+        public string? addressStore { get; set; }
+        public string? fruitId { get; set; }
+        public string? fruitName { get; set; }
+        public string? technology { get; set; }
+        public string? land { get; set; }
+        public string? fertilizer { get; set; }
+        public string? pesticides { get; set; }
+        public DateTime date_plant { get; set; } 
+        public string? farmId { get; set; }
+        public string? farmName { get; set; }
+        public string? addressFarm { get; set; }
+        public string? billId1 { get; set; }
+        public string? itemBill1 { get; set; }
+        public string? placeId1 { get; set; }
+        public string? transportId1 { get; set; }
+        public string? transportName1 { get; set; }
+        public string? emailTransport1 { get; set; }
+        public string? addressTransport1 { get; set; }
+        public decimal tTransportUTO { get; set; }
+        public decimal hTransportUTO { get; set; }
+        public string? placeUTO { get; set; }
+        public string? goodsUTO { get; set; }
+        public string? toPlaceUTO { get; set; }
+        public string? billId2 { get; set; }
+        public string? itemBill2 { get; set; }
+        public string? placeId2 { get; set; }
+        public string? transportId2 { get; set; }
+        public string? transportName2 { get; set; }
+        public string? emailTransport2 { get; set; }
+        public string? addressTransport2 { get; set; }
+        public decimal tTransportMF { get; set; }
+        public decimal hTransportMF { get; set; }
+        public string? placeMF { get; set; }
+        public string? goodsMF { get; set; }
+        public string? toPlaceMF { get; set; }
+        public string? merchantId { get; set; }
+        public string? merchantName { get; set; }
+        public string? addressMerchant { get; set; }
+        public string? imageProduct { get; set; }
+        public string? imageQR { get; set; }
+        public int checkM { get; set; }
+        public string? imageFH { get; set; }
+    }
+}
